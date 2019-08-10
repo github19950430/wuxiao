@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/common/template :: header(~{::title},~{::link},~{::style})">
+    <style>
+        .layui-input{
+            border: none;
+        }
+        .layui-textarea{
+            border: none;
+        }
+        .clearfix:after{
+            content:".";
+            display:block;
+            height:0;
+            visibility:hidden;
+            clear:both;
+        }
+        .clearfix { zoom:1;}
+        table{
+            border-collapse :collapse ;
+        }
+        td {
+            height:40px;
+            border :1px solid black;
+            font-size:12px;
+            text-align :center;
+            width: 50%;
+        }
+        td>div>div:nth-child(1){
+            width: 30%;
+        }
+        td>div>div:nth-child(2){
+            width: 69%;
+        }
+        input{
+            border: none;
+        }
+        .lay-lb input{
+            margin: 0 10px;
+        }
+        .lay-date ul li{
+            float: left;
+            height: 45px;
+            line-height: 45px;
+            border: 1px solid #000;
+        }
+        .lay-date ul li:nth-child(1){
+            border:none;
+        }
+        .lay-date ul li:nth-child(2){
+            border-right:none;
+            border-top: none;
+            border-bottom: none;
+        }
+        .lay-date ul li:nth-child(3){
+            border-right:none;
+            border-top: none;
+            border-bottom: none;
+        }
+        .lay-date ul li:last-child{
+            border-right:none;
+            border-top: none;
+            border-bottom: none;
+        }
+        .lay-textarea textarea{
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        .layui-laydate-content td{
+            border: none;
+        }
+        .lay-juxing ul li{
+            float: left;
+        }
+        .wuxiao_img div{
+            width:100%;
+            height:100%;
+            overflow: auto;
+            /* overflow-x:hidden; */
+        }
+        .wuxiao_img div a{
+            margin: 5px;
+            width: 20%;
+            height: 74%;
+            position: relative;
+            display: block;
+            float: left;
+            border: 3px solid #ddd;
+        }
+
+        .wuxiao_img div a img{
+            width:100%;
+            height:100%;
+            margin: 0 0 20px 0;
+        }
+        .wuxiao_img div a i{
+            margin: 0;
+            position: absolute;
+            z-index: 99;
+            height: 18px;
+            width: 18px;
+            text-align: center;
+            opacity: 1;
+            font-size: 18px;
+            top: -4px;
+            right: -10px;
+            line-height: 18px;
+        }
+
+        .wuxiao_file div{
+            width:100%;
+            height:100%;
+            overflow: auto;
+        }
+        .wuxiao_file div a{
+            width:60px;
+            height:80px;
+            border:2px solid #ddd;
+            padding:6px 5px;
+            margin:0 3px;
+        }
+        .wuxiao_file div a i{
+            font-size: 18px;
+        }
+        .xui-upload-frame{
+            position:fixed;
+        }
+    </style>
+</head>
+<body>
+<form th:action="@{/modelstudio/innovationTrain/add}">
+    <input type="hidden" name="id" th:if="${innovationTrain}" th:value="${innovationTrain.id}">
+    <input type="hidden" name="baseId"  th:value="${baseId}">
+    <input type="hidden" name="trainImg" id="trainImg"  th:value="${innovationTrain?.trainImg}">
+    <input type="hidden" name="fileId" id="fileId"  th:value="${innovationTrain?.fileId}">
+    <input type="hidden" name="trainEdate" id="trainEdate"  th:value="${innovationTrain?.trainEdate}">
+    <input type="hidden" name="trainBdate" id="trainBdate"  th:value="${innovationTrain?.trainBdate}">
+        <table style="width: 1100px;margin: 0 auto">
+            <tr>
+                <td colspan="4" style="font-size: 20px;font-weight: bold;">培训详情</td>
+            </tr>
+            <tr>
+                <td >
+                    <div style="width: 100%;height: 45px;line-height: 45px">
+                        <div style="width: 30%;float: left;border-right: 1px solid #000">
+                            培训名称
+                        </div>
+                        <div style="width: 69% ;float: left">
+                            <input class="layui-input" type="text" name="trainName" placeholder="请输入培训名称" th:value="${innovationTrain?.trainName}">
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div style="width: 100%;height: 45px;line-height: 45px">
+                        <div style="width: 30%;float: left;border-right: 1px solid #000">
+                            培训性质
+                        </div>
+                        <div style="width: 69% ;float: left">
+                            <select class="timo-search-select" name="trainNature" mo:dict="TRAIN_NATURE" mo-selected="${innovationTrain?.trainNature}"
+                                    style="border: none;width: 100%;height: 100%;margin: 0 auto;"></select>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div style="width: 100%;height: 45px;line-height: 45px">
+                        <div style="float: left;border-right: 1px solid #000">
+                            技能分类
+                        </div>
+                        <div style="float: left">
+                            <select class="timo-search-select" name="skillType" mo:dict="SKILL_TYPE" mo-selected="${innovationTrain?.skillType}"
+                                    style="border: none;width: 100%;height: 100%;margin: 0 auto;"></select>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div style="width: 100%;height: 45px;line-height: 45px">
+                        <div style="float: left;border-right: 1px solid #000">
+                            培训类型
+                        </div>
+                        <div style="float: left">
+                            <select class="timo-search-select" id="trainType" name="trainType" mo:dict="TRAIN_TYPE" mo-selected="${innovationTrain?.trainType}"
+                                    style="border: none;width: 100%;height: 100%;margin: 0 auto;"  lay-filter="trainType"></select>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div style="width: 100%;height: 45px;line-height: 45px">
+                        <div style="float: left;border-right: 1px solid #000">
+                            培训起止时间
+                        </div>
+                        <div style="float: left">
+                            <input type="text" class="layui-input" id="cdate"  placeholder="yyyy-MM-dd"
+                                    style="border: none">
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div style="width: 100%;height: 45px;line-height: 45px">
+                        <div style="width:30%;float: left;border-right: 1px solid #000">
+                            培训地点
+                        </div>
+                        <div style="float: left">
+                            <input class="layui-input" type="text" name="trainAddr" placeholder="请输入培训地点" th:value="${innovationTrain?.trainAddr}">
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <div style="width: 100%;height:100px;line-height: 45px">
+                        <div style="width:15%;float: left;border-right: 1px solid #000;heigth:101px;line-height: 101px;">
+                            培训简介
+                        </div>
+                        <div style="float: left;width: 84%">
+                            <textarea placeholder="请输入培训简介" class="layui-textarea" name="trainDesc" th:text="${innovationTrain?.trainDesc}"></textarea>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div style="width: 100%;height: 45px;line-height: 45px">
+                        <div style="float: left;border-right: 1px solid #000">
+                            联系人
+                        </div>
+                        <div style="float: left">
+                            <input class="layui-input" type="text" name="trainContcat" placeholder="请输入联系人" th:value="${innovationTrain?.trainContcat}">
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div style="width: 100%;height: 45px;line-height: 45px">
+                        <div style="float: left;border-right: 1px solid #000">
+                            联系电话
+                        </div>
+                        <div style="float: left">
+                            <input class="layui-input" type="text" name="trainPhone" placeholder="请输入联系电话" th:value="${innovationTrain?.trainPhone}">
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4">
+                    <div class="lay-date" >
+                        <ul class="clearfix" style="width: 100%">
+                            <li style="float: left;width: 15%;height: 80px;line-height: 80px;">
+                                培训主图
+                            </li>
+                            <li style="width:20%;height: 80px;line-height: 80px;">
+                                <button type="button" class="layui-btn" style="width: 50%;height: 50%;" id="uploadTrainImg">
+                                    <i class="layui-icon"></i>上传图片
+                                </button>
+                            </li>
+                            <li style="width:59%;height: 80px;line-height: 80px;" class="wuxiao_img">
+                                <div id="file_1">
+                                    <a th:each="item:${resultImg}" th:href="${item.path}" target='_blank' th:attr="id=${item.id}">
+                                        <img th:src="${item.path}" />
+                                        <i onclick='deleteFile(this,event);' class='fa fa-times-circle'></i>
+                                    </a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4">
+                    <div class="lay-date" >
+                        <ul class="clearfix" style="width: 100%">
+                            <li style="float: left;width: 15%;height: 80px;line-height: 80px;">
+                                文件上传
+                            </li>
+                            <li style="width:20%;height: 80px;line-height: 80px;">
+                                <button type="button" class="layui-btn" style="width: 50%;height: 50%;" id="uploadFile">
+                                    <i class="layui-icon"></i>上传
+                                </button>
+                            </li>
+                            <li style="width:59%;height: 80px;line-height: 80px;" class="wuxiao_img">
+                                <div id="file_2">
+                                    <a th:each="item:${resultFile}" th:href="${item.path}"
+                                       target='_blank' th:attr="id=${item.id}"  th:if="${item.mime eq 'img'}">
+                                        <img th:src="${item.path}" />
+                                        <i onclick='deleteFile(this,event);' class='fa fa-times-circle'></i>
+                                    </a>
+                                    <a th:each="item:${resultFile}" th:href="${item.path}"
+                                       target='_blank' th:attr="id=${item.id}"  th:text="${item.name}" th:if="${item.mime ne 'img'}">
+                                        <i onclick='deleteFile(this,event);' class='fa fa-times-circle'></i>
+                                    </a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4" style="height: 60px">
+                    <div class="layui-form-item timo-finally" style="margin-bottom: 0;">
+                        <button class="layui-btn ajax-submit1"><i class="fa fa-check-circle"></i> 保存</button>
+                        <button class="layui-btn btn-secondary close-popup"><i class="fa fa-times-circle"></i> 关闭</button>
+                    </div>
+                </td>
+            </tr>
+        </table>
+</form>
+<script th:replace="/common/template :: script"></script>
+<script th:src="@{/js/plugins/jquery-3.3.1.min.js}"></script>
+<script th:replace="/common/template :: script"></script>
+<script th:src="@{/js/plugins/web-uploader/js/Q.js}"></script>
+<script th:src="@{/js/plugins/web-uploader/js/spark-md5.js}"></script>
+<script th:src="@{/js/plugins/web-uploader/js/Q.md5File.js}"></script>
+<script th:src="@{/js/plugins/web-uploader/js/Q.Uploader.js}"></script>
+<script th:src="@{/js/plugins/web-uploader/js/Q.Uploader.slice.js}"></script>
+<script th:src="@{/js/plugins/web-uploader/js/Q.Uploader.jquery.js}"></script>
+<script th:src="@{/js/plugins/web-uploader/js/Q.Uploader.UI.Custom.js}"></script>
+<script type="text/javascript">
+    layui.use(['laydate','form'],function() {
+        var laydate = layui.laydate;
+        var dval;
+        if($("#trainBdate").val()){
+            dval=$("#trainBdate").val()+" - "+$("#trainEdate").val();
+        }
+        laydate.render({
+            elem : '#cdate',
+            range: true,
+            value:dval
+        });
+        $(document).on("click", ".ajax-submit1", function (e) {
+            if($("#cdate").val()){
+                var tdate=$("#cdate").val().split(" - ");
+                $("#trainBdate").val(tdate[0]);
+                $("#trainEdate").val(tdate[1]);
+            }
+            e.preventDefault();
+            var fileImg   = new Array();
+            var fileFile  = new Array();
+
+            $("#file_1 a").each(function(){
+                fileImg.push(jQuery(this).attr("id"));
+            });
+
+            $("#file_2 a").each(function(){
+                fileFile.push(jQuery(this).attr("id"));
+            });
+
+            $("#trainImg").val(fileImg.join(","));
+            $("#fileId").val(fileFile.join(","));
+
+            var form = $(this).parents("form");
+            var url = form.attr("action");
+            var serializeArray = form.serializeArray();
+            $.post(url, serializeArray, function (result) {
+                if (result.data == null) {
+                    result.data = 'submit[refresh]';
+                }
+                $.fn.Messager(result);
+            });
+        });
+
+    });
+    fileUploads(
+        $("#uploadTrainImg"),".jpg,.png,.gif",false,function(data){
+        var ImgHtml="<a href='"+data.path+"' target='_blank' id='"+data.id+"'><img src='"+data.path+"' /><i onclick='deleteFile(this,event);' class='fa fa-times-circle'></i></a>";
+        $("#file_1").append(ImgHtml);
+    });
+    fileUploads($("#uploadFile"),".rmvb,.move,.mp4,.avl,.flv,.3gp,.rar,.docx,.doc,.xls,.jpg,.png,.gif",true,function(data){
+        console.log(data.mime);
+        var VideoHtml;
+        if(data.mime.indexOf("image")>-1){
+            VideoHtml="<a href='"+data.path+"' target='_blank' id='"+data.id+"'><img src='"+data.path+"' /><i onclick='deleteFile(this,event);' class='fa fa-times-circle'></i></a>";
+        }else{
+            VideoHtml="<a href='"+data.path+"' target='_blank' id='"+data.id+"'>"+data.name+" <i onclick='deleteFile(this,event);' class='fa fa-times-circle'></i></a>";
+        }
+        $("#file_2").append(VideoHtml);
+    });
+
+
+    function fileUploads(obj,allows,multiple,call){
+        var QU=obj.XUploader({
+            url: "/wuxiao/sliceUpload/uploadFile",
+            allows:allows,
+            multiple:multiple,
+            on: {
+                complete: function (task) {
+                    if (task.state != XUploader.COMPLETE) return;
+                    // console.log(task.name + ": " + XUploader.getStatusText(task.state) + "!");
+                    var json = task.json;
+                    if (!json) return console.log(task.name + ": 服务器未返回正确的数据！<br />");
+                    if (this.index >= this.list.length - 1) {
+                        var obj=JSON.parse(task.response);
+                        call(obj.data);
+                    }
+                }
+            }
+        });
+        return QU;
+    }
+    function QError(status) {
+        if (status == "ext") {
+            layer.msg("上传的文件类型限制");
+        }
+    }
+    function deleteFile(This,ev){
+        var T=jQuery(This).parent();
+        var oEvent = ev || event;
+        oEvent.stopPropagation();
+        oEvent.preventDefault();
+        T.remove();
+    }
+</script>
+</body>
+</html>

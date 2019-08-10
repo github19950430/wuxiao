@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/common/template :: header(~{::title},~{::link},~{::style})">
+<style type="text/css">
+.layui-form{
+	margin-right: 100px;
+}
+</style>
+</head>
+<body>
+    <div class="layui-form timo-compile">
+    <form class="layui-form" th:action="@{/review/reviewSet/add}">
+        <input type="hidden" name="id" th:if="${reviewSet}" th:value="${reviewSet.id}">
+        <input type="hidden" name="pid" th:value="${reviewType.id}">
+        <div class="layui-form-item">
+            <label class="layui-form-label">审核项名称</label>
+            <div class="layui-input-block">
+                <input class="layui-input" type="text" readonly="readonly" th:value="${reviewType.name}">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">审核项内容</label>
+            <div class="layui-input-block">
+                <input class="layui-input" type="text" name="content" placeholder="请输入审核项内容" th:value="${reviewSet?.content}">
+            </div>
+        </div>
+        <div class="layui-form-item layui-inline">
+		    <label class="layui-form-label">权重范围</label>
+		    <div class="layui-input-inline" style="width: 100px;">
+		      <input  class="layui-input" lay-verify="number" type="number" name="wiLowest" placeholder="分" min="0" max="100" 
+		      autocomplete="off" th:value="${reviewSet?.wiLowest}"
+		      onkeyup="value=(parseInt((value=value.replace(/\D/g,''))==''||parseInt((value=value.replace(/\D/g,''))==0)?'':value,10))" onafterpaste="value=(parseInt((value=value.replace(/\D/g,''))==''||parseInt((value=value.replace(/\D/g,''))==0)?'':value,10))">
+		    </div>
+		    <div class="layui-form-mid">-</div>
+		    <div class="layui-input-inline" style="width: 100px;">
+		      <input class="layui-input" lay-verify="number" type="number" name="wlHighest" placeholder="分" min="0" max="100"
+		       autocomplete="off"  th:value="${reviewSet?.wlHighest}"
+		       onkeyup="value=(parseInt((value=value.replace(/\D/g,''))==''||parseInt((value=value.replace(/\D/g,''))==0)?'':value,10))" onafterpaste="value=(parseInt((value=value.replace(/\D/g,''))==''||parseInt((value=value.replace(/\D/g,''))==0)?'':value,10))">
+		    </div>
+		  </div>
+        <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">备注</label>
+            <div class="layui-input-block">
+                <textarea placeholder="请输入内容" class="layui-textarea" name="remark">[[${reviewSet?.remark}]]</textarea>
+            </div>
+        </div>
+        <div class="layui-form-item timo-finally">
+            <button class="layui-btn ajax-submit"><i class="fa fa-check-circle"></i> 保存</button>
+            <button class="layui-btn btn-secondary close-popup"><i class="fa fa-times-circle"></i> 关闭</button>
+        </div>
+    </form>
+</div>
+<script th:replace="/common/template :: script"></script>
+</body>
+</html>

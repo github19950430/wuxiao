@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/common/template :: header(~{::title},~{::link},~{::style})">
+    <style>
+        .layui-input{
+            border: none;
+        }
+        .layui-textarea{
+            border: none;
+        }
+        .clearfix:after{
+            content:".";
+            display:block;
+            height:0;
+            visibility:hidden;
+            clear:both;
+        }
+        .clearfix { zoom:1;}
+        table{
+            border-collapse :collapse ;
+        }
+        td {
+            height:40px;
+            border :1px solid black;
+            font-size:12px;
+            text-align :center;
+            width: 50%;
+        }
+        td>div>div:nth-child(1){
+            width: 30%;
+        }
+        td>div>div:nth-child(2){
+            width: 69%;
+        }
+        input{
+            border: none;
+        }
+        .lay-lb input{
+            margin: 0 10px;
+        }
+        .lay-date ul li{
+            float: left;
+            height: 45px;
+            line-height: 45px;
+            border: 1px solid #000;
+        }
+        .lay-date ul li:nth-child(1){
+            border:none;
+        }
+        .lay-date ul li:nth-child(2){
+            border-right:none;
+            border-top: none;
+            border-bottom: none;
+        }
+        .lay-date ul li:nth-child(3){
+            border-right:none;
+            border-top: none;
+            border-bottom: none;
+        }
+        .lay-date ul li:last-child{
+            border-right:none;
+            border-top: none;
+            border-bottom: none;
+        }
+        .lay-textarea textarea{
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        .layui-laydate-content td{
+            border: none;
+        }
+        .lay-juxing ul li{
+            float: left;
+        }
+        .wuxiao_img{
+            width:100%;
+            height:100%;
+            overflow: auto;
+        }
+
+        .wuxiao_img a{
+            margin: 5px;
+            width: 110px;
+            height: 80px;
+            display: block;
+            float: left;
+            border: 3px solid #ddd;
+        }
+
+        .wuxiao_img a img{
+            width:100%;
+            max-width:100px;
+            height:100%;
+        }
+
+        .wuxiao_file{
+            width:100%;
+            height:60px;
+            overflow: auto;
+        }
+        .wuxiao_file a{
+            width:60px;
+            height:80px;
+            border:4px solid #ddd;
+            padding:2px 5px;
+            margin:0 3px;
+            line-height: 60px;
+        }
+
+    </style>
+</head>
+<body>
+<table style="width: 1100px;margin: 0 auto">
+    <tr>
+        <td colspan="4" style="font-size: 20px;font-weight: bold;">基地详情</td>
+    </tr>
+    <tr>
+        <td >
+            <div style="width: 100%;height: 45px;line-height: 45px">
+                <div style="width: 30%;float: left;border-right: 1px solid #000">
+                    所属工会
+                </div>
+                <div style="width: 69% ;float: left" th:text="${innovationBase.deptName}">
+                </div>
+            </div>
+        </td>
+        <td>
+            <div style="width: 100%;height: 45px;line-height: 45px">
+                <div style="width: 30%;float: left;border-right: 1px solid #000">
+                    所在单位
+                </div>
+                <div style="width: 69% ;float: left" th:text="${innovationBase.company}">
+                </div>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div style="width: 100%;height: 45px;line-height: 45px">
+                <div style="float: left;border-right: 1px solid #000">
+                    基地名称
+                </div>
+                <div style="float: left" th:text="${innovationBase?.baseName}">
+                </div>
+            </div>
+        </td>
+        <td>
+            <div style="width: 100%;height: 45px;line-height: 45px">
+                <div style="float: left;border-right: 1px solid #000">
+                    基地创建时间
+                </div>
+                <div style="float: left" th:text="${#dates.format(innovationBase?.baseDate, 'yyyy-MM-dd')}">
+                </div>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div style="width: 100%;height: 45px;line-height: 45px">
+                <div style="float: left;border-right: 1px solid #000">
+                    所属行业
+                </div>
+                <div style="float: left" th:text="${#dicts.keyValue('INDUSTRY_TYPE',innovationBase?.industry)}" >
+                </div>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="3">
+            <div style="width: 100%;height:100px;line-height: 45px">
+                <div style="width:15%;float: left;border-right: 1px solid #000;heigth:101px;line-height: 101px;">
+                    基地简介
+                </div>
+                <div style="float: left;width: 84%">
+                    <textarea placeholder="请输入基地简介" readonly class="layui-textarea" name="baseDesc" th:text="${innovationBase?.baseDesc}"></textarea>
+                </div>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div style="width: 100%;height: 45px;line-height: 45px">
+                <div style="float: left;border-right: 1px solid #000">
+                    联系人
+                </div>
+                <div style="float: left" th:text="${innovationBase?.baseContcat}">
+                </div>
+            </div>
+        </td>
+        <td>
+            <div style="width: 100%;height: 45px;line-height: 45px">
+                <div style="float: left;border-right: 1px solid #000">
+                    联系电话
+                </div>
+                <div style="float: left" th:text="${innovationBase?.basePhone}">
+                </div>
+            </div>
+        </td>
+    </tr>
+
+
+    <tr>
+        <td colspan="4">
+            <div class="lay-date" >
+                <ul class="clearfix" style="width: 100%">
+                    <li style="float: left;width: 15%;height: 100px;line-height: 80px;">
+                        图片
+                    </li>
+<!--                    <li style="width:20%;height: 80px;line-height: 80px;">-->
+<!--                        <button type="button" class="layui-btn" style="width: 50%;height: 50%;" id="btnUploadImg">-->
+<!--                            <i class="layui-icon"></i>上传图片-->
+<!--                        </button>-->
+<!--                    </li>-->
+                    <li style="width:79%;height: 100px;line-height: 100px;" class="wuxiao_img">
+                        <div >
+                            <a th:each="item:${resultImg}" th:href="${item.path}" target='_blank' th:attr="id=${item.id}">
+                                <img th:src="${item.path}" />
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="4">
+            <div class="lay-date">
+                <ul class="clearfix" style="width: 100%">
+                    <li style="float: left;width: 15%;height: 80px;line-height: 80px;">
+                      视频
+                    </li>
+<!--                    <li style="width:20%;height: 80px;line-height: 80px;">-->
+<!--                        <button type="button" class="layui-btn "  style="width: 50%;height: 50%;" id="btnUploadVideo">-->
+<!--                            <i class="layui-icon"></i>上传视频-->
+<!--                        </button>-->
+<!--                    </li>-->
+                    <li style="width: 59%;height: 80px;line-height: 80px;" class="wuxiao_file">
+                        <div id="file_2">
+                            <a th:each="item:${resultVideo}" th:href="${item.path}" target="_blank">
+                                [[${item.name}]]
+                            </a>
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="4">
+            <div class="lay-date">
+                <ul class="clearfix" style="width: 100%">
+                    <li style="float: left;width: 15%;height: 80px;line-height: 80px;">
+                        附件
+                    </li>
+<!--                    <li style="width:20%;height: 80px;line-height: 80px;">-->
+<!--                        <button type="button" class="layui-btn" name="uploadImg" style="width: 50%;height: 50%;" id="btnUploadFile">-->
+<!--                            <i class="layui-icon"></i>上传附件-->
+<!--                        </button>-->
+<!--                    </li>-->
+                    <li style="width: 59%;height: 80px;line-height: 80px;" class="wuxiao_file">
+                        <div id="file_3">
+                            <a th:each="item:${resultFile}" th:href="${item.path}" target="_blank">
+                                [[${item.name}]]
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </td>
+    </tr>
+</table>
+
+<script th:replace="/common/template :: script"></script>
+</body>
+</html>

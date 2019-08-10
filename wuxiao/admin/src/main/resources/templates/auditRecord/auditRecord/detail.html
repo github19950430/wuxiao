@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/common/template :: header(~{::title},~{::link},~{::style})">
+</head>
+<body>
+    <div class="timo-detail-page">
+        <div class="timo-detail-title">基本信息</div>
+        <table class="layui-table timo-detail-table">
+            <colgroup>
+                <col width="100px"><col>
+                <col width="100px"><col>
+            </colgroup>
+            <tbody>
+                <tr>
+                    <th>审核ID</th>
+                    <td th:text="${auditRecord.auditId}"></td>
+                    <th>审核时间</th>
+                    <td th:text="${#dates.format(auditRecord.createDate, 'yyyy-MM-dd')}"></td>
+                </tr>
+                <tr>
+                    <th>审核状态</th>
+                    <td th:text="${#dicts.keyValue('AUDIT_STATUS', auditRecord.auditStatus)}"></td>
+                    <th>审核类型</th>
+                    <td th:text="${#dicts.keyValue('AUDIT_TYPE', auditRecord.type)}"></td>
+                </tr>
+                <tr>
+                    <th>审核人</th>
+                    <td th:text="${auditRecord.name}"></td>
+                    <th>所属工会</th>
+                    <td th:text="${auditRecord.deptName}"></td>
+                </tr>
+                <tr>
+                    <th>拒绝原因</th>
+                    <td th:text="${auditRecord.reason}" colspan="3"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+<script th:replace="/common/template :: script"></script>
+</body>
+</html>

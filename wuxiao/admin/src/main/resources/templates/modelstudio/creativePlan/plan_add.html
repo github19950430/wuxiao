@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/common/template :: header(~{::title},~{::link},~{::style})">
+</head>
+<body>
+    <div class="layui-form timo-compile">
+    <form th:action="@{/modelstudio/creativePlan/add}">
+        <input type="hidden" name="id" th:if="${creativePlan}" th:value="${creativePlan.id}">
+        <div class="layui-form-item">
+            <label class="layui-form-label">申报日期</label>
+            <div class="layui-input-inline">
+                <input class="layui-input" type="text" name="dateofdeclaration" id="timeone" placeholder="请输入申报日期" th:value="${#dates.format(creativePlan?.dateofdeclaration,'yyyy-MM-dd')}">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">所属行业</label>
+            <div class="layui-input-inline">
+                <input class="layui-input" type="text" name="industryInvolved" placeholder="请输入所属行业" th:value="${creativePlan?.industryInvolved}">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">项目类型</label>
+            <div class="layui-input-inline">
+                <input class="layui-input" type="text" name="projectType" placeholder="请输入项目类型" th:value="${creativePlan?.projectType}">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">五小类型</label>
+            <div class="layui-input-inline">
+                <input class="layui-input" type="text" name="fiveSmallType" placeholder="请输入五小类型" th:value="${creativePlan?.fiveSmallType}">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">项目名称</label>
+            <div class="layui-input-inline">
+                <input class="layui-input" type="text" name="projectName" placeholder="请输入项目名称" th:value="${creativePlan?.projectName}">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">完成单位</label>
+            <div class="layui-input-inline">
+                <input class="layui-input" type="text" name="completeUnit" placeholder="请输入完成单位" th:value="${creativePlan?.completeUnit}">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">项目带头人</label>
+            <div class="layui-input-inline">
+                <input class="layui-input" type="text" name="projectLeader" placeholder="请输入项目带头人" th:value="${creativePlan?.projectLeader}">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">项目实施时间</label>
+            <div class="layui-input-inline">
+                <input class="layui-input" type="text" name="projectTime" id="timetwo" placeholder="请输入项目实施时间" th:value="${#dates.format(creativePlan?.projectTime,'yyyy-MM-dd')}">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">是否获得专利</label>
+            <div class="layui-input-inline">
+                <input class="layui-input" type="text" name="isPatent" placeholder="请输入是否获得专利" th:value="${creativePlan?.isPatent}">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">是否所属工作室</label>
+            <div class="layui-input-inline">
+                <input class="layui-input" type="text" name="isStudio" placeholder="请输入是否所属工作室" th:value="${creativePlan?.isStudio}">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">工作室ID</label>
+            <div class="layui-input-inline">
+                <input class="layui-input" type="text" name="studioId" placeholder="请输入工作室ID" th:value="${creativePlan?.studioId}">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">专利号</label>
+            <div class="layui-input-inline">
+                <input class="layui-input" type="text" name="patentNumber" placeholder="请输入专利号" th:value="${creativePlan?.patentNumber}">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">专利授权公告日</label>
+            <div class="layui-input-inline">
+                <input class="layui-input" type="text" name="dateofPatent" id="timethree" placeholder="请输入专利授权公告日" th:value="${#dates.format(creativePlan?.dateofPatent,'yyyy-MM-dd')}">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">项目成果简介</label>
+            <div class="layui-input-inline">
+                <input class="layui-input" type="text" name="achievementBrief" placeholder="请输入项目成果简介" th:value="${creativePlan?.achievementBrief}">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">应用前景</label>
+            <div class="layui-input-inline">
+                <input class="layui-input" type="text" name="applicationProspect" placeholder="请输入应用前景" th:value="${creativePlan?.applicationProspect}">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">预计创造价值</label>
+            <div class="layui-input-inline">
+                <input class="layui-input" type="text" name="creationOfValue" lay-verify="number" placeholder="请输入预计创造价值" th:value="${creativePlan?.creationOfValue}">
+            </div>
+        </div>
+        <div class="layui-form-item timo-finally">
+            <button class="layui-btn ajax-submit"><i class="fa fa-check-circle"></i> 保存</button>
+            <button class="layui-btn btn-secondary close-popup"><i class="fa fa-times-circle"></i> 关闭</button>
+        </div>
+    </form>
+</div>
+<script th:replace="/common/template :: script"></script>
+<script>
+    layui.use('laydate', function() {
+        var laydate = layui.laydate;
+        useDate();
+        function useDate(){
+            laydate.render({
+                elem : '#timeone',
+            });
+            laydate.render({
+                elem : '#timetwo',
+            });
+            laydate.render({
+                elem : '#timethree',
+            });
+        }
+    })
+</script>
+</body>
+</html>

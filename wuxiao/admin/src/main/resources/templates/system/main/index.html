@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/css/cxcg.css}">
+    <script th:src="@{js/plugins/echarts.min.js}"></script>
+    <script th:src="@{js/plugins/shanxi.js}"></script>
+</head>
+<body>
+<!--<div class="top">-->
+<!--"五小"竞赛管理平台-->
+<!--</div>-->
+<div class="topIteminfo1">
+    <div class="topIteminfo1Top">
+        <span class="topline"></span>
+        <span class="top_text">"五小"竞赛</span>
+    </div>
+    <div class="itemsBoxs">
+        <div class="itemsBoxs_item itemsBoxs_item1">
+            <div class="imgBox">
+                <div class="imgBoxCir">
+                    <img th:src="@{/images/01.png}" alt="" style="width: 50%">
+                </div>
+
+            </div>
+            <div class="rightInfo">
+                <p class="rightInfo_text rightInfo_text1">创新成果</p>
+                <p class="rightInfo_text"><span class="rightInfo_textnum">880</span> 项</p>
+                <p class="rightInfo_text">今日新增：50项</p>
+            </div>
+        </div>
+        <div class="itemsBoxs_item itemsBoxs_item2">
+            <div class="imgBox">
+                <img th:src="@{/images/02.png}" alt="" style="width: 50%">
+            </div>
+            <div class="rightInfo">
+                <p class="rightInfo_text rightInfo_text1">创新工作室</p>
+                <p class="rightInfo_text"><span class="rightInfo_textnum">560</span> 项</p>
+                <p class="rightInfo_text">今日新增：80项</p>
+            </div>
+        </div>
+        <div class="itemsBoxs_item itemsBoxs_item3">
+            <div class="imgBox">
+                <img th:src="@{/images/03.png}" alt="" style="width: 50%">
+            </div>
+            <div class="rightInfo">
+                <p class="rightInfo_text rightInfo_text1">成果评审</p>
+                <p class="rightInfo_text"><span class="rightInfo_textnum">1002</span> 项</p>
+                <p class="rightInfo_text">今日新增：209项</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="content">
+    <div class="content_item1">
+        <p class="toptitle1">
+            <span class="topline"></span>
+            <span class="top_text">各市工会活动统计</span>
+
+        </p>
+        <div class="infoBox" style="padding-top: 10px;">
+            <div id="content_item1_chart" style="width:40%;height:400px;float: left;"></div>
+            <div class="chartInfo">
+                <div class="msgBox">
+                    <p class="msgBoxtitle">太原市总工会</p>
+                    <div class="msgitems">
+                        <div class="msgitem">
+                            <p class="msgitem_num" style="color: #db332a">4232</p>
+                            <p class="msgitem_text">项目上报数(项)</p>
+                        </div>
+                        <div class="msgitem">
+                            <p class="msgitem_num" style="color: #b3be43;">765</p>
+                            <p class="msgitem_text">参赛单位(个)</p>
+                        </div>
+                        <div class="msgitem">
+                            <p class="msgitem_num" style="color: #07afc8;">189</p>
+                            <p class="msgitem_text">参赛单位职工数(万)</p>
+                        </div>
+                        <div class="msgitem">
+                            <p class="msgitem_num" style="color: #edb66d;">1000</p>
+                            <p class="msgitem_text">创造经济效益(万元)</p>
+                        </div>
+                        <div class="msgitem">
+                            <p class="msgitem_num" style="color: #b8a6d3">80</p>
+                            <p class="msgitem_text">申报成果类型(类)</p>
+                        </div>
+                        <div style="clear: both"></div>
+                    </div>
+                </div>
+                <div class="msgBox">
+                    <p class="msgBoxtitle">其中包含</p>
+                    <div class="msgitems">
+                        <div class="msgitem">
+                            <p class="msgitem_num" style="color: #db332a">12003</p>
+                            <p class="msgitem_text">项目上报数(项)</p>
+                        </div>
+                        <div class="msgitem">
+                            <p class="msgitem_num" style="color: #b3be43;">450</p>
+                            <p class="msgitem_text">参赛单位(个)</p>
+                        </div>
+                        <div class="msgitem">
+                            <p class="msgitem_num" style="color: #07afc8;">89</p>
+                            <p class="msgitem_text">参赛单位职工数(万)</p>
+                        </div>
+                        <div class="msgitem">
+                            <p class="msgitem_num" style="color: #edb66d;">600</p>
+                            <p class="msgitem_text">创造经济效益(万元)</p>
+                        </div>
+                        <div class="msgitem">
+                            <p class="msgitem_num" style="color: #b8a6d3">80</p>
+                            <p class="msgitem_text">申报成果类型(类)</p>
+                        </div>
+                        <div style="clear: both"></div>
+                    </div>
+                </div>
+            </div>
+            <div style="clear: both"></div>
+        </div>
+    </div>
+
+
+</div>
+<div class="content_item1">
+    <p class="toptitle1">
+        <span class="topline"></span>
+        <span class="top_text">产业工会活动统计</span>
+    </p>
+    <div class="infoBox" style="padding-top: 20px;">
+        <div id="content_item1_chart2" style="width:100%;height:400px"></div>
+    </div>
+</div>
+<div class="content_item1">
+    <p class="toptitle1">
+        <span class="topline"></span>
+        <span class="top_text">团委、科协系统活动统计</span>
+    </p>
+    <div class="infoBox">
+        <div id="content_item1_chart3_1" style="width:50%;height:400px;float: left;"></div>
+        <div id="content_item1_chart3_2" style="width:50%;height:400px;float: left;"></div>
+        <div style="clear: both"></div>
+    </div>
+</div>
+<div class="content_item1">
+    <p class="toptitle1">
+        <span class="topline"></span>
+        <span class="top_text"> "五小"竞赛活动统计</span>
+
+    </p>
+    <div class="infoBox">
+        <div id="content_item1_chart4" style="width:100%;height:400px"></div>
+    </div>
+</div>
+<div class="content_item2">
+    <!--<p class="content_item2_top">今日指标</p>-->
+    <div class="topIteminfo1Top">
+        <span class="topline"></span>
+        <span class="top_text">今日指标</span>
+    </div>
+    <div class="content_item2Box">
+        <div class="content_item2Boxleft">
+            <p class="content_item2p1">
+                <span class="content_item2p1sp1">浏览量</span>
+                <span class="content_item2p1sp2">·</span>
+                <span class="content_item2p1sp3">日同比</span>
+            </p>
+            <p class="content_item2p2">
+                <span class="content_item2p2sp1">12345</span>
+                <span class="content_item2p2sp2">+8%</span>
+            </p>
+        </div>
+        <div class="content_item2Boxright">
+            <p class="content_item2p1">
+                <span class="content_item2p1sp1">新增用户</span>
+                <span class="content_item2p1sp2">·</span>
+                <span class="content_item2p1sp3">日同比</span>
+            </p>
+            <p class="content_item2p2">
+                <span class="content_item2p2sp1">12345</span>
+                <span class="content_item2p2sp2">+8%</span>
+            </p>
+        </div>
+        <div style="clear: both"></div>
+    </div>
+</div>
+<div class="content_item3">
+    <div class="content_item3_left">
+
+        <div class="topIteminfo1Top">
+            <span class="topline"></span>
+            <span class="top_text">今日指标</span>
+        </div>
+        <div id="content_item3_chart" style="width:100%;height:240px;margin-top: 15px"></div>
+    </div>
+    <div class="content_item3_right">
+        <div class="topIteminfo1Top">
+            <span class="topline"></span>
+            <span class="top_text">新闻</span>
+            <!--<p class="textItemmore">查看更多>></p>-->
+        </div>
+        <div class="content_item3_rightBoot">
+            <!--<p class="content_item3_rightBootTop">2018年8月1日</p>-->
+            <div class="textItem">
+                <img th:src="@{/images/zfx.png}" alt="" style="width: 10px" class="textItemImg">
+                <p class="textItemText">第三批拖欠农民工工资“黑名单”公布</p>
+                <span class="textItemTime">2019-01-03</span>
+            </div>
+            <div class="textItem">
+                <img th:src="@{/images/zfx.png}" alt="" style="width: 10px" class="textItemImg">
+                <p class="textItemText"> 追梦一线职工风采录：攻坚克难选矿人</p>
+                <span class="textItemTime">2019-01-03</span>
+            </div>
+            <div class="textItem">
+                <img th:src="@{/images/zfx.png}" alt="" style="width: 10px" class="textItemImg">
+                <p class="textItemText">重庆女职工维权大课堂开讲 </p>
+                <span class="textItemTime">2019-01-03</span>
+            </div>
+            <div class="textItem">
+                <img th:src="@{/images/zfx.png}" alt="" style="width: 10px" class="textItemImg">
+                <p class="textItemText">山东威海新命名359家劳模工作室 </p>
+                <span class="textItemTime">2019-01-03</span>
+            </div>
+            <div class="textItem">
+                <img th:src="@{/images/zfx.png}" alt="" style="width: 10px" class="textItemImg">
+                <p class="textItemText"> 襄阳乡镇工会改革力补短板</p>
+                <span class="textItemTime">2019-01-03</span>
+            </div>
+            <div class="textItem">
+                <img th:src="@{/images/zfx.png}" alt="" style="width: 10px" class="textItemImg">
+                <p class="textItemText"> 中国金融工会五届二次全委会在京召开</p>
+                <span class="textItemTime">2019-01-03</span>
+            </div>
+            <div class="textItem">
+                <img th:src="@{/images/zfx.png}" alt="" style="width: 10px" class="textItemImg">
+                <p class="textItemText"> 李玉赋在第三届中德工会研讨会开幕式上致辞</p>
+                <span class="textItemTime">2019-01-03</span>
+            </div>
+
+
+        </div>
+    </div>
+    <div style="clear: both"></div>
+</div>
+<script type="text/javascript">
+    // 基于准备好的dom，初始化echarts实例
+    var myChart = echarts.init(document.getElementById('content_item1_chart'));
+
+    // 指定图表的配置项和数据
+    myChart.setOption({
+        dataRange: {
+            show: false,
+            color: ['#ab373a', '#e18284']
+        },
+        title: {
+            text: '作品来源',
+            x: '20',
+            y: '20',
+            textStyle: {
+                fontSize: 15.3,
+                // fontWeight: 'bolder',
+                color: '#555555'
+            }
+        },
+        series: [{
+            selectedMode: 'single',
+            type: 'map',
+            mapType: '山西',//要和echarts.registerMap（）中第一个参数一致
+            scaleLimit: {min: 0.8, max: 1.9},//缩放
+            mapLocation: {
+                x: 'center',
+            },
+            itemSytle: {
+                emphasis: {label: {show: false}}
+            },
+            label: {
+                normal: {
+                    show: true
+                },
+                emphasis: {
+                    show: true
+                }
+            },
+            data: [
+                {name: '太原市', value: '1'},
+                {name: '大同市', value: '2'},
+                {name: '朔州市', value: '3'},
+                {name: '忻州市', value: '7'},
+                {name: '阳泉市', value: '3'},
+                {name: '晋中市', value: '9'},
+                {name: '吕梁市', value: '8'},
+                {name: '临汾市', value: '10'},
+                {name: '运城市', value: '11'},
+                {name: '长治市', value: '4'},
+                {name: '晋城市', value: '5'}
+            ]
+        }]
+    });
+    myChart.on('click', function (params) {
+        var city = params.data.name;
+        console.log(city)
+    });
+    //    产业工会活动统计
+    var myChart2 = echarts.init(document.getElementById('content_item1_chart2'));
+    myChart2.setOption({
+        title: {
+            text: '',
+            subtext: ''
+        },
+        tooltip: {
+            trigger: 'axis'
+        },
+        legend: {
+            align: 'left',
+            data: [{name: '意向', icon: 'circle'}, '预购', '成交', '其他', '测试']
+        },
+        toolbox: {
+            show: false,
+            feature: {
+                mark: {show: true},
+                dataView: {show: true, readOnly: false},
+                magicType: {show: true, type: ['line', 'bar', 'stack', 'tiled']},
+                restore: {show: true},
+                saveAsImage: {show: true}
+            }
+        },
+        calculable: true,
+        xAxis: [
+            {
+                name: '产业工会',
+                type: 'category',
+                boundaryGap: false,
+                data: ['一', '二', '三', '四', '五', '六', '七', '八', '九', '十'],
+                axisLabel: {
+                    interval: 0,
+                    rotate: -40//旋转刻度文字
+                }
+            }
+        ],
+        yAxis: [
+            {
+                name: '(次)',
+                type: 'value'
+            }
+        ],
+        series: [
+            {
+                name: '成交',
+                type: 'line',
+                smooth: true,
+                itemStyle: {},
+                lineStyle: {//线条颜色
+                    color: '#68cfef'
+                },
+                areaStyle: {//填充颜色
+                    color: '#68cfef',
+                    opacity: .25
+                },
+                data: [10, 12, 21, 54, 260, 830, 710, 1100, 2100, 500]
+            },
+            {
+                name: '预购',
+                type: 'line',
+                smooth: true,
+                itemStyle: {},
+                lineStyle: {//线条颜色
+                    color: '#3fe6b5'
+                },
+                areaStyle: {//填充颜色
+                    color: '#3fe6b5',
+                    opacity: .25
+                },
+                data: [30, 182, 434, 791, 390, 30, 150, 600, 1200, 100]
+            },
+            {
+                name: '意向',
+                type: 'line',
+                smooth: true,
+                itemStyle: {},
+                lineStyle: {//线条颜色
+                    color: '#e16542'
+                },
+                areaStyle: {//填充颜色
+                    color: '#e16542',
+                    opacity: .25
+                },
+                data: [1320, 1132, 601, 234, 120, 90, 200, 600, 2000, 200]
+            },
+            {
+                name: '其他',
+                type: 'line',
+                smooth: true,
+                itemStyle: {},
+                lineStyle: {//线条颜色
+                    color: '#333333'
+                },
+                areaStyle: {//填充颜色
+                    color: '#333333',
+                    opacity: .25
+                },
+                data: [1020, 732, 1001, 2234, 620, 390, 700, 100, 1000, 2100]
+            },
+            {
+                name: '测试',
+                type: 'line',
+                smooth: true,
+                itemStyle: {},
+                lineStyle: {//线条颜色
+                    color: '#abe7cb'
+                },
+                areaStyle: {//填充颜色
+                    color: '#abe7cb',
+                    opacity: .25
+                },
+                data: [2020, 232, 1001, 634, 620, 390, 700, 100, 1000, 200]
+            }
+        ]
+    })
+
+    var myChart3_1 = echarts.init(document.getElementById('content_item1_chart3_1'));
+    var myChart3_2 = echarts.init(document.getElementById('content_item1_chart3_2'));
+    myChart3_1.setOption({
+        title: {
+            text: '共青团山西省委',
+            subtext: '',
+            x: 'center',
+            top: '50'
+        },
+        tooltip: {
+            trigger: 'item',
+            formatter: "{a} <br/>{b} : {c} ({d}%)"
+        },
+        legend: {
+            show: false
+        },
+        toolbox: {},
+        calculable: true,
+        series: [
+            {
+                name: '面积模式',
+                type: 'pie',
+                radius: [0, 110],
+                center: ['50%', 270],
+                roseType: 'area',
+                x: '50%',               // for funnel
+                max: 40,                // for funnel
+                sort: 'ascending',     // for funnel
+                data: [
+                    {value: 18, name: '单位参赛', itemStyle: {color: '#c83732'}},
+                    {value: 20, name: '参赛人数', itemStyle: {color: '#f00'}},
+                    {value: 15, name: '手机五小成果', itemStyle: {color: '#00f'}},
+                    {value: 25, name: '创造经济效益', itemStyle: {color: '#c83732'}}
+                ]
+            }
+        ]
+    })
+    myChart3_2.setOption({
+        title: {
+            text: '山西省科学技术协会',
+            subtext: '',
+            x: 'center',
+            top: '50'
+        },
+        tooltip: {
+            trigger: 'item',
+            formatter: "{a} <br/>{b} : {c} ({d}%)"
+        },
+        legend: {
+            show: false
+        },
+        toolbox: {},
+        calculable: true,
+        series: [
+            {
+                name: '面积模式',
+                type: 'pie',
+                radius: [0, 110],
+                center: ['50%', 270],
+                roseType: 'area',
+                x: '50%',               // for funnel
+                max: 40,                // for funnel
+                sort: 'ascending',     // for funnel
+                data: [
+                    {value: 18, name: '单位参赛', itemStyle: {color: '#06adf4'}},
+                    {value: 20, name: '参赛人数', itemStyle: {color: '#0579aa'}},
+                    {value: 15, name: '手机五小成果', itemStyle: {color: '#045174'}},
+                    {value: 25, name: '创造经济效益', itemStyle: {color: '#058dc7'}}
+                ]
+            }
+        ]
+    })
+    var myChart4 = echarts.init(document.getElementById('content_item1_chart4'));
+    myChart4.setOption({
+        tooltip: {
+            show: false,
+            trigger: 'item',
+            formatter: "{a} <br/>{b} : {c} ({d}%)"
+        },
+        grid: {
+            left: '30%'
+        },
+        legend: {
+            align: 'left',
+            orient: 'vertical',
+            x: '70%',
+            y: '30%',
+            data: ['直达', '营销广告', '搜索引擎', '邮件营销', '联盟广告', '视频广告', '百度', '谷歌', '必应', '其他']
+        },
+        toolbox: {
+            show: false,
+            feature: {
+                mark: {show: true},
+                dataView: {show: true, readOnly: false},
+                magicType: {
+                    show: true,
+                    type: ['pie', 'funnel']
+                },
+                restore: {show: true},
+                saveAsImage: {show: true}
+            }
+        },
+        calculable: false,
+        series: [
+            {
+                center: ['40%', '60%'],
+                name: '访问来源',
+                type: 'pie',
+                selectedMode: 'single',
+                radius: [0, 70],
+                x: '20%',
+                width: '40%',
+                funnelAlign: 'right',
+                max: 1548,
+                itemStyle: {
+                    normal: {
+                        label: {
+                            position: 'inner'
+                        },
+                        labelLine: {
+                            show: false
+                        }
+                    }
+                },
+                data: [
+                    {value: 335, name: '直达'},
+                    {value: 679, name: '营销广告'},
+                    {value: 1548, name: '搜索引擎', selected: true}
+                ]
+            },
+            {
+                center: ['40%', '60%'],
+                name: '访问来源',
+                type: 'pie',
+                // selectedMode: 'single',
+                radius: [100, 140],
+                x: '60%',
+                width: '35%',
+                funnelAlign: 'left',
+                max: 1048,
+                data: [
+                    {value: 335, name: '直达'},
+                    {value: 310, name: '邮件营销'},
+                    {value: 234, name: '联盟广告'},
+                    {value: 135, name: '视频广告'},
+                    {value: 1048, name: '百度'},
+                    {value: 251, name: '谷歌'},
+                    {value: 147, name: '必应'},
+                    {value: 102, name: '其他'}
+                ]
+            }
+        ]
+    })
+    var myChart5 = echarts.init(document.getElementById('content_item3_chart'));
+    myChart5.setOption({
+        backgroundColor: '#fff',
+        grid: {
+            left: '8%',
+            // bottom:'10%'
+            right: '9%',
+            top: '17%',
+            bottom: '10%'
+        },
+        title: {
+            text: '',
+            subtext: ''
+        },
+        tooltip: {
+            show: true,
+            trigger: 'axis'
+        },
+        legend: {
+            show: true,
+            data: [{name: '浏览量', icon: 'rect'}, {name: '访问量', icon: 'rect'}]
+        },
+        toolbox: {
+            show: false,
+            feature: {
+                mark: {show: true},
+                dataView: {show: true, readOnly: false},
+                magicType: {show: true, type: ['line', 'bar', 'stack', 'tiled']},
+                restore: {show: true},
+                saveAsImage: {show: true}
+            }
+        },
+        calculable: true,
+        xAxis: [
+            {
+                name: '(年/月)',
+                type: 'category',
+                boundaryGap: false,
+                data: ['Jan', 'Feb', 'Mar', 'Apt', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                axisLabel: {
+                    color: '#b6b6b6'
+                },
+                splitLine: {
+                    show: true,
+                    lineStyle: {
+                        color: '#b6b6b6'
+                    }
+                }
+            }
+        ],
+        yAxis: [
+            {
+                name: '(次)',
+                type: 'value',
+                axisLabel: {
+                    color: '#b6b6b6'
+                },
+                "axisLine": {       //y轴
+                    "show": true
+
+                },
+                "axisTick": {       //y轴刻度线
+                    "show": true
+                }
+            }
+        ],
+        series: [
+            {
+                name: '浏览量',
+                type: 'line',
+                smooth: true,
+                symbolSize: 8,
+                symbol: 'circle',
+                itemStyle: {
+                    color: '#3a80d7',
+                    lineStyle: {
+                        color: '#3a80d7'
+                    }
+                },
+                lineStyle: {//线条颜色
+                    color: '#3a80d7'
+                },
+                areaStyle: {//填充颜色
+                    color: '#3a80d7',
+                    opacity: .25
+                },
+                data: [10, 12, 21, 54, 260, 830, 710, 1000, 60, 110, 400, 800]
+            },
+            {
+                name: '访问量',
+                type: 'line',
+                smooth: true,
+                symbolSize: 8,
+                symbol: 'circle',
+                itemStyle: {
+                    color: '#f6b843',
+                    lineStyle: {
+                        color: '#f6b843'
+                    }
+                },
+                lineStyle: {//线条颜色
+                    color: '#f6b843'
+                },
+                areaStyle: {//填充颜色
+                    color: '#f6b843',
+                    opacity: .25
+                },
+                data: [30, 182, 434, 791, 390, 30, 10, 100, 400, 700, 100, 10]
+            }
+        ]
+    })
+</script>
+</body>
+</html>

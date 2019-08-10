@@ -1,0 +1,34 @@
+轮播图上几张 还是固定4张
+八大员法律援助和法律援助 有啥不同。
+模块列表要写死还是要后台获取
+
+法律咨询类别  是后台获取还是前台写死
+
+法律援助职业是输入 还是要选择框
+
+
+
+
+
+
+
+
+
+普法宣传	t_att_publicity
+
+法律援助   t_att_aid
+法律咨询   t_att_consults
+律师表	t_attorney
+轮播图	t_slideshow
+民族表	t_nation
+擅长领域表t_begootat
+
+咨询类别表t_Type
+法律咨询内容图片表 t_con_pictureUrl
+法律咨询回复表 t_con_relay
+
+法律援助职业表 t_aid_occupation
+法律援助评价表 t_aid_evaluate
+
+所在地区表 t_location
+服务区县表 t_Servicecounty

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:mo="https://gitee.com/aun/Timo">
+<head th:replace="/common/template :: header(~{::title},~{::link},~{::style})">
+    <style>
+        .layui-input-block{
+        	margin-top: 10px;
+            margin-left: 20px;
+            margin-right: 20px;
+        }
+        .timo-compile .timo-finally{
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding-bottom: 14px;
+            margin-bottom: 0;
+            background-color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+<div class="layui-form timo-compile">
+    <form th:action="@{/resultManager/result/review}">
+        <input type="hidden" name="id" th:value="${id}"/>
+        <div id="form_div" style="margin-bottom: 100px;">
+        </div>
+		        
+        <div class="layui-form-item timo-finally">
+            <button class="layui-btn ajax-submit"><i class="fa fa-check-circle"></i>提交专家评分</button>
+            <button class="layui-btn btn-secondary close-popup"><i class="fa fa-times-circle"></i> 关闭</button>
+        </div>
+    </form>
+</div>
+<script th:replace="/common/template :: script"></script>
+<script th:inline="javascript">
+layui.use(['element', 'form', 'layer'], function () {
+  
+	var $ = layui.jquery;
+    var element = layui.element; //加载element模块
+    var form = layui.form; //加载form模块
+    var layer = layui.layer; //加载layer模块
+    
+	var list=/*[[${list}]]*/;  //所有专家
+	var authUsers=/*[[${authUsers}]]*/; //所有已选择的专家
+	var htmls ='';
+	var typeArray=new Array();//类型数组
+	var authArray=new Array(); //已选择专家数组
+	 $("#form_div").html('');
+	for(var x in list){  //专家类型
+		typeArray[x]=list[x].reviewType;
+	}
+	for(var a in authUsers){  //专家类型
+		authArray[a]=authUsers[a].id;
+	}
+	typeArray=unique1(typeArray);//去重
+	for(var t in typeArray){
+		$.ajax({
+            url:"/wuxiao/system/dict/getDictValue",
+            data:{
+            	"name":"RESULT_TYPE",
+            	"id":typeArray[t]
+            },
+            dataType:'json',
+            async:false,
+            type:'post',
+            success:function(data){
+            	var typehtml='';
+            	if(data.code==200){
+            		typehtml += '<fieldset class="layui-elem-field site-demo-button">';
+            		typehtml += '<legend>'+data.data+'</legend>';
+            		typehtml += '<div>';
+            		typehtml += '<div class="layui-input-block">';
+            		for(var r in list){
+            			if(typeArray[t]==list[r].reviewType){
+            				if(authArray.indexOf(list[r].id)>-1){
+					            typehtml += '<input type="checkbox" checked="checked" name="userId" title="'+list[r].realname+'" value="'+list[r].id+'" >';
+            				}else{
+            					typehtml += '<input type="checkbox" name="userId" title="'+list[r].realname+'" value="'+list[r].id+'" >';
+            				}
+            			}
+            		}
+            		typehtml += '</div>';
+            		typehtml += '</div>';
+            		typehtml += '</fieldset>';
+            		htmls +=typehtml;
+            	}
+            }
+		})
+	}
+	 $("#form_div").html(htmls);
+	 form.render();
+
+})
+
+function unique1(arr){
+  var hash=[];
+  for (var i = 0; i < arr.length; i++) {
+     if(hash.indexOf(arr[i])==-1){
+      hash.push(arr[i]);
+     }
+  }
+  return hash;
+}
+</script>
+
+</body>
+</html>

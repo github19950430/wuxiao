@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:mo="https://gitee.com/aun/Timo">
+<head th:replace="/common/template :: header(~{::title},~{::link},~{::style})">
+   <link rel="stylesheet" th:href="@{/lib/zTree_v3/css/zTreeStyle/zTreeStyle.css}" type="text/css">
+</head>
+<body class="timo-layout-page">
+    <div class="layui-card">
+        <div class="layui-card-header timo-card-header">
+            <span><i class="fa fa-bars"></i> 带头人信息管理</span>
+            <i class="layui-icon layui-icon-refresh refresh-btn"></i>
+        </div>
+        <div class="layui-card-body">
+            <div class="layui-row timo-card-screen">
+                <div class="pull-left layui-form-pane timo-search-box">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">姓名</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="name" th:value="${param.name}" placeholder="请输入姓名" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">身份证号</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="identityNum" th:value="${param.identityNum}" placeholder="请输入身份证号" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">文化程度</label>
+                        <div class="layui-input-block timo-search-status">
+                        	<select class="timo-search-select" name="standardCulture" mo:dict="STANDARD_CULTURE" mo-selected="${foregoer?.standardCulture}"></select>
+                        </div>
+                    </div> 
+                    <div class="layui-inline" th:if="${user?.dept?.level eq 2}">
+                        <label class="layui-form-label">所在组织</label>
+                        <div class="layui-input-block">
+                            <input class="layui-input select-tree" th:attr="data-url=@{/system/dept/currentLevelList}, data-value=${dept?.id}" th:value="${dept?.title}" type="text" name="dept" placeholder="请选择组织">
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <button class="layui-btn timo-search-btn">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="pull-right screen-btn-group">
+                    <button class="layui-btn open-popup" data-title="添加带头人信息" th:attr="data-url=@{/foregoerManager/foregoer/add}" data-size="max">
+                        <i class="fa fa-plus"></i> 添加</button>
+                    <div class="btn-group">
+                    </div>
+                </div>
+            </div>
+            <div class="timo-table-wrap">
+                <table class="layui-table timo-table">
+                    <thead>
+                    <tr>
+                        <th class="timo-table-checkbox">
+                            <label class="timo-checkbox"><input type="checkbox">
+                                <i class="layui-icon layui-icon-ok"></i></label>
+                        </th>
+                        <th>主键ID</th>
+                        <th>姓名</th>
+                        <th>参加工作时间</th>
+                        <th>政治面貌</th>
+                        <th>文化程度</th>
+                        <th>联系电话</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="item:${list}">
+                        <td><label class="timo-checkbox"><input type="checkbox" th:value="${item.id}">
+                            <i class="layui-icon layui-icon-ok"></i></label></td>
+                        <td th:text="${item.id}">主键ID</td>
+                        <td th:text="${item.name}">姓名</td>
+                        <td th:text="${#dates.format(item.workStartTime, 'yyyy-MM-dd')}">参加工作时间</td>
+                        <td th:text="${#dicts.keyValue('POLITICS_STATUS', item.politicsStatus)}">政治面貌</td>
+                        <td th:text="${#dicts.keyValue('STANDARD_CULTURE', item.standardCulture)}">文化程度</td>
+                        <td th:text="${item.contactNum}">联系电话</td>
+                        <td>
+                            <a class="open-popup" data-title="编辑带头人信息" th:attr="data-url=@{'/foregoerManager/foregoer/edit/'+${item.id}}" data-size="max" href="#">编辑</a>
+                            <a class="open-popup" data-title="详细信息" th:attr="data-url=@{'/foregoerManager/foregoer/detail/'+${item.id}}" data-size="max" href="#">详细</a>
+                            <a class="ajax-get" data-msg="您是否确认删除" th:href="@{/foregoerManager/foregoer/status/delete(ids=${item.id})}">删除</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div th:replace="/common/fragment :: page"></div>
+        </div>
+    </div>
+<script type="text/javascript" th:src="@{/js/plugins/jquery-3.3.1.min.js}"></script>
+<script type="text/javascript" th:src="@{/lib/zTree_v3/js/jquery.ztree.core.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/timoTree.js}"></script>
+<script type="text/javascript">
+    // 树形菜单
+    $.fn.selectTree();
+</script>
+<script th:replace="/common/template :: script"></script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:mo="https://gitee.com/aun/Timo">
+<head
+	th:replace="/common/template :: header(~{::title},~{::link},~{::style})">
+<title>专家评审</title>
+<link rel="stylesheet" th:href="@{/css/scoreDynamic.css}" media="all">
+</head>
+<body>
+  <input  type="hidden" id="scoreId"  th:value="${score.id}" />
+    <table style="width: 1200px;margin: 0 auto;border: 1px solid #000;">
+    	<thead>
+    		<tr>
+	            <td colspan="5" style="font-size: 30px;font-weight: bold;">五小竞赛评分表</td>
+	        </tr>
+	        <tr>
+	            <td colspan="5" style="font-size: 20px;font-weight: bold;">“[[${result.resultName}]]”审核</td>
+	        </tr>
+	        <tr>
+	            <td colspan="4" class="infor tabletile" >审核项 </td>
+	            <td class="inmo tabletile">专家评分 </td>
+	        </tr>
+	        <tr>
+	            <td colspan="3"  class="inforcon tabletile">审核内容</td>
+	            <td class="inforwi tabletile">权重 </td>
+	            <td class="inmo tabletile"><input type="text" readonly="readonly"  th:value="${user.realname}"> </td>
+	        </tr>
+    	</thead>
+	      <tbody id="form_div"></tbody>
+     	 <tbody>
+     	 <tr>
+            <td colspan="4" style="padding-left: 50px;text-align: left">合计</td>
+            <td>
+                [[${score.summation}]]
+            </td>
+        </tr>
+     	 <tr>
+            <td colspan="5">
+                <div class="clearfix">
+                    <div style="width: 10%;float: left;border-right: 1px solid #000;height: 90px;line-height: 90px">
+                        评审意见：
+                    </div>
+                    <div style="width: 89%;float: left;height: 90px;line-height: 90px">
+                        <textarea  style="width: 100%;height: 90px;border: none" readonly="readonly">[[${score.reviewComments}]]</textarea>
+                    </div>
+                </div>
+            </td>
+        </tr>
+     	 </tbody>
+        
+    </table>
+<script th:replace="/common/template :: script"></script>
+ <script th:src="@{/js/review/scoreDynamicDetail.js}" charset="utf-8"></script>
+</html>

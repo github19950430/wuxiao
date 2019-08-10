@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/common/template :: header(~{::title},~{::link},~{::style})">
+</head>
+<body>
+    <div class="layui-form timo-compile">
+    <form th:action="@{/modelstudio/studioProfile/add}">
+        <input type="hidden" name="id" th:if="${studioProfile}" th:value="${studioProfile.id}">
+        <div class="layui-form-item">
+            <label class="layui-form-label">工作室ID</label>
+            <div class="layui-input-inline">
+                <input class="layui-input" type="text" name="studioId" placeholder="请输入工作室ID" th:value="${studioProfile?.studioId}">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">工作室简介</label>
+            <div class="layui-input-inline">
+                <input class="layui-input" type="text" name="studioProfile" placeholder="请输入工作室简介" th:value="${studioProfile?.studioProfile}">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">带头人简介</label>
+            <div class="layui-input-inline">
+                <input class="layui-input" type="text" name="IntroductionProfile" placeholder="请输入带头人简介" th:value="${studioProfile?.IntroductionProfile}">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">团队简介</label>
+            <div class="layui-input-inline">
+                <input class="layui-input" type="text" name="teamProfile" placeholder="请输入团队简介" th:value="${studioProfile?.teamProfile}">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">创新成果描述</label>
+            <div class="layui-input-inline">
+                <input class="layui-input" type="text" name="innovativeDescription" placeholder="请输入创新成果描述" th:value="${studioProfile?.innovativeDescription}">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">经济效益描述</label>
+            <div class="layui-input-inline">
+                <input class="layui-input" type="text" name="economicDescription" placeholder="请输入经济效益描述" th:value="${studioProfile?.economicDescription}">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">创新计划描述</label>
+            <div class="layui-input-inline">
+                <input class="layui-input" type="text" name="creativeplanDescription" placeholder="请输入创新计划描述" th:value="${studioProfile?.creativeplanDescription}">
+            </div>
+        </div>
+        <div class="layui-form-item timo-finally">
+            <button class="layui-btn ajax-submit"><i class="fa fa-check-circle"></i> 保存</button>
+            <button class="layui-btn btn-secondary close-popup"><i class="fa fa-times-circle"></i> 关闭</button>
+        </div>
+    </form>
+</div>
+<script th:replace="/common/template :: script"></script>
+</body>
+</html>

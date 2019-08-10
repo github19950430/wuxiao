@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/common/template :: header(~{::title},~{::link},~{::style})">
+</head>
+<body>
+    <div class="timo-detail-page">
+        <div class="timo-detail-title">基本信息</div>
+        <table class="layui-table timo-detail-table">
+            <colgroup>
+                <col width="100px"><col>
+                <col width="100px"><col>
+            </colgroup>
+            <tbody>
+                <tr>
+                    <th>主键ID</th>
+                    <td th:text="${reviewSet.id}"></td>
+                    <th>审核项</th>
+                    <td th:text="${reviewType.name}"></td>
+                </tr>
+                <tr>
+                    <th>审核项内容</th>
+                    <td th:text="${reviewSet.content}"  colspan="3"></td>
+                </tr>
+                <tr>
+                    <th>权重最低分</th>
+                    <td th:text="${reviewSet.wiLowest}"></td>
+                    <th>权重最高分</th>
+                    <td th:text="${reviewSet.wlHighest}"></td>
+                </tr>
+                <tr>
+                    <th>创建者</th>
+                    <td th:text="${reviewSet.createBy?.realname}"></td>
+                    <th>更新者</th>
+                    <td th:text="${reviewSet.updateBy?.realname}"></td>
+                </tr>
+                <tr>
+                    <th>创建时间</th>
+                    <td th:text="${#dates.format(reviewSet.createDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
+                    <th>更新时间</th>
+                    <td th:text="${#dates.format(reviewSet.updateDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
+                </tr>
+                <tr>
+                    <th>备注</th>
+                    <td th:text="${reviewSet.remark}" colspan="3"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+<script th:replace="/common/template :: script"></script>
+</body>
+</html>

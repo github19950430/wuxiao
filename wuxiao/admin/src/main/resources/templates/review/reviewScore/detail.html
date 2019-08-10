@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/common/template :: header(~{::title},~{::link},~{::style})">
+<style>
+
+	.wuxiao_img{
+		width:100%;
+		height:100%;
+		overflow: auto;
+	 }
+	 
+	 .wuxiao_img a{
+			margin: 5px;
+			width: 110px;
+			height: 80px;
+			display: block;
+			float: left;
+			border: 3px solid #ddd;	
+	 }
+	 
+	 .wuxiao_img a img{
+	 		width:100%;
+	 		max-width:110px;
+	 		height:100%;
+	 }
+	 
+	.wuxiao_file{
+		width:100%;
+		height:60px;
+		overflow: auto;
+	 }
+	.wuxiao_file a{
+		width:60px;
+		height:80px;
+		border:4px solid #ddd;
+		padding:2px 5px;
+		margin:0 3px;
+		line-height: 60px;
+	}
+</style>
+</head>
+<body>
+     <div class="layui-tab layui-tab-card">
+         <ul class="layui-tab-title">
+		    <li class="layui-this">成果申报</li>
+		   <!--  <li>带头人信息</li> -->
+		  </ul>
+   
+   <div class="layui-tab-content"  >
+    <div class="layui-tab-item layui-show">
+    <div class="timo-detail-page">
+        <div class="timo-detail-title">基本信息</div>
+        <table class="layui-table timo-detail-table">
+            <colgroup>
+                <col width="100px"><col>
+                <col width="100px"><col>
+            </colgroup>
+            <tbody>
+                <tr>
+                    <th>申报日期</th>
+                    <td th:text="${#dates.format(result?.declareDate, 'yyyy-MM-dd')}" colspan="3"></td>
+                </tr>
+                <tr>
+                    <th>所属行业</th>
+                    <td th:text="${#dicts.keyValue('INDUSTRY_TYPE', result?.Industry)}"></td>
+                    <th>成果类型</th>
+                    <td th:text="${#dicts.keyValue('RESULT_TYPE', result?.resultType)}"></td>
+                </tr>
+                <tr>
+                    <th>五小类型</th>
+                    <td >******</td>
+                    <th>成果名称</th>
+                    <td th:text="${result?.resultName}"></td>
+                </tr>
+                <tr>
+                    <th>完成单位</th>
+                    <td >******</td>
+                    <th>带头人</th>
+                   <td  >******</td>
+                     <!-- <th>项目主要负责人</th>
+                    <td   th:text="${result?.studioCharge}"></td> -->
+                </tr>
+                <tr>
+                    <th>实施时间</th>
+                    <td th:text="${#dates.format(result?.implementDate, 'yyyy-MM-dd')}"></td>
+                    <th>是否获得专利</th>
+                    <td th:text="${result?.isPatent}"></td>
+                </tr>
+                <tr>
+                    <th>专利号</th>
+                    <td >******</td>
+                    <th>专利授权公告日</th>
+                    <td >******</td>
+                </tr>
+                <tr>
+                    <th>成果简介</th>
+                    <td th:text="${result?.resultIntro}"></td>
+                    <th>应用前景</th>
+                    <td th:text="${result?.prospects}"></td>
+                </tr>
+                <tr>
+                    <th>创造价值</th>
+                    <td th:text="${result?.createPrice}"></td>
+                </tr>
+                <tr style="height: 100px;">
+                    <th>成果展示图片</th>
+                    <th colspan="3">
+                    	<div class="wuxiao_img">
+                           	<a th:each="item:${resultImg}" th:href="${item.path}" target='_blank'>
+                           		<img th:src="${item.path}" />
+                           	</a>
+                         </div>
+                    </th>
+                </tr>
+                <tr style="height: 100px;">
+                    <th>专利相关图片</th>
+                    <th colspan="3">
+                    	<div class="wuxiao_img">
+                           	<a th:each="item:${patentImg}" th:href="${item.path}" target='_blank'>
+                           		<img th:src="${item.path}" />
+                           	</a>
+                         </div>
+                    </th>
+                </tr>
+                <tr style="height: 100px;">
+                    <th>带头人最高荣誉图片</th>
+                    <th colspan="3">
+                    	<div class="wuxiao_img">
+                           	<a th:each="item:${honorImg}" th:href="${item.path}" target='_blank'>
+                           		<img th:src="${item.path}" />
+                           	</a>
+                         </div>
+                    </th>
+                </tr>
+                <tr style="height: 40px;">
+                    <th>上传视频</th>
+                    <th colspan="3">
+                    	<div class="wuxiao_file">
+                        	<a th:each="item:${resultVideo}" th:href="${item.path}" target="_blank">
+                        		[[${item?.name}]]
+                        	 </a>
+                         </div>		
+                    </th>
+                </tr>
+                <tr style="height: 40px;">
+                    <th>上传附件</th>
+                    <th colspan="3">
+                    	<div class="wuxiao_file">
+                    		<a th:each="item:${resultFile}" th:href="${item.path}" target="_blank">
+                        		[[${item?.name}]]
+                            </a>
+                    	</div>
+                    </th>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    </div>
+    
+    
+     <div class="layui-tab-item">
+       <div class="timo-detail-page">
+        <div class="timo-detail-title">基本信息</div>
+        <table class="layui-table timo-detail-table">
+            <colgroup>
+                <col width="130px"><col>
+                <col width="100px"><col>
+            </colgroup>
+            <tbody>
+                <tr>
+                    <th>姓名</th>
+                    <td>[[${result?.foregoer?.name}]]</td>
+                    <th>性别</th>
+                    <td>[[${#dicts.keyValue('USER_SEX', result?.foregoer?.sex)}]]</td>
+                    <td rowspan="4" style="width:102px"><img th:src="${result?.foregoer?.bareheadedImg}" ></td>
+                </tr>		
+                <tr>
+               		<th>出生年月</th>
+                    <td th:text="${#dates.format(result?.foregoer?.birthday, 'yyyy-MM-dd')}" colspan="1"></td>
+                    <th>身份证号</th>
+                    <td th:text="${result?.foregoer?.identityNum}" ></td>
+                    
+                </tr>
+                <tr>
+                	<th>工作单位</th>
+                    <td th:text="${result?.foregoer?.workUnit}"></td>
+                    <th>行业</th>
+                    <td th:text="${#dicts.keyValue('INDUSTRY_TYPE', result?.foregoer?.industry)}" ></td>
+                </tr>
+                <tr>
+                    <th>参加工作时间</th>
+                    <td th:text="${#dates.format(result?.foregoer?.workStartTime, 'yyyy-MM-dd')}" colspan="3"></td>
+                </tr>
+                <tr>
+                	<th>政治面貌</th>
+                    <td th:text="${#dicts.keyValue('POLITICS_STATUS', result?.foregoer?.politicsStatus)}"></td>
+                    <th>技术等级</th>
+                    <td th:text="${#dicts.keyValue('SKILL_LEVEL', result?.foregoer?.skillLevel)}" colspan="5"></td>
+                    
+                </tr>
+                <tr>
+                	<th>职称</th>
+                    <td th:text="${result?.foregoer?.professional}"></td>
+                    <th>文化程度</th>
+                    <td th:text="${#dicts.keyValue('STANDARD_CULTURE', result?.foregoer?.standardCulture)}" colspan="4"></td>
+                </tr>
+                <tr>
+                	<th>联系电话</th>
+                    <td th:text="${result?.foregoer?.contactNum}" colspan="5"></td>
+                </tr>
+                <tr>
+                    <th>个人简介</th>
+                    <td th:text="${result?.foregoer?.personalIntro}" colspan="6"></td>
+                    
+                </tr>
+                <tr>
+                    <th>主要事迹</th>
+                    <td th:text="${result?.foregoer?.mainEvent}" colspan="6"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+   </div> 
+    </div>
+    </div>
+<script th:replace="/common/template :: script"></script>
+</body>
+</html>

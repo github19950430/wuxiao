@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/common/template :: header(~{::title},~{::link},~{::style})">
+</head>
+<body>
+    <div class="timo-detail-page">
+        <div class="timo-detail-title">基本信息</div>
+        <table class="layui-table timo-detail-table">
+            <colgroup>
+                <col width="100px"><col>
+                <col width="100px"><col>
+            </colgroup>
+            <tbody>
+                <tr>
+                    <th>主键ID</th>
+                    <td th:text="${studioProfile.id}"></td>
+                    <th>工作室ID</th>
+                    <td th:text="${studioProfile.studioId}"></td>
+                </tr>
+                <tr>
+                    <th>工作室简介</th>
+                    <td th:text="${studioProfile.studioProfile}"></td>
+                    <th>带头人简介</th>
+                    <td th:text="${studioProfile.IntroductionProfile}"></td>
+                </tr>
+                <tr>
+                    <th>团队简介</th>
+                    <td th:text="${studioProfile.teamProfile}"></td>
+                    <th>创新成果描述</th>
+                    <td th:text="${studioProfile.innovativeDescription}"></td>
+                </tr>
+                <tr>
+                    <th>经济效益描述</th>
+                    <td th:text="${studioProfile.economicDescription}"></td>
+                    <th>创新计划描述</th>
+                    <td th:text="${studioProfile.creativeplanDescription}"></td>
+                </tr>
+                <tr>
+                    <th>创建者</th>
+                    <td th:text="${studioProfile.createBy?.realname}"></td>
+                    <th>更新者</th>
+                    <td th:text="${studioProfile.updateBy?.realname}"></td>
+                </tr>
+                <tr>
+                    <th>创建时间</th>
+                    <td th:text="${#dates.format(studioProfile.createDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
+                    <th>更新时间</th>
+                    <td th:text="${#dates.format(studioProfile.updateDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+<script th:replace="/common/template :: script"></script>
+</body>
+</html>

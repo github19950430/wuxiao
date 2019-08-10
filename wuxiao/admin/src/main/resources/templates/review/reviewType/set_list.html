@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/common/template :: header(~{::title},~{::link},~{::style})">
+    <style>
+        a{
+            color: #009688;
+        }
+        a:hover{
+            color: #004a43;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="timo-detail-page">
+        <table class="layui-table">
+            <thead>
+            <tr>
+                <th>评审内容</th>
+                <th>权重最低分</th>
+                <th>权重最高分</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="item:${list}">
+                <td>[[${item.content}]]</td>
+                <td>[[${item.wiLowest}]]</td>
+                <td>[[${item.wlHighest}]]</td>
+                <td><a th:href="@{/review/reviewSet/index(id=${item.id})}">操作</a></td>
+            </tr>
+            <tr th:if="${list.isEmpty()}">
+                <td style="text-align: center" colspan="4">未添加评审项的内容</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+<script th:replace="/common/template :: script"></script>
+</body>
+</html>

@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:mo="https://gitee.com/aun/Timo">
+<head
+	th:replace="/common/template :: header(~{::title},~{::link},~{::style})">
+<title>专家评审</title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/common.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/css/index.css}">
+<link rel="stylesheet" th:href="@{/css/swiper.min.css}">
+<style type="text/css">
+   	  .swiper-container .swiper-wrapper .swiper-slide{
+			width: 180px!important;
+			margin-right: 0px!important;
+			
+       }
+   </style>
+</head>
+<body>
+    <table class="table" style="width:1100px">
+   	   <tr>
+   		  <td colspan="3" class="title" th:text="'“'+${result.resultName}+'”审核'"></td>
+   		  
+   	   </tr>
+   	   <tr class="same_tr">
+   		  <td>
+   		  	 <div class="same_title">审核项</div>
+   		  	 <div class="same_two">
+   		  	 	<div>审核内容</div>
+   		  	 	<div>权重</div>
+   		  	 </div>
+   		  	 <div class="same_two">
+   		  	 	<div class="same_gao">
+   		  	 		<div class="same_left">创新思路</div>
+   		  	 		<div class="same_right">
+   		  	 			<div>有原创价值</div>
+   		  	 			<div>有一定创意</div>
+   		  	 			<div>思路一般</div>
+   		  	 		</div>
+   		  	 	</div>
+   		  	 	<div class="same_fen">
+   		  	 		<div>15--20分</div>
+   		  	 		<div>10--14分</div>
+   		  	 		<div>5--9分</div>
+   		  	 	</div>
+
+   		  	 </div>
+   		  	 <div class="same_two">
+   		  	 	<div class="same_gao">
+   		  	 		<div class="same_left">科技含量</div>
+   		  	 		<div class="same_right">
+   		  	 			<div>技术难度大</div>
+   		  	 			<div>技术难度较大</div>
+   		  	 			<div>有一定技术难度</div>
+   		  	 		</div>
+   		  	 	</div>
+   		  	 	<div class="same_fen">
+   		  	 		<div>20--30分</div>
+   		  	 		<div>15--19分</div>
+   		  	 		<div>10--14分</div>
+   		  	 	</div>
+
+   		  	 </div>
+   		  	 <div class="same_two">
+   		  	 	<div class="same_gao" style="height: 321px;">
+   		  	 		<div class="same_left chang">
+   		  	 			<div>创造效益（经济效益或社会效益，取其中一种记分）</div>
+   		  	 			<div style="width:42%">
+   		  	 				<div style="height:50%;box-sizing: border-box;padding-top:60px">创造经济效益</div>
+   		  	 				<div style="height:50%;box-sizing: border-box;padding-top:60px">创造社会效益</div>
+   		  	 			</div>
+   		  	 		</div>
+   		  	 		<div class="same_right same_rightchang">
+   		  	 			<div>
+   		  	 				<div>100万元以上/年</div>
+   		  	 			    <div>50--100万元/年</div>
+   		  	 			    <div>10--50万元/年</div>
+   		  	 			    <div>10万元以下</div>
+   		  	 			</div>
+   		  	 			<div>
+   		  	 				<div>突出</div>
+   		  	 			    <div>较好</div>
+   		  	 			    <div>一般</div>
+   		  	 			</div>
+   		  	 		</div>
+   		  	 	</div>
+   		  	 	<div class="same_fen same_fenchang" style="height: 321px;">
+   		  	 		<div>
+   		  	 			<div>20--25分</div>
+   		  	 		    <div>15--19分</div>
+   		  	 		    <div>10--14分</div>
+   		  	 		    <div>5--9分</div>
+   		  	 		</div>
+   		  	 		<div>
+   		  	 			<div>20--30分</div>
+   		  	 		    <div>15--19分</div>
+   		  	 		    <div>10--14分</div>
+   		  	 		</div>
+   		  	 	</div>
+
+   		  	 </div>
+   		  	 <div class="same_two">
+   		  	 	<div class="same_gao">
+   		  	 		<div class="same_left">发挥作用</div>
+   		  	 		<div class="same_right">
+   		  	 			<div  style="line-height:40px;height:40px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">解决生产中关键技术难题或宏观课题</div>
+   		  	 			<div>解决部分工艺、零件等问题</div>
+   		  	 			<div>解决一般问题</div>
+   		  	 		</div>
+   		  	 	</div>
+   		  	 	<div class="same_fen">
+   		  	 		<div>20--25分</div>
+   		  	 		<div>10--19分</div>
+   		  	 		<div>5--9分</div>
+   		  	 	</div>
+
+   		  	 </div>
+   		  </td>
+   		  <td>
+   		  	
+   		  	<div class="same_title">专家评分</div>
+   		  	<div class="pingfen_box">
+   		  		<div class="swiper-container matter_cont">
+				    <div class="swiper-wrapper">
+					    <div class="swiper-slide"  th:each="item:${scoreMapList}">
+						    <div class="same" style="border-left: 1px solid #000;">
+   		  		 	             <div class="same_listtilte" th:text="${item?.realname}"></div>
+   		  		 	             <!-- 创新思路 -->
+   		  		 	             <div class="silu_ping">
+   		  		 	             	<input type="" id="nid1" name="nid1" onkeyup="value=value.replace(/[^\d]/g,'')" maxlength="2" th:value="${item?.nid1}" readonly="readonly">
+   		  		 	             </div>
+   		  		 	             <!-- 科技含量 -->
+   		  		 	             <div class="silu_ping">
+   		  		 	             	<input type="" id="nid2" name="nid2" onkeyup= "value=value.replace(/[^\d]/g,'')" maxlength="2" th:value="${item?.nid2}" readonly="readonly">
+   		  		 	             </div>
+   		  		 	             <!-- 创造经济效益 -->
+                                 <div class="silu_ping" style="height: 183px;">
+                                 	<input type="" id="nid3" name="nid3" onkeyup= "value=value.replace(/[^\d]/g,'')"  maxlength="2" th:value="${item?.nid3}" readonly="readonly">
+                                 </div>
+                                 <!-- 创造社会效益 -->
+                                 <div class="silu_ping" style="height: 137px;">
+                                 	<input type=""  id="nid4" name="nid4" onkeyup= "value=value.replace(/[^\d]/g,'')"  maxlength="2" th:value="${item?.nid4}" readonly="readonly">
+                                 </div>
+                                 <!-- 发挥作用 -->
+                                 <div class="silu_ping">
+                                 	<input type="" id="nid5" name="nid5" onkeyup= "value=value.replace(/[^\d]/g,'')" maxlength="2" th:value="${item?.nid5}" readonly="readonly">
+                                 </div>
+   		  		            </div>
+					    </div>
+					    <!-- <div class="swiper-slide">
+						    <div class="same">
+   		  		 	             <div class="same_listtilte">专家一</div>
+   		  		 	             创新思路
+   		  		 	             <div class="silu_ping">
+   		  		 	             	<input type="" name="">
+   		  		 	             </div>
+   		  		 	             科技含量
+   		  		 	             <div class="silu_ping">
+   		  		 	             	<input type="" name="">
+   		  		 	             </div>
+   		  		 	             创造经济效益
+                                 <div class="silu_ping" style="height: 183px;">
+                                 	<input type="" name="">
+                                 </div>
+                                 创造社会效益
+                                 <div class="silu_ping" style="height: 137px;">
+                                 	<input type="" name="">
+                                 </div>
+                                 发挥作用
+                                 <div class="silu_ping">
+                                 	<input type="" name="">
+                                 </div>
+   		  		            </div>
+					    </div>
+					    <div class="swiper-slide">
+						    <div class="same">
+   		  		 	             <div class="same_listtilte">专家三</div>
+   		  		 	             创新思路
+   		  		 	             <div class="silu_ping">
+   		  		 	             	<input type="" name="">
+   		  		 	             </div>
+   		  		 	             科技含量
+   		  		 	             <div class="silu_ping">
+   		  		 	             	<input type="" name="">
+   		  		 	             </div>
+   		  		 	             创造经济效益
+                                 <div class="silu_ping" style="height: 183px;">
+                                 	<input type="" name="">
+                                 </div>
+                                 创造社会效益
+                                 <div class="silu_ping" style="height: 137px;">
+                                 	<input type="" name="">
+                                 </div>
+                                 发挥作用
+                                 <div class="silu_ping">
+                                 	<input type="" name="">
+                                 </div>
+   		  		            </div>
+					    </div>
+                         <div class="swiper-slide">
+						    <div class="same">
+   		  		 	             <div class="same_listtilte">专家四</div>
+   		  		 	             创新思路
+   		  		 	             <div class="silu_ping">
+   		  		 	             	<input type="" name="">
+   		  		 	             </div>
+   		  		 	             科技含量
+   		  		 	             <div class="silu_ping">
+   		  		 	             	<input type="" name="">
+   		  		 	             </div>
+   		  		 	             创造经济效益
+                                 <div class="silu_ping" style="height: 183px;">
+                                 	<input type="" name="">
+                                 </div>
+                                 创造社会效益
+                                 <div class="silu_ping" style="height: 137px;">
+                                 	<input type="" name="">
+                                 </div>
+                                 发挥作用
+                                 <div class="silu_ping">
+                                 	<input type="" name="">
+                                 </div>
+   		  		            </div> -->
+					    </div>
+				    </div>
+			    </div>
+   		  		 
+   		  	</div>
+   		  </td>
+   		  <td>
+   		  	<div class="zongfen">综合得分</div>
+   		  	<div class="silu_ping linglei">
+   		  		 		<input type="" name="" th:value="${zhScore?.score1}">
+   		  		 	</div>
+   		  		 	<!-- 科技含量 --> 
+   		  		 	<div class="silu_ping linglei">
+   		  		 		<input type="" name="" th:value="${zhScore?.score2}">
+   		  		 	</div>
+   		  		 	<!-- 创造经济效益 -->
+                    <div class="silu_ping linglei" style="height: 183px;">
+                    	<input type="" name="" th:value="${zhScore?.score3}">
+                    </div>
+                    <!-- 创造社会效益 -->
+                    <div class="silu_ping linglei" style="height: 137px;">
+                    	<input type="" name="" th:value="${zhScore?.score4}">
+                    </div>
+                    <!-- 发挥作用 -->
+                    <div class="silu_ping linglei">
+                    	<input type="" name="" th:value="${zhScore?.score5}">
+                    </div>
+   		  </td> 
+   	   </tr>
+   	   <tr class="heji_box">
+   	   	<td>合计</td>
+   	   	<td colspan="2" th:text="${zhScore.score1+zhScore.score2+zhScore.score3+zhScore.score4+zhScore.score5}"></td>
+   	   </tr>
+   	   <tr class="pingshen_box"  th:each="item:${scoreMapList}">
+   	   	<td th:text="${item?.realname}+'评审意见：'"></td>
+   	   	<td>
+   	   		<textarea name="message" th:text="${item?.message}"></textarea>
+   	   	</td>
+   	   </tr>
+   	   <tr class="cun_box">
+   	   	<td colspan="3">
+                <div class="layui-form-item">
+                    <div class="layui-input-block" style="text-align: center;margin-top: 30px">
+                    </div>
+                </div>
+            </td>
+   	   </tr>
+   </table>
+<script th:src="@{/js/swiper.min.js}"></script>
+<script th:src="@{/js/plugins/jquery-3.3.1.min.js}"></script>
+<script>
+    var swiper = new Swiper('.swiper-container', {
+
+        slidesPerView: 3,
+        spaceBetween: 30,
+        freeMode: true,
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+        },
+    });
+</script>
+<script th:replace="/common/template :: script"></script>
+</html>

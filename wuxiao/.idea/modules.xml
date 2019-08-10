@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/component/actionLog/actionLog.iml" filepath="$PROJECT_DIR$/component/actionLog/actionLog.iml" />
+      <module fileurl="file://$PROJECT_DIR$/admin/admin.iml" filepath="$PROJECT_DIR$/admin/admin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/modules/auditRecord/auditRecord.iml" filepath="$PROJECT_DIR$/modules/auditRecord/auditRecord.iml" />
+      <module fileurl="file://$PROJECT_DIR$/modules/bannerManager/bannerManager.iml" filepath="$PROJECT_DIR$/modules/bannerManager/bannerManager.iml" />
+      <module fileurl="file://$PROJECT_DIR$/common/common.iml" filepath="$PROJECT_DIR$/common/common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/component/component.iml" filepath="$PROJECT_DIR$/component/component.iml" />
+      <module fileurl="file://$PROJECT_DIR$/devtools/devtools.iml" filepath="$PROJECT_DIR$/devtools/devtools.iml" />
+      <module fileurl="file://$PROJECT_DIR$/component/excel/excel.iml" filepath="$PROJECT_DIR$/component/excel/excel.iml" />
+      <module fileurl="file://$PROJECT_DIR$/component/fileUpload/fileUpload.iml" filepath="$PROJECT_DIR$/component/fileUpload/fileUpload.iml" />
+      <module fileurl="file://$PROJECT_DIR$/modules/foregoerManager/foregoerManager.iml" filepath="$PROJECT_DIR$/modules/foregoerManager/foregoerManager.iml" />
+      <module fileurl="file://$PROJECT_DIR$/component/jwt/jwt.iml" filepath="$PROJECT_DIR$/component/jwt/jwt.iml" />
+      <module fileurl="file://$PROJECT_DIR$/modules/modelstudio/modelstudio.iml" filepath="$PROJECT_DIR$/modules/modelstudio/modelstudio.iml" />
+      <module fileurl="file://$PROJECT_DIR$/modules/modules.iml" filepath="$PROJECT_DIR$/modules/modules.iml" />
+      <module fileurl="file://$PROJECT_DIR$/modules/newsManager/newsManager.iml" filepath="$PROJECT_DIR$/modules/newsManager/newsManager.iml" />
+      <module fileurl="file://$PROJECT_DIR$/modules/resultManager/resultManager.iml" filepath="$PROJECT_DIR$/modules/resultManager/resultManager.iml" />
+      <module fileurl="file://$PROJECT_DIR$/modules/review/review.iml" filepath="$PROJECT_DIR$/modules/review/review.iml" />
+      <module fileurl="file://$PROJECT_DIR$/component/shiro/shiro.iml" filepath="$PROJECT_DIR$/component/shiro/shiro.iml" />
+      <module fileurl="file://$PROJECT_DIR$/modules/system/system.iml" filepath="$PROJECT_DIR$/modules/system/system.iml" />
+      <module fileurl="file://$PROJECT_DIR$/component/thymeleaf/thymeleaf.iml" filepath="$PROJECT_DIR$/component/thymeleaf/thymeleaf.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wuxiao.iml" filepath="$PROJECT_DIR$/wuxiao.iml" />
+    </modules>
+  </component>
+</project>

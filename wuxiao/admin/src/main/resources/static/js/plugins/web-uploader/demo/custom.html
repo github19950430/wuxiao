@@ -1,0 +1,244 @@
+﻿<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>文件上传</title>
+    <link href="demo.css" rel="stylesheet" type="text/css" />
+    <style type="text/css">
+        .upload-input { position: absolute; overflow: hidden; }
+        .upload-html4 { position: absolute; left: -10000px; top: -10000px; }
+
+        .u-loaded { color: green; }
+        .u-total { color: #FC5900; }
+    </style>
+    <style type="text/css">
+        .xui-upload-frame {
+            position:absolute;
+            width:360px;
+            max-height:600px;
+            right:0;
+            bottom:0;
+            margin:20px;
+            background:#fff;
+            font-family: arial,"微软雅黑","宋体",sans-serif;
+            font-size:14px;
+            border-style: solid; border-width: 1px; border-color: #EEE;
+            box-shadow:0px 0px  10px 5px #aaa;
+        }
+        .xui-upload-frame .xui-upload-item {
+            display:flex;
+            margin:20px;
+            border-bottom-style: solid; border-width: 1px; border-color: #DFDFDF;
+            background-color: #fff;
+            height:124px;
+        }
+        .xui-upload-item .xui-upload-item-left {
+            width: 24px;
+        }
+        .xui-upload-item .xui-upload-item-center {
+            flex:8;
+        }
+        .xui-upload-item .xui-upload-item-right {
+            flex:1;
+        }
+        .xui-upload-item .xui-upload-info {
+            margin: 2px 2px 20px 2px;
+        }
+        .xui-upload-item .xui-upload-name {
+            font-size:16px;
+        }
+        .xui-upload-item .xui-upload-proportion {
+            margin: 5px 0px;
+            color:#7A7A7A;
+        }
+        .xui-upload-item .xui-upload-proportion span {
+            padding:2px;
+        }
+        .xui-upload-item .xui-upload-speed {
+            margin:10px 10px 0px 0px;
+            display:flex;
+            justify-content: space-between;
+        }
+        .xui-upload-speed .xui-upload-speed-text {
+            color: #2D7AEC;
+        }
+        .xui-upload-speed .xui-upload-speed-time {
+            color: #7A7A7A;
+        }
+        .xui-upload-item .xui-upload-progress {
+            margin:10px 10px 0px 0px;
+            height: 12px;
+            border-radius:12px;
+            background: -webkit-linear-gradient(left,#E6E7EB,#E6E9EB);
+            background: -moz-linear-gradient(left,#E6E7EB,#E6E9EB);
+            background: -o-linear-gradient(left,#E6E7EB,#E6E9EB);
+            background: -ms-linear-gradient(left,#E6E7EB,#E6E9EB);
+            background: linear-gradient(left,#E6E7EB,#E6E9EB);
+        }
+        .xui-upload-progress .xui-upload-progressBar {
+            height: 100%;
+            background: -webkit-linear-gradient(left,#39ACFF,#398DFF);
+            background: -moz-linear-gradient(left,#39ACFF,#398DFF);
+            background: -o-linear-gradient(left,#39ACFF,#398DFF);
+            background: -ms-linear-gradient(left,#39ACFF,#398DFF);
+            background: linear-gradient(left,#39ACFF,#398DFF);
+            border-radius:12px;
+        }
+        .xui-upload-progressVal {
+            margin-top: 43px;
+            font-size:16px;
+            color: #E78217;
+            font-weight:720;
+            letter-spacing:1px;
+        }
+        .xui-upload-close {
+            text-align: right;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="header" class="header">Header</div>
+    <div class="main">
+        <div class="content">
+            <div class="contentin">
+                <div>
+                    <a id="upload-target" class="x-button">选择文件并上传</a>
+                </div>
+                <div id="upload-info"></div>
+            </div>
+        </div>
+        <div id="sidebar" class="sidebar"></div>
+    </div>
+
+    <!-- 上传进度的整体显示框 -->
+    <div class="xui-upload-frame" style="display:none;">
+        <!-- 每个文件的进度款 -->
+        <div class="xui-upload-item">
+            <div class="xui-upload-item-left">
+                
+            </div>
+            <div class="xui-upload-item-center">
+                <!-- 第1行 文件名  文件大小 -->
+                <div class="xui-upload-item-row xui-upload-info">
+                    <div class="xui-upload-name">2018-11短信信息表 (1).xls</div>
+                    <div class="xui-upload-proportion"><span>--B</span>/<span>206MB</span></div>
+                </div>
+                <!-- 第2行 进度条 百分比 -->
+                <div class="xui-upload-item-row">
+                    <div class="xui-upload-progress">
+                        <div class="xui-upload-progressBar" style="width: 100%;"></div>
+                    </div>
+                </div>
+                <!-- 第三行 上行速度 剩余时间 已上传大小 -->
+                <div class="xui-upload-item-row xui-upload-speed">
+                    <div class="xui-upload-speed-text">1.01Mb<span>/s</span></div>
+                    <div class="xui-upload-speed-time">1:28</div>
+                </div>
+            </div>
+            <div class="xui-upload-item-right">
+                <div class="xui-upload-info xui-upload-close">
+                    <img src="../images/close.png" alt="关闭" style="width:10px;height:10px;">
+                </div>
+                <div class="xui-upload-progressVal">100%</div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="demo.js"></script>
+
+    <script type="text/javascript" src="../js/Q.js"></script>
+    <script type="text/javascript" src="../js/Q.Uploader.js"></script>
+
+    <script type="text/javascript">
+        var Uploader = Q.Uploader,
+            formatSize = Q.formatSize,
+            boxView = document.getElementById("upload-info");
+            boxView.className = boxView.className + " xui-upload-frame";
+
+        new Uploader({
+            url: UPLOAD_URL,
+            target: document.getElementById("upload-target"),
+
+            multiple: true,
+            //clickTrigger: false,
+
+            //自定义UI实现,无需导入 Q.Uploader.UI.js 和 uploader.css
+            UI: {
+                //init: function () { },
+                draw: function (task) {
+                    this.update(task);
+                },
+                update: function (task) {
+
+                    var total = task.total || task.size,
+                        loaded = task.loaded,
+                        state = task.state;
+
+                    var taskData = {};
+                        taskData.name = task.name;
+                        taskData.total = formatSize(total);
+                    
+                    if (total > 0) {
+                        if (loaded != undefined) {
+                            taskData.loaded = formatSize(loaded);
+                        }else{
+                            taskData.loaded = '--B';
+                        }   
+                        if (loaded != undefined) {
+                            var percentText = "0";
+
+                            if (state == Uploader.PROCESSING) {
+                                var percent = Math.min(loaded * 100 / total, 100);
+
+                                percentText = percent.toFixed(1);
+                                if (percentText == "100.0") percentText = "99.9";
+
+                            } else if (state == Uploader.COMPLETE) {
+                                percentText = "100";
+                            }
+
+                            taskData.percentText = percentText + "%";
+                        }else{
+                            taskData.percentText = "1%";
+                        }
+
+                    }
+                    var speed = task.avgSpeed || task.speed;
+                    taskData.speed = formatSize(speed) + "/s";
+                    var html = '';
+                        html += '<div class="xui-upload-item">';
+                        html += '    <div class="xui-upload-item-left">';
+                        html += '    </div>';
+                        html += '    <div class="xui-upload-item-center">';
+                        html += '        <div class="xui-upload-item-row xui-upload-info">';
+                        html += '            <div class="xui-upload-name">'+taskData.name+'</div>';
+                        html += '            <div class="xui-upload-proportion">';
+                        html += '                <span>' + taskData.loaded + '</span>/<span>' + taskData.total + '</span>';
+                        html += '            </div>';
+                        html += '        </div>';
+                        html += '        <div class="xui-upload-item-row">';
+                        html += '            <div class="xui-upload-progress">';
+                        html += '                <div class="xui-upload-progressBar" style="width: ' + taskData.percentText + ';"></div>';
+                        html += '            </div>';
+                        html += '        </div>';
+                        html += '        <div class="xui-upload-item-row xui-upload-speed">';
+                        html += '            <div class="xui-upload-speed-text">' + taskData.speed + '<span>/s</span></div>';
+                        html += '            <div class="xui-upload-speed-time">1:28</div>';
+                        html += '        </div>';
+                        html += '    </div>';
+                        html += '    <div class="xui-upload-item-right">';
+                        html += '        <div class="xui-upload-info xui-upload-close">';
+                        html += '            <img src="../images/close.png" alt="关闭" style="width:10px;height:10px;">';
+                        html += '        </div>';
+                        html += '        <div class="xui-upload-progressVal">' + taskData.percentText + '</div>';
+                        html += '    </div>';
+                        html += '</div>';
+                    boxView.innerHTML = html;
+                }//,
+                //over: function (task) { }
+            }
+        });
+    </script>
+</body>
+</html>

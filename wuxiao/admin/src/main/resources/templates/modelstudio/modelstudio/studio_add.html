@@ -1,0 +1,1459 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:mo="https://gitee.com/aun/Timo">
+
+<head th:replace="/common/template :: header(~{::title},~{::link},~{::style})">
+    <meta charset="utf-8">
+    <title>layui</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+</head>
+<header th:fragment="add">
+    <style>
+        .clearfix:after{
+            content:".";
+            display:block;
+            height:0;
+            visibility:hidden;
+            clear:both;
+        }
+        .clearfix { zoom:1;}
+        table
+
+        {
+
+            border-collapse :collapse ;
+
+        }
+        td
+
+        {
+
+            height:40px;
+
+            border :1px solid black;
+
+            font-size:12px;
+
+            text-align :center;
+
+        }
+        input{
+            border: none;
+        }
+        .infor{
+            width: 18%;
+        }
+        .inmo{
+            width: 70%;
+        }
+        .imic{
+            width: 12%;
+        }
+        tr td.infor>div,tr td.inmo>div{
+            height: 45px;
+            line-height: 45px;
+            border-bottom: 1px solid #000;
+        }
+        tr td>div:last-child{
+            border: none;
+        }
+        .list ul{
+            width: 100%;
+            height:45px;
+        }
+        .list ul li{
+            float: left;
+            height:45px;
+            border-right: 1px solid #000;
+        }
+        .list ul li:last-child{
+            border: none;
+        }
+        .list ul li input{
+            width:100%;
+            height: 100%;
+        }
+        .list ul li select{
+            border: none;
+            display: block;
+            width: 100%;
+            height: 100%;
+            margin: 0 auto;
+        }
+        .lay-infor ul{
+            width: 100%;
+            height:45px;
+        }
+        .lay-infor ul li{
+            float: left;
+            height:45px;
+            border-right: 1px solid #000;
+        }
+        .lay-infor ul li:last-child{
+            border: none;
+        }
+        .dpic ul li{
+            float: left;
+            height: 45px;
+            line-height: 45px;
+            border: 1px solid #000;
+        }
+        .dpic ul li:nth-child(1){
+            border:none;
+        }
+        .dpic ul li:nth-child(2){
+            border-right:none;
+            border-top: none;
+            border-bottom: none;
+        }
+        .dpic ul li:nth-child(3){
+            border-right:none;
+            border-top: none;
+            border-bottom: none;
+        }
+        .dpic ul li:last-child{
+            border-right:none;
+            border-top: none;
+            border-bottom: none;
+            padding-bottom: 1px;
+        }
+        .dpic ul li select{
+            display: block;
+            width: 100%;
+            height: 100%;
+            margin: 0 auto;
+        }
+        .lay-textarea textarea{
+            width: 100%;
+            height: 90px;
+            border: none;
+        }
+        .lay-textarea span{
+
+        }
+        .layui-laydate-content td{
+            border: none;
+        }
+        .funding-title{
+            width: 25%;
+            margin-top: 20px;
+        }
+        .funding-left{
+            float: left;
+        }
+        .funding-left span{
+            float: left;
+            line-height: 43px;
+            margin-right: 10px;
+        }
+        .funding-left input{
+            float: left;
+            width: 300px;
+            height: 43px;
+            line-height: 43px;
+        }
+        .funding-left i{
+            float: left;
+            line-height: 43px;
+            font-style: normal;
+            margin-left: 10px;
+        }
+        .funding-right{
+            float: left;
+            margin-left: 180px;
+        }
+        .funding-right span{
+            float: left;
+            line-height: 43px;
+            margin-right: 10px;
+        }
+        .funding-right input{
+            float: left;
+            width: 300px;
+            height: 43px;
+            line-height: 43px;
+        }
+        .funding-num{
+            margin-top: 20px;
+            margin-left: 150px;
+        }
+        .table-list{
+            float: left;
+        }
+        .table-left{
+            float: left;
+            width: 200px;
+        }
+        .table-pic ul li{
+            float: left;
+            width: 198px;
+            border-left: 1px solid #000;
+        }
+        .table-pic ul li:nth-child(1){
+            height: 90px;
+            line-height: 90px;
+        }
+        .table-pic ul li:nth-child(3){
+            border-top: 1px solid #000;
+            height: 45px;
+            line-height: 45px;
+        }
+        .table-pic{
+            float: left;
+            width: 200px;
+        }
+        .table-right{
+            float: left;
+            width: 400px;
+        }
+        .table-right ul li{
+            float: left;
+            width: 198px;
+            height: 45px;
+            line-height: 45px;
+            border-left: 1px solid #000;
+            border-bottom: 1px solid #000;
+        }
+        .table-right ul li:nth-child(5),.table-right ul li:nth-child(6){
+            border-bottom: none;
+        }
+        .money-left{
+            float: left;
+            width: 200px;
+            height: 90px;
+            line-height: 90px;
+        }
+        .money-right{
+            float: left;
+            width: 1000px;
+        }
+        .money-right ul li{
+            float: left;
+            width: 33.2%;
+            height: 45px;
+            line-height: 45px;
+            border-left: 1px solid #000;
+            border-bottom: 1px solid #000;
+        }
+        .money-right ul li:nth-child(4),.money-right ul li:nth-child(5),
+        .money-right ul li:nth-child(6){
+            border-bottom: none;
+        }
+        .table-date{
+            float: left;
+            padding-left: 40px;
+        }
+        .table-date span{
+            float: left;
+        }
+        .table-date input{
+            float: left;
+            width: 50px;
+            height: 18px;
+        }
+        .table-qianming{
+            float: left;
+            margin-left: 350px;
+            margin-top: 35px;
+        }
+        .table-datebox{
+            float: left;
+        }
+        .table-gz{
+            padding-bottom: 20px;
+        }
+        .tab-left{
+            float: left;
+        }
+        .tab-right{
+            float: left;
+        }
+        .lay-person ul li{
+            float: left;
+        }
+        .jineng-left{
+            float: left;
+            width: 86px;
+            height: 100px;
+            line-height:75px;
+        }
+        .jineng-right{
+            float: left;
+            width: 89.7%;
+        }
+        .content-bottom ul li{
+            float: left;
+            width: 82px;
+            height: 100px;
+            border-left: 1px solid #000;
+            border-bottom: 1px solid #000;
+        }
+        .lay-person{
+            width: 840px;
+        }
+        .lay-person ul li{
+            float: left;
+            height: 100px;
+            border-left: 1px solid #000;
+        }
+        .lay-person ul li:nth-child(1){
+            border-top: 1px solid #000;
+            border-left: none;
+        }
+        .sm_text {
+            float: left;
+            position: relative;
+        }
+        .sm_img {
+            float: left;
+            width: 899px;
+            height: 180px;
+        }
+        #gh {
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+        }
+        #sz {
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+        }
+        #SZZ {
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+        }
+        .tianjia img {
+            width: 100%;
+            height: 100%;
+        }
+        .tianjia {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 899px;
+            height: 180px;
+        }
+        .addbtn{
+            display: inline-block;
+            font-size: 26px;
+            color: #f00;
+            float: right;
+            cursor: pointer;
+            width: 40px;
+            line-height: 47px;
+            margin-right: 5px;
+        }
+    </style>
+    <style>
+        .clearfix:after {
+            content: ".";
+            display: block;
+            height: 0;
+            visibility: hidden;
+            clear: both;
+        }
+
+        .clearfix {
+            zoom: 1;
+        }
+
+        table {
+
+            border-collapse: collapse;
+
+        }
+
+        td {
+
+            height: 40px;
+
+            border: 1px solid black;
+
+            font-size: 12px;
+
+            text-align: center;
+
+        }
+
+        input {
+            border: none;
+        }
+
+        .lay-lb input {
+            margin: 0 10px;
+        }
+
+        .lay-date ul li {
+            float: left;
+            height: 45px;
+            line-height: 45px;
+            border: 1px solid #000;
+        }
+
+        .lay-date ul li:nth-child(1) {
+            border: none;
+        }
+
+        .lay-date ul li:nth-child(2) {
+            border-right: none;
+            border-top: none;
+            border-bottom: none;
+        }
+
+        .lay-date ul li:nth-child(3) {
+            border-right: none;
+            border-top: none;
+            border-bottom: none;
+        }
+
+        .lay-date ul li:last-child {
+            border-right: none;
+            border-top: none;
+            border-bottom: none;
+        }
+
+        .lay-textarea textarea {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .layui-laydate-content td {
+            border: none;
+        }
+
+        .lay-juxing ul li {
+            float: left;
+        }
+        .wuxiao_img div {
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            /* overflow-x:hidden; */
+        }
+
+        .wuxiao_img div a {
+            margin: 5px;
+            width: 13%;
+            height: 74%;
+            position: relative;
+            display: block;
+            float: left;
+            border: 3px solid #ddd;
+        }
+
+        .wuxiao_img div a img {
+            width: 100%;
+            height: 100%;
+            margin: 0 0 20px 0;
+        }
+
+        .wuxiao_img div a i {
+            margin: 0;
+            position: absolute;
+            z-index: 99;
+            height: 18px;
+            width: 18px;
+            text-align: center;
+            opacity: 1;
+            font-size: 18px;
+            top: -4px;
+            right: -10px;
+            line-height: 18px;
+        }
+
+        .wuxiao_file div {
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+        }
+
+        .wuxiao_file div a {
+            width: 60px;
+            height: 80px;
+            border: 2px solid #ddd;
+            padding: 6px 5px;
+            margin: 0 3px;
+        }
+
+        .wuxiao_file div a i {
+            font-size: 18px;
+        }
+
+        .xui-upload-frame {
+            position: fixed;
+        }
+        video {
+            width: 60px;
+            height: 80px;
+        }
+
+
+
+        .add_div {
+            width: 400px;
+            height: 500px;
+            border: solid #ccc 1px;
+            margin-top: 40px;
+            margin-left: 170px;
+            padding-left: 20px;
+        }
+
+        .file-list {
+            height: 125px;
+            display: none;
+            list-style-type: none;
+        }
+
+        .file-list img {
+            max-width: 70px;
+            vertical-align: middle;
+        }
+
+        .file-list .file-item {
+            margin-bottom: 10px;
+            float: left;
+            margin-left: 20px;
+        }
+
+
+        .file-list .file-item .file-del {
+            display: block;
+            margin-left: 20px;
+            margin-top: 5px;
+            cursor: pointer;
+        }
+        input[disabled]{
+            background: #ffffff;
+            color: black;
+        }
+        select[disabled]{
+            color: black;
+        }
+    </style>
+<body>
+<form th:action="@{/modelstudio/modelstudio/add}">
+    <input type="hidden" name="state" th:value="${index}">
+    <input type="hidden" name="audit_status" th:value="${modelstudio?.audit_status}">
+    <input type="hidden" name="flat_type" th:value="${modelstudio?.flat_type}">
+    <input type="hidden" name="id" th:if="${modelstudio}" th:value="${modelstudio.id}">
+    <table style="width: 1200px;margin: 0 auto;margin-bottom: 10px;">
+        <tr th:if="${index == 0}">
+            <td colspan="4" style="font-size: 20px;font-weight: bold;position: relative">新增（劳模）创新工作室
+                <!--<div style="cursor: pointer;position: absolute;right: 15px;top: 0;width: 60px;height: 40px;display: flex;justify-content: space-around;align-items: center">
+                    <img th:src="@{/images/dayin.png}" alt="" style="width: 20px">
+                    <span style="font-size:13px;color: #707070;">打印</span>
+                </div>-->
+            </td>
+        </tr>
+        <tr th:if="${index == 1}">
+            <td colspan="4" style="font-size: 20px;font-weight: bold;position: relative">新增（职工）创新工作室
+                <!--<div style="cursor: pointer;position: absolute;right: 15px;top: 0;width: 60px;height: 40px;display: flex;justify-content: space-around;align-items: center">
+                    <img th:src="@{/images/dayin.png}" alt="" style="width: 20px">
+                    <span style="font-size:13px;color: #707070;">打印</span>
+                </div>-->
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3">
+                <div class="dpic">
+                    <ul class="clearfix" style="width: 100%">
+                        <li style="width: 25%">
+                            所属工会
+                        </li>
+                        <li style="width: 25%">
+                            <span th:text="${title}"></span>
+                        </li>
+                        <li style="width: 25%">
+                            所属行业
+                        </li>
+                        <li style="width: 24.7%">
+                            <select class="timo-search-select" name="industry_involved" mo:dict="INDUSTRY_TYPE" mo-selected="${modelstudio?.industry_involved}" mo-empty="请选择" style="border: none" th:disabled="${level == 1 && modelstudio != null}"></select>
+                        </li>
+                    </ul>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3">
+                <div class="dpic">
+                    <ul class="clearfix" style="width: 100%">
+                        <li style="width: 25%">
+                            工作室名称
+                        </li>
+                        <li style="width: 25%">
+                            <input type="text" name="studioName" style="width: 100%;height: 100%" th:value="${modelstudio?.studioName}" th:disabled="${level == 1 && modelstudio != null}">
+                        </li>
+                        <li style="width: 25%">
+                            工作室创新时间
+                        </li>
+                        <li style="width: 24%">
+                            <div style="width: 79% ;float: left">
+                                <input type="text" name="creation_time" id="date" lay-verify="date" placeholder="请选择"
+                                       autocomplete="off" class="layui-input" style="border: none"
+                                       th:value="${#dates.format(modelstudio?.creation_time, 'yyyy-MM-dd')}" th:disabled="${level == 1 && modelstudio != null}">
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3">
+                <div class="dpic">
+                    <ul class="clearfix" style="width: 100%">
+                        <li style="width: 25%">
+                            所在单位
+                        </li>
+                        <li style="width: 25%">
+                            <input type="text" style="width: 100%;height: 100%"
+                                   name="place_the_unit"
+                                   th:value="${modelstudio?.place_the_unit}" th:disabled="${level == 1 && modelstudio != null}">
+
+                        </li>
+                        <li style="width: 25%">
+                            工作室类型
+                        </li>
+                        <li style="width: 24%">
+                            <select class="timo-search-select" name="studio_type" mo:dict="STUDIO_TYPE" mo-selected="${modelstudio?.studio_type}" mo-empty="请选择" style="border: none" th:disabled="${level == 1 && modelstudio != null}"></select>
+                        </li>
+                    </ul>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3">
+                <div class="dpic">
+                    <ul class="clearfix" style="width: 100%">
+                        <li style="width: 25%">
+                            专业领域
+                        </li>
+                        <li style="width: 25%">
+                            <input type="text" style="width: 100%;height: 100%"
+                                   name="professional_field" th:value="${modelstudio?.professional_field}" th:disabled="${level == 1 && modelstudio != null}">
+                        </li>
+                        <li style="width: 25%">
+                            领衔人
+                        </li>
+                        <li style="width: 24.7%">
+                            <select  class="timo-search-select" name="lingxianrenId" mo:list="${leaderlist}" mo-selected="${modelstudio?.lingxianrenId}" mo-empty="请选择" style="border: none;width:70%;float:left" th:disabled="${level == 1 && modelstudio != null}"></select>
+                            <a th:href="@{/modelstudio/leaderinformation/add}"><span class="addbtn">+</span></a>
+                        </li>
+                    </ul>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3">
+                <div class="dpic">
+                    <ul class="clearfix" style="width: 100%">
+                        <li style="width: 25%">
+                            领衔人最高荣誉
+                        </li>
+                        <li style="width: 25%">
+                            <select class="timo-search-select" name="blue_ribbon" mo:dict="STUDIO_BLUE_RABBON" mo-selected="${modelstudio?.blue_ribbon}" mo-empty="请选择" style="border: none" th:disabled="${level == 1 && modelstudio != null}"></select>
+                        </li>
+                        <li style="width: 25%">
+                            领衔人联系电话
+                        </li>
+                        <li style="width: 24.7%">
+                            <input type="text" name="phone" th:value="${modelstudio?.phone}" style="width: 100%;height: 100%" th:disabled="${level == 1 && modelstudio != null}">
+                        </li>
+                    </ul>
+                </div>
+            </td>
+        </tr>
+       <!-- <tr>
+            <td colspan="3">
+                <div class="clearfix" style="width: 1200px">
+                    <div style="float: left;width: 25%;height: 45px;line-height: 45px;border-right: 1px solid #000;">
+                        所属单位（市/产业工会）
+                    </div>
+                    <div style="float: left;width: 74.7%;height: 45px;padding-bottom: 1px;">
+                        <select class="timo-search-select" name="unit" mo:dict="TRADE_UNIONS" mo-selected="${modelstudio?.unit}" mo-empty="请选择" style="border: none;display: block;width: 100%;height: 100%;margin: 0 auto;"></select>
+                    </div>
+                </div>
+            </td>
+        </tr>-->
+        <tr>
+            <td colspan="3">
+                <div class="dpic">
+                    <ul class="clearfix" style="width: 100%">
+                        <li style="width: 25%">
+                            命名日期
+                        </li>
+                        <li style="width: 25%">
+                            <div style="width: 79% ;float: left">
+                                <input type="text" name="named_date" id="date1" lay-verify="date1" placeholder="请选择"
+                                       autocomplete="off" class="layui-input" style="border: none"
+                                       th:value="${#dates.format(modelstudio?.named_date,'yyyy-MM-dd')}" th:disabled="${level == 1 && modelstudio != null}">
+                            </div>
+                        </li>
+                        <li style="width: 25%">
+                            成员总数
+                        </li>
+                        <li style="width: 24.7%">
+                            <input type="text" name="total_number" th:value="${modelstudio?.total_number}" style="width: 80%;height: 100%" th:disabled="${level == 1 && modelstudio != null}">
+                            <span style="width: 10%;height: 100%">（人）</span>
+                        </li>
+                    </ul>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3">
+                <div class="lay-funding">
+                    <div class="funding-title">
+                        经费投入：
+                    </div>
+                    <div class="funding-num clearfix">
+                        <div class="funding-left clearfix">
+                            <span th:text="${three}"></span>
+                            <input type="text" name="three_years_ago_price" th:value="${modelstudio?.three_years_ago_price}" style="border: 1px solid #000" th:disabled="${level == 1 && modelstudio != null}">
+                            <i>万元</i>
+                        </div>
+                        <div class="funding-right clearfix">
+                            <span>经费来源：</span>
+                            <input type="text" name="three_years_ago_source" th:value="${modelstudio?.three_years_ago_source}" style="border: 1px solid #000" th:disabled="${level == 1 && modelstudio != null}">
+                        </div>
+                    </div>
+                    <div class="funding-num clearfix">
+                        <div class="funding-left clearfix">
+                            <span th:text="${two}"></span>
+                            <input type="text" name="two_years_ago_price" th:value="${modelstudio?.two_years_ago_price}" style="border: 1px solid #000" th:disabled="${level == 1 && modelstudio != null}">
+                            <i>万元</i>
+                        </div>
+                        <div class="funding-right clearfix">
+                            <span>经费来源：</span>
+                            <input type="text" name="two_years_ago_source" th:value="${modelstudio?.two_years_ago_source}" style="border: 1px solid #000" th:disabled="${level == 1 && modelstudio != null}">
+                        </div>
+                    </div>
+                    <div class="funding-num clearfix" style="margin-bottom: 20px">
+                        <div class="funding-left clearfix">
+                            <span th:text="${one}"></span>
+                            <input type="text" name="one_years_ago_price" th:value="${modelstudio?.one_years_ago_price}" style="border: 1px solid #000" th:disabled="${level == 1 && modelstudio != null}">
+                            <i>万元</i>
+                        </div>
+                        <div class="funding-right clearfix">
+                            <span>经费来源：</span>
+                            <input type="text" name="one_years_ago_source" th:value="${modelstudio?.one_years_ago_source}" style="border: 1px solid #000" th:disabled="${level == 1 && modelstudio != null}">
+                        </div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="table-listbox clearfix">
+                    <div class="table-list clearfix">
+                        <div class="table-left" style="height: 135px;line-height: 135px">
+                            技术创新
+                        </div>
+                        <div class="table-right">
+                            <ul class="clearfix">
+                                <li>创新成果</li>
+                                <li class="clearfix">
+                                    <input type="text" name="innovative_product" th:value="${modelstudio?.innovative_product}" style="width: 70%;height: 100%;float: left" th:disabled="${level == 1 && modelstudio != null}">
+                                    <span style="display: block;width: 30%;float: left;color: #999999">项</span>
+                                </li>
+                                <li>成果转化</li>
+                                <li class="clearfix">
+                                    <input type="text" name="achievement_transformation" th:value="${modelstudio?.achievement_transformation}" style="width: 70%;height: 100%;float: left" th:disabled="${level == 1 && modelstudio != null}">
+                                    <span style="display: block;width: 30%;float: left;color: #999999">项</span>
+                                </li>
+                                <li>获奖等级</li>
+                                <li class="clearfix">
+                                    <span style="display: block;width: 20%;float: left;color: #999999">国际</span>
+                                    <input type="text" name="bear_international" th:value="${modelstudio?.bear_international}" style="width: 60%;height: 99%;float: left" th:disabled="${level == 1 && modelstudio != null}">
+                                    <span style="display: block;width: 20%;float: left;color: #999999">个</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="table-list clearfix">
+                        <div class="table-pic">
+                            <ul class="clearfix">
+                                <li>技术创新</li>
+                                <li></li>
+                                <li class="clearfix">
+                                    <span style="display: block;width: 20%;float: left;color: #999999">国家</span>
+                                    <input type="text" name="bear_state" th:value="${modelstudio?.bear_state}" style="width: 60%;height: 100%;float: left" th:disabled="${level == 1 && modelstudio != null}">
+                                    <span style="display: block;width: 20%;float: left;color: #999999">个</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="table-right">
+                            <ul class="clearfix">
+                                <li>实用新型</li>
+                                <li class="clearfix">
+                                    <input type="text" name="utility_model" th:value="${modelstudio?.utility_model}" style="width: 70%;height: 100%;float: left" th:disabled="${level == 1 && modelstudio != null}">
+                                    <span style="display: block;width: 30%;float: left;color: #999999">个</span>
+                                </li>
+                                <li>发明</li>
+                                <li class="clearfix">
+                                    <input type="text" name="invent" th:value="${modelstudio?.invent}" style="width: 70%;height: 100%;float: left" th:disabled="${level == 1 && modelstudio != null}">
+                                    <span style="display: block;width: 30%;float: left;color: #999999">个</span>
+                                </li>
+                                <li>省部(个)</li>
+                                <li class="clearfix">
+                                    <span style="display: block;width: 20%;float: left;color: #999999">地市</span>
+                                    <input type="text" name="provincial" th:value="${modelstudio?.provincial}" style="width: 60%;height: 99%;float: left" th:disabled="${level == 1 && modelstudio != null}">
+                                    <span style="display: block;width: 20%;float: left;color: #999999">个</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="lay-money clearfix" style="width: 100%">
+                    <div class="money-left">
+                        经济效益
+                    </div>
+                    <div class="money-right">
+                        <ul class="clearfix">
+                            <li th:text="${two}"></li>
+                            <li th:text="${one}"></li>
+                            <li>合计</li>
+                            <li>
+                                <input type="text" name="before_economy" th:value="${modelstudio?.before_economy}" style="width: 80%;height: 100%;float: left;" th:disabled="${level == 1 && modelstudio != null}">
+                                <span style="width: 10%;height: 100%">（万元）</span>
+                            </li>
+                            <li>
+                                <input type="text" name="lastyear_economy" th:value="${modelstudio?.lastyear_economy}" style="width: 80%;height: 100%" th:disabled="${level == 1 && modelstudio != null}">
+                                <span style="width: 10%;height: 100%">（万元）</span>
+                            </li>
+                            <li>
+                                <input type="text" name="tatal" th:value="${modelstudio?.tatal}" style="width: 80%;height: 100%" th:disabled="${level == 1 && modelstudio != null}">
+                                <span style="width: 10%;height: 100%">（万元）</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="lay-tab clearfix" style="width: 100%">
+                    <div class="tab-left" style="width: 359px;height: 250px;line-height: 250px;border-right: 1px solid #000">
+                        培养人才*
+                    </div>
+                    <div class="tab-right" style="width: 839px">
+                        <div class="lay-jineng clearfix" style="width: 100%">
+                            <div class="jineng-left">
+                                总<br>数
+                            </div>
+                            <div class="jineng-right">
+                                <div class="content-top clearfix" style="width: 100%">
+                                    <div style="width: 376px;float: left;border-bottom: 1px solid #000;
+                                    border-left: 1px solid #000;line-height:45px;height: 45px">技术等级</div>
+                                    <div style="width: 374px;float: left;border-bottom: 1px solid #000;
+                                    border-left: 1px solid #000;line-height:45px;height: 45px">荣誉</div>
+                                </div>
+                                <div class="content-bottom">
+                                    <ul class="clearfix">
+                                        <li>双<br>重<br>职<br>称</li>
+                                        <li>高<br>级<br>技<br>师</li>
+                                        <li>技<br>师</li>
+                                        <li>高<br>级<br>工</li>
+                                        <li>其<br>他</li>
+                                        <li>全<br>国<br>劳<br>模</li>
+                                        <li>省<br>部<br>级<br>劳<br>模</li>
+                                        <li>地<br>市<br>级<br>劳<br>模</li>
+                                        <li style="width: 85px">其<br>他</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="lay-person">
+                            <ul class="clearfix">
+                                <li style="width: 86px">
+                                    <input type="text" name="cultivate_talents" th:value="${modelstudio?.cultivate_talents}" style="width: 100%;height: 80%;float: left;" th:disabled="${level == 1 && modelstudio != null}">
+                                    <span style="width: 100%;height: 10%;float: left;">（人）</span>
+                                </li>
+                                <li style="width: 82px">
+                                    <input type="text" name="double_title" th:value="${modelstudio?.double_title}" style="width: 100%;height: 80%;float: left;" th:disabled="${level == 1 && modelstudio != null}">
+                                    <span style="width: 100%;height: 10%;float: left;">（人）</span>
+                                </li>
+                                <li style="width: 82px">
+                                    <input type="text" name="senior_technician" th:value="${modelstudio?.senior_technician}" style="width: 100%;height: 80%;float: left;" th:disabled="${level == 1 && modelstudio != null}">
+                                    <span style="width: 100%;height: 10%;float: left;">（人）</span>
+                                </li>
+                                <li style="width: 82px">
+                                    <input type="text" name="technician" th:value="${modelstudio?.technician}" style="width: 100%;height: 80%;float: left;" th:disabled="${level == 1 && modelstudio != null}">
+                                    <span style="width: 100%;height: 10%;float: left;">（人）</span>
+                                </li>
+                                <li style="width: 82px">
+                                    <input type="text" name="senior_engineer" th:value="${modelstudio?.senior_engineer}" style="width: 100%;height: 80%;float: left;" th:disabled="${level == 1 && modelstudio != null}">
+                                    <span style="width: 100%;height: 10%;float: left;">（人）</span>
+                                </li>
+                                <li style="width: 82px">
+                                    <input type="text" name="technician_other" th:value="${modelstudio?.technician_other}" style="width: 100%;height: 80%;float: left;" th:disabled="${level == 1 && modelstudio != null}">
+                                    <span style="width: 100%;height: 10%;float: left;">（人）</span>
+                                </li>
+                                <li style="width: 82px">
+                                    <input type="text" name="national_model" th:value="${modelstudio?.national_model}" style="width: 100%;height: 80%;float: left;" th:disabled="${level == 1 && modelstudio != null}">
+                                    <span style="width: 100%;height: 10%;float: left;">（人）</span>
+                                </li>
+                                <li style="width: 82px">
+                                    <input type="text" name="provincial_model" th:value="${modelstudio?.provincial_model}" style="width: 100%;height: 80%;float: left;" th:disabled="${level == 1 && modelstudio != null}">
+                                    <span style="width: 100%;height: 10%;float: left;">（人）</span>
+                                </li>
+                                <li style="width: 82px">
+                                    <input type="text" name="prefecture_model" th:value="${modelstudio?.prefecture_model}" style="width: 100%;height: 80%;float: left;" th:disabled="${level == 1 && modelstudio != null}">
+                                    <span style="width: 100%;height: 10%;float: left;">（人）</span>
+                                </li>
+                                <li style="width: 82px">
+                                    <input type="text" name="honor_other" th:value="${modelstudio?.honor_other}" style="width: 100%;height: 80%;float: left;" th:disabled="${level == 1 && modelstudio != null}">
+                                    <span style="width: 100%;height: 10%;float: left;">（人）</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3">
+                <div class="clearfix" style="width: 1200px">
+                    <div style="float: left;width: 25%;height: 180px;line-height: 180px;border-right: 1px solid #000;">
+                        所在单位工会意见：
+                    </div>
+                    <div style="float: left;width: 74.7%;" class="lay-textarea clearfix">
+                        <div class="sm_text">
+                            <div class="tianjia" >
+                                <img th:src="${modelstudio?.unit_opinion == null ? '/wuxiao/images/master/unit.png' : modelstudio.unit_opinion}" id="ghimg"/>
+                            </div>
+                        </div>
+                        <div class="sm_img" th:if="${level != 1 || modelstudio == null}">
+                            <input type="file" id="gh" onchange="previewFile(gh,ghimg)" style="cursor: pointer">
+                        </div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3">
+                <div class="clearfix" style="width: 1200px">
+                    <div style="float: left;width: 25%;height: 180px;line-height: 180px;border-right: 1px solid #000;">
+                        市总工会、省产业工会（工委）意见：
+                    </div>
+                    <div style="float: left;width: 74.7%;" class="lay-textarea clearfix">
+                        <div class="sm_text">
+                            <div class="tianjia" >
+                                <img th:src="${modelstudio?.always_opinions == null ? '/wuxiao/images/master/city.png' : modelstudio.always_opinions}" id="szimg"/>
+                            </div>
+                        </div>
+                        <div class="sm_img" th:if="${level != 1 || modelstudio == null}">
+                            <input type="file" id="sz"  onchange="previewFile(sz,szimg)" style="cursor: pointer">
+                        </div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3">
+                <div class="clearfix" style="width: 1200px">
+                    <div style="float: left;width: 25%;height: 180px;line-height: 180px;border-right: 1px solid #000;">
+                        山西省总工会审批意见：
+                    </div>
+
+                    <div style="float: left;width: 74.7%;" class="lay-textarea clearfix" th:if="${level != 1}">
+                        <div class="sm_text">
+                            <div class="tianjia">
+                                <img th:src="${modelstudio?.general_opinion == null ? '/wuxiao/images/master/jinzhi.png' : modelstudio.general_opinion}" id="SZZimg"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="float: left;width: 74.7%;" class="lay-textarea clearfix" th:if="${level == 1}">
+                        <div class="sm_text">
+                            <div class="tianjia">
+                                <img th:src="${modelstudio?.general_opinion == null ? '/wuxiao/images/master/shen.png' : modelstudio.general_opinion}" id="SZZimg"/>
+                            </div>
+                        </div>
+                        <div class="sm_img">
+                            <input type="file" id="SZZ" onchange="previewFile(SZZ,SZZimg)" style="cursor: pointer">
+                        </div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="lay-date">
+                    <ul class="clearfix" style="width: 100%">
+                        <li style="float: left;width: 25%;height: 80px;line-height: 80px;">
+                            工作室宣传图片(可选)
+                        </li>
+                        <li style="width:20%;height: 80px;line-height: 80px;">
+                            <button type="button" th:class="${level == 1 && modelstudio != null?'':'layui-btn'}" style="width: 50%;height: 50%;" id="btnUploadImg" th:disabled="${level == 1 && modelstudio != null}">
+                                <i class="layui-icon"></i>上传图片
+                            </button>
+                        </li>
+                        <li style="width:54%;height: 80px;line-height: 80px;" class="wuxiao_img">
+                            <div id="file_1">
+                                <a th:each="item:${allByImg}" th:attr="id=${item.id}">
+                                    <img th:src="${item.img_url}" />
+                                    <i onclick="deleteFile(this,event);" th:attr="data-value=${item.id}" class='fa fa-times-circle' th:if="!${level == 1 && modelstudio != null}"></i>
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="lay-date">
+                    <ul class="clearfix" style="width: 100%">
+                        <li style="float: left;width: 25%;height: 80px;line-height: 80px;">
+                            上传视频(可选)
+                        </li>
+                        <li style="width:20%;height: 80px;line-height: 80px;">
+                            <button type="button" th:class="${level == 1 && modelstudio != null?'':'layui-btn'}"  style="width: 50%;height: 50%;" id="btnUploadVideo" th:disabled="${level == 1 && modelstudio != null}">
+                                <i class="layui-icon"></i>上传视频
+                            </button>
+                        </li>
+                        <li style="width: 54%;height: 80px;line-height: 80px;" class="wuxiao_file">
+                            <div id="file_2">
+                                <a th:each="item:${allByVideo}" th:href="${item.video_url}" target="_blank" th:attr="id=${item.id}">
+                                    [[${item.name}]]
+                                    <i onclick="deleteFilevideo(this,event);" th:attr="data-value=${item.id}" class="fa fa-times-circle" th:if="!${level == 1 && modelstudio != null}"></i>
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="lay-date">
+                    <ul class="clearfix" style="width: 100%">
+                        <li style="float: left;width: 25%;height: 80px;line-height: 80px;">
+                            上传附件(可选)
+                        </li>
+                        <li style="width:20%;height: 80px;line-height: 80px;">
+                            <button type="button" th:class="${level == 1 && modelstudio != null?'':'layui-btn'}" name="uploadImg" style="width: 50%;height: 50%;" id="btnUploadFile" th:disabled="${level == 1 && modelstudio != null}">
+                                <i class="layui-icon"></i>上传附件
+                            </button>
+                        </li>
+                        <li style="width: 54%;height: 80px;line-height: 80px;" class="wuxiao_file">
+                            <div id="file_3">
+                                <a th:each="item:${allByAccessory}" th:href="${item.accessory_url}" target="_blank" th:attr="id=${item.id}">
+                                    [[${item.accessory_name}]]
+                                    <i onclick="deleteFilefiles(this,event);" th:attr="data-value=${item.id}" class="fa fa-times-circle" th:if="!${level == 1 && modelstudio != null}"></i>
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="lay-date">
+                    <ul class="clearfix" style="width: 100%">
+                        <li style="float: left;width: 25%;height: 80px;line-height: 80px;">
+                            工作室荣誉图片(可选)
+                        </li>
+                        <li style="width:20%;height: 80px;line-height: 80px;">
+                            <button type="button" th:class="${level == 1 && modelstudio != null?'':'layui-btn'}" style="width: 50%;height: 50%;" id="btnUploadImghonor" th:disabled="${level == 1 && modelstudio != null}">
+                                <i class="layui-icon"></i>上传图片
+                            </button>
+                        </li>
+                        <li style="width:54%;height: 80px;line-height: 80px;" class="wuxiao_img">
+                            <div id="file_12">
+                                <a th:each="item:${allByhonor}" th:attr="id=${item.id}">
+                                    <img th:src="${item.img_url}" />
+                                    <i onclick="deleteFilehonor(this,event);" th:attr="data-value=${item.id}" class='fa fa-times-circle' th:if="!${level == 1 && modelstudio != null}"></i>
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </td>
+        </tr>
+        <tr th:if="${modelstudio?.audit_status == 3 || modelstudio?.audit_status == 4 }">
+            <td>
+                <div class="lay-date">
+                    <ul class="clearfix" style="width: 100%">
+                        <li style="float: left;width: 25%;height: 80px;line-height: 80px;">
+                            说明原因
+                            <span style="color: red;">*</span>
+                        </li>
+                        <li style="width:20%;height: 80px;line-height: 80px;">
+                            <span th:text="modelstudio.accountfor"></span>
+                        </li>
+                    </ul>
+                </div>
+            </td>
+        </tr>
+        <tr th:if="${level == 1 && modelstudio != null}">
+            <td>
+                <div class="layui-form">
+                    <label class="layui-form-label">是否通过</label>
+                    <div class="layui-input-block">
+                        <input type="radio" name="audit" value="2" title="审核通过" checked>
+                        <input type="radio" name="audit" value="3" title="审核拒绝(拒绝重报)">
+                        <input type="radio" name="audit" value="4" title="审核退回(退回下级可修改重报)">
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr th:if="${level == 1 && modelstudio != null}" id="smyy" style="display: none">
+            <td>
+                <div class="layui-form-item layui-form-text">
+                    <label class="layui-form-label">说明原因</label>
+                    <div class="layui-input-block">
+                        <textarea placeholder="请输入内容" name="accountfor" class="layui-textarea"></textarea>
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </table>
+
+    <div class="layui-form-item">
+        <div class="layui-input-block" style="text-align: center;margin-top: 30px">
+            <button class="layui-btn layui-btn-primary submitt" style="width: 120px;height: 40px;border-radius: 5px;background: #cccccc" onclick="return false;">立即提交</button>
+            <button class="layui-btn layui-btn-primary close-popup" style="width: 120px;height: 40px;border-radius: 5px;background: #cccccc">关闭</button>
+        </div>
+    </div>
+</form>
+</body>
+</header>
+<!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
+<script th:src="@{/js/plugins/jquery-3.3.1.min.js}"></script>
+<script th:replace="/common/template :: script"></script>
+<th:block th:fragment="script">
+<script th:inline="javascript">
+    //图片回显方法
+    //工会意见 gh
+    //市总意见 sz
+    //省总意见 SZZ
+    function previewFile(e,i) {
+        // 通过标签选择器获取HTML元素
+        var preview = document.getElementById(i.id);
+        var file = document.getElementById(e.id).files[0];
+
+        // Js内置文件流
+        var reader = new FileReader();
+
+        // 更新img标签的src属性为图片的本地路径，就可以显示了
+        reader.onloadend = function () {
+            preview.src = reader.result;
+        }
+        // 图片文件不空就显示
+        if (file) {
+            reader.readAsDataURL(file);
+        } else {
+            // 图片文件是空的
+            if (e.id == 'gh'){
+                preview.src = "/wuxiao/images/master/unit.png";
+            } else if (e.id == 'sz'){
+                preview.src = "/wuxiao/images/master/city.png";
+            } else {
+                preview.src = "/wuxiao/images/master/shen.png";
+            }
+        }
+    }
+    var imgs;//图片
+    var video;//视频
+    var files;//文件
+    var honors;//荣誉图片
+
+    var imgsid = new Array();//要删除的图片ID
+    var videoid = new Array();//要删除的视频ID
+    var filesid = new Array();//要删除的文件ID
+    var honorsid = new Array();//要删除的荣誉图片ID
+
+    var uploadListIns;//视频
+    var uploadListImg;//图片
+    var uploadListFiles;//附件
+    var uploadListhonors;//荣誉图片
+    layui.use(['form', 'laydate', 'layer', 'upload'], function(){
+        var $ = layui.jquery
+            ,upload = layui.upload
+            ,layer = layui.layer
+            ,laydate = layui.laydate;
+        //单选框渲染
+        var form = layui.form; //只有执行了这一步，部分表单元素才会自动修饰成功
+        //监听单选框事件
+        form.on('radio',function (data) {
+            if (data.value == "2"){
+                //$(".layui-textarea").attr("lay-verify","");
+                $("#smyy").hide();
+            }else {
+                //$(".layui-textarea").attr("lay-verify","required");
+                $("#smyy").show();
+            }
+        });
+        form.render();
+
+        //日期
+        laydate.render({
+            elem: '#date'
+        });
+        laydate.render({
+            elem: '#date1'
+        });
+        laydate.render({
+            elem: '#date2'
+        });
+        /* 提交表单数据 */
+        $(document).on("click", ".submitt", function (e) {
+            $("input[name='audit_status']").val($("input[name='audit']:checked").val());//重新赋值审核状态
+            //将下拉框禁用状态解开
+            $("select").removeAttr("disabled");
+            $("input").removeAttr("disabled");
+            //说明原因为空提示
+            console.log($("[name='accountfor']").val());
+            if($("[name='accountfor']").val() == '' && $("input[name='audit_status']").val() == 3 || $("input[name='audit_status']").val() == 4){
+                layer.msg('请填写说明原因', {offset: '15px', time: 3000, icon: 2});
+                return false;
+            }
+            var ghfileYJ = document.getElementById('gh');
+            var ghfileSZ = document.getElementById('sz');
+            var ghfileSZZ = document.getElementById('SZZ');
+            //  e.preventDefault();
+            var form = $(this).parents("form");
+            var url = form.attr("action");
+            var serializeArray = form.serializeArray();
+            var formdata = new FormData();
+
+            $.each(serializeArray,function (i,field) {
+                formdata.append(field.name,field.value);
+            })
+
+            if (ghfileYJ != null){
+                ghfileYJ = ghfileYJ.files[0];
+                if(ghfileYJ == null){
+                    layer.msg('请上传单位审批意见', {offset: '15px', time: 3000, icon: 2});
+                    return false;
+                }
+                formdata.append("gh",ghfileYJ);
+            }
+
+            if (ghfileSZ != null){
+                ghfileSZ = ghfileSZ.files[0];
+                if (ghfileSZ == null){
+                    layer.msg('请上传市总审批意见', {offset: '15px', time: 3000, icon: 2});
+                    return false;
+                }
+                formdata.append("sz",ghfileSZ);
+            }
+
+            if (ghfileSZZ != null){
+                ghfileSZZ = ghfileSZZ.files[0];
+                if (ghfileSZZ == null){
+                    layer.msg('请上传省总审批意见', {offset: '15px', time: 3000, icon: 2});
+                    return false;
+                }
+                formdata.append("SZZ",ghfileSZZ);
+            }
+
+            for(var i in imgs){
+                formdata.append("imgs",imgs[i]);
+            }
+            for(var i in video){
+                formdata.append("video",video[i]);
+            }
+            for(var i in files){
+                formdata.append("files",files[i]);
+            }
+            for (var i in honors){
+                formdata.append("honors",honors[i]);
+            }
+            for (var i in imgsid){
+                formdata.append("imgsid",imgsid[i]);
+            }
+            for (var i in videoid){
+                formdata.append("videoid",videoid[i]);
+            }
+            for (var i in filesid){
+                formdata.append("filesid",filesid[i]);
+            }
+            for (var i in honorsid){
+                formdata.append("honorsid",honorsid[i]);
+            }
+            $.ajax({
+                url:url,
+                type:'post',
+                data:formdata,
+                dataType:'json',
+                processData: false,// 告诉jQuery不要去处理发送的数据
+                contentType : false,// 告诉jQuery不要去设置Content-Type请求头
+                success:function(result){
+                    if (result.data == null) {
+                        result.data = 'submit[refresh]';
+                    }
+                    $.fn.Messager(result);
+                }
+            })
+        });
+            /*  漂浮消息 */
+        $.fn.Messager = function (result) {
+            if (result.code === 200) {
+                layer.msg(result.msg, {offset: '15px', time: 3000, icon: 1});
+                setTimeout(function () {
+                    if (result.data === 'submit[refresh]') {
+                        parent.location.reload();
+
+                        return;
+                    }
+                    if (result.data == null) {
+
+                        window.location.reload();
+                    } else {
+                        window.location.href = result.data
+                    }
+                }, 2000);
+            } else {
+                layer.msg(result.msg, {offset: '15px', time: 3000, icon: 2});
+            }
+        };
+
+
+        //*************************************************************
+
+        //多文件列表示例
+        //上传图片
+        uploadListImg = upload.render({
+            elem: '#btnUploadImg'
+            ,accept: 'file'
+            ,multiple: true//开启多文件选择
+            ,auto: false
+            ,exts: 'jpg|jpeg|png|gif' //支持的图片格式
+            ,choose: function(obj){
+                imgs = obj.pushFile(); //将每次选择的文件追加到文件队列
+                //读取本地文件
+                obj.preview(function(index, file, result){
+                    var ImgHtml="<a index='"+index+"'><img src='"+result+"'/><i onclick='deleteFile(this,event);' class='fa fa-times-circle'></i></a>";
+                    $("#file_1").append(ImgHtml);
+                });
+            }
+        });
+        //上传图片
+        uploadListhonors = upload.render({
+            elem: '#btnUploadImghonor'
+            ,accept: 'file'
+            ,multiple: true//开启多文件选择
+            ,auto: false
+            ,exts: 'jpg|jpeg|png|gif' //支持的图片格式
+            ,choose: function(obj){
+                honors = obj.pushFile(); //将每次选择的文件追加到文件队列
+                //读取本地文件
+                obj.preview(function(index, file, result){
+                    var ImgHtml="<a index='"+index+"'><img src='"+result+"'/><i onclick='deleteFilehonor(this,event);' class='fa fa-times-circle'></i></a>";
+                    $("#file_12").append(ImgHtml);
+                });
+            }
+        });
+        //上传视频
+        uploadListIns = upload.render({
+            elem: '#btnUploadVideo'
+            ,accept: 'file'
+            ,multiple: true//开启多文件选择
+            ,auto: false
+            ,exts: 'MP4|move|RMVB|AVI|flv|3gp' //支持的图片格式
+            ,choose: function(obj){
+                video = this.video = obj.pushFile(); //将每次选择的文件追加到文件队列
+                //读取本地文件
+                obj.preview(function(index, file, result){
+                    var videohtml = "<a index='"+index+"'>" + file.name + "<i onclick='deleteFilevideo(this,event);' class='fa fa-times-circle'></i></a>";
+                    $("#file_2").append(videohtml);
+                });
+            }
+        });
+        //上传附件
+        uploadListFiles = upload.render({
+            elem: '#btnUploadFile'
+            ,accept: 'file'
+            ,multiple: true//开启多文件选择
+            ,auto: false
+            ,exts: 'doc|docx|PPT|Excel|PDF' //支持的图片格式
+            ,choose: function(obj){
+                files = this.files = obj.pushFile(); //将每次选择的文件追加到文件队列
+                //读取本地文件
+                obj.preview(function(index, file, result){
+                    var fileshtml = "<a index='"+index+"' src='" + result + "'>"+ file.name + "<i onclick='deleteFilefiles(this,event);' class='fa fa-times-circle'></i></a>";
+                    $("#file_3").append(fileshtml);
+                });
+            }
+        });
+    });
+
+    function deleteFile(This,ev){
+        var data = $(This).data("value");
+        var T=jQuery(This).parent();
+        if (data != null){
+            imgsid.push(data);
+        }else {
+            var index=T.attr("index");
+            delete imgs[index];
+            uploadListImg.config.elem.next()[0].value = ''; //清空 input file 值，以免删除后出现同名文件不可选
+        }
+        var oEvent = ev || event;
+        oEvent.stopPropagation();
+        oEvent.preventDefault();
+        T.remove();
+    }
+
+
+    function deleteFilevideo(This,ev){
+        var data = $(This).data("value");
+        var T=jQuery(This).parent();
+        if (data != null){
+            videoid.push(data);
+        }else {
+            var index=T.attr("index");
+            delete video[index];
+            uploadListIns.config.elem.next()[0].value = ''; //清空 input file 值，以免删除后出现同名文件不可选
+        }
+        var oEvent = ev || event;
+        oEvent.stopPropagation();
+        oEvent.preventDefault();
+        T.remove();
+    }
+
+    function deleteFilefiles(This,ev){
+        var data = $(This).data("value");
+        var T=jQuery(This).parent();
+        if (data != null) {
+            filesid.push(data);
+        }else {
+            var index=T.attr("index");
+            delete files[index];
+            uploadListFiles.config.elem.next()[0].value = ''; //清空 input file 值，以免删除后出现同名文件不可选
+        }
+        var oEvent = ev || event;
+        oEvent.stopPropagation();
+        oEvent.preventDefault();
+        T.remove();
+    }
+
+    function deleteFilehonor(This,ev) {
+        var data = $(This).data("value");
+        var T=jQuery(This).parent();
+        if (data != null) {
+            honorsid.push(data);
+        }else {
+            var index=T.attr("index");
+            delete honors[index];
+            uploadListhonors.config.elem.next()[0].value = ''; //清空 input file 值，以免删除后出现同名文件不可选
+        }
+        var oEvent = ev || event;
+        oEvent.stopPropagation();
+        oEvent.preventDefault();
+        T.remove();
+    }
+</script>
+</th:block>
+</html>

@@ -1,0 +1,63 @@
+input,button {
+    font-family: "Microsoft YaHei";
+}
+/*通用属性*/
+body{
+	font:12px "microsoft yahei",Arial,Helvetica,sans-serif;
+	color:black;
+	margin:0;
+	padding:0;
+	border: 0;
+}
+a{
+	color:#727171;
+	text-decoration:none;
+	display: inline-block;
+}
+img{
+	vertical-align: middle;
+}
+a:hover{
+	color:#A10000;
+}
+/*取消 某些元素 默认的 margin，padding，列表项标志*/
+p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd{
+	margin:0;
+	padding:0;
+	list-style:none;
+	font-weight: normal;
+}
+.lt{float:left;}
+.rt{float:right;}
+.clear{clear:both;}
+div:after{
+	content:"";
+	display: block;
+	clear: both;
+}
+ul:after{
+	content:"";
+	display: block;
+	clear: both;
+}
+ol:after{
+	content:"";
+	display: block;
+	clear: both;
+}
+table,tr,td { 
+	border-collapse:collapse; 
+	border-spacing:0; 
+	
+	text-align: center;
+	margin: 0;
+	padding: 0;
+}
+td{
+	float: left;
+	/*border: 1px solid #000;*/
+}
+tr{
+	/*float: left;*/
+	border: 1px solid #000;
+}

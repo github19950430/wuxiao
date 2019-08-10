@@ -1,0 +1,96 @@
+.xui-upload-frame {
+    position:absolute;
+    width:360px;
+    max-height:576px;
+    top:0;
+    right:0;
+    margin:20px;
+    background:#fff;
+    font-family: arial,"Î¢ÈíÑÅºÚ","ËÎÌå",sans-serif;
+    font-size:14px;
+    border-style: solid; border-width: 1px; border-color: #EEE;
+    box-shadow:0px 0px  10px 5px #aaa;
+    z-index: 99;
+    display:none;
+    overflow:hidden;
+}
+.xui-upload-frame .xui-upload-item {
+    display:flex;
+    margin:20px;
+    border-bottom-style: solid; border-width: 1px; border-color: #DFDFDF;
+    background-color: #fff;
+    height:124px;
+}
+.xui-upload-item .xui-upload-item-left {
+    width: 24px;
+}
+.xui-upload-item .xui-upload-item-center {
+    flex:8;
+}
+.xui-upload-item .xui-upload-item-right {
+    flex:1;
+}
+.xui-upload-item .xui-upload-info {
+    margin: 2px 2px 20px 2px;
+}
+.xui-upload-item .xui-upload-name {
+    font-size:16px;
+    display: inline-block; 
+	white-space: nowrap;
+	width: 220px;
+	overflow: hidden;
+	text-overflow : ellipsis;
+}
+.xui-upload-item .xui-upload-name:hover {
+	overflow: visible;
+}
+.xui-upload-item .xui-upload-proportion {
+    margin: 5px 0px;
+    color:#7A7A7A;
+}
+.xui-upload-item .xui-upload-proportion span {
+    padding:2px;
+}
+.xui-upload-item .xui-upload-speed {
+    margin:10px 10px 0px 0px;
+    display:flex;
+    justify-content: space-between;
+}
+.xui-upload-speed .xui-upload-speed-text {
+    color: #2D7AEC;
+}
+.xui-upload-speed .xui-upload-speed-time {
+    color: #7A7A7A;
+}
+.xui-upload-item .xui-upload-progress {
+    margin:10px 10px 0px 0px;
+    height: 12px;
+    border-radius:12px;
+    background: -webkit-linear-gradient(left,#E6E7EB,#E6E9EB);
+    background: -moz-linear-gradient(left,#E6E7EB,#E6E9EB);
+    background: -o-linear-gradient(left,#E6E7EB,#E6E9EB);
+    background: -ms-linear-gradient(left,#E6E7EB,#E6E9EB);
+    background: linear-gradient(left,#E6E7EB,#E6E9EB);
+}
+.xui-upload-progress .xui-upload-progressBar {
+    height: 100%;
+    background: -webkit-linear-gradient(left,#39ACFF,#398DFF);
+    background: -moz-linear-gradient(left,#39ACFF,#398DFF);
+    background: -o-linear-gradient(left,#39ACFF,#398DFF);
+    background: -ms-linear-gradient(left,#39ACFF,#398DFF);
+    background: linear-gradient(left,#39ACFF,#398DFF);
+    border-radius:12px;
+}
+.xui-upload-progressVal {
+    margin-top: 48px;
+    font-size:16px;
+    color: #E78217;
+    font-weight:720;
+    letter-spacing:1px;
+}
+.xui-upload-close {
+    text-align: right;
+}
+.xui-upload-close img {
+    text-align: right;
+}

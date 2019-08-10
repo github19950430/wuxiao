@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:mo="https://gitee.com/aun/Timo">
+<head th:replace="/common/template :: header(~{::title},~{::link},~{::style})">
+    <meta charset="utf-8">
+    <title>layui</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <!-- 注意：如果你直接复制所有代码到本地，上述css路径需要改成你本地的 -->
+</head>
+<header th:fragment="leaderadd">
+    <link rel="stylesheet" th:href="@{/lib/xinzzeng.css}"  media="all">
+    <style>
+    .title {
+        height: 50px;
+        line-height: 50px;
+        background-color: #f2f2f2;
+        font-size: 16px;
+    }
+
+    .layui-table td, .layui-table th {
+        position: relative;
+        padding: 0;
+        min-height: 20px;
+        line-height: 20px;
+        font-size: 14px;
+    }
+        input{
+            text-align: center;
+        }
+        select{
+            text-align-last: center;
+        }
+</style>
+<body>
+<form th:action="@{/modelstudio/leaderinformation/add}" style="width:900px;margin: 0 auto;">
+    <input type="hidden" name="id" th:if="${leaderinformation}" th:value="${leaderinformation.id}">
+    <select style="display: none;" mo-empty="请选择" mo:dict="STANDARD_CULTURE" id="selhidden"></select>
+    <table class="layui-table timo-detail-table" style="text-align: center;">
+        <colgroup>
+            <col width="100px">
+            <col>
+            <col width="100px">
+            <col>
+        </colgroup>
+        <caption class="title" style="position: relative">带头人情况
+            <!--<div style="cursor: pointer;position: absolute;right: 15px;top: 0;width: 60px;height: 50px;display: flex;justify-content: space-around;align-items: center">
+                <img th:src="@{/images/dayin.png}" alt="" style="width: 20px">
+                <span style="font-size:13px;color: #707070;">打印</span>
+            </div>-->
+        </caption>
+        <tbody>
+        <tr>
+            <td style="width: 100%">
+                <div class="top2">
+                    <div class="top2Left br">
+                        <div class="top2Leftitem2 top2Leftitem bb">
+                            <div class="top2Leftitemleft br itemtah">姓名</div>
+                            <div class="top2Leftitemright ">
+                                <div class="top2Leftitemright_item br"><input type="text" name="name" required
+                                                                              lay-verify="required"
+                                                                              autocomplete="off"
+                                                                              class="layui-input"
+                                                                              style="border: none;height: 44px"
+                                                                              th:value="${leaderinformation?.name}"></div>
+                                <div class="top2Leftitemright_item">
+                                    <div class="top2Leftitemright_item br itemtah">性别</div>
+                                    <div class="top2Leftitemright_item itemtah">
+                                        <select name="sex" lay-verify="required" class="xbselect itemtah timo-search-select" mo:dict="USER_SEX" mo-selected="${leaderinformation?.sex}" mo-empty="请选择"></select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="top2Leftitem2 top2Leftitem bb">
+                            <div class="top2Leftitemleft br itemtah ">学历</div>
+                            <div class="top2Leftitemright">
+                                <div class="top2Leftitemright_item br">
+                                    <select name="education" lay-verify="required" class="xbselect itemtah timo-search-select" mo:dict="STANDARD_CULTURE" mo-selected="${leaderinformation?.education}" mo-empty="请选择"></select>
+                                </div>
+                                <div class="top2Leftitemright_item">
+                                    <div class="top2Leftitemright_item br itemtah">民族</div>
+                                    <div class="top2Leftitemright_item">
+                                        <select name="nation" lay-verify="required" class="xbselect itemtah timo-search-select" mo:dict="NATION" mo-selected="${leaderinformation?.nation}" mo-empty="请选择"></select>
+                                        <!--<input type="text" name="title" required lay-verify="required"
+                                               autocomplete="off"
+                                               class="layui-input" style="border: none;height: 44px">-->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="top2Leftitem3 top2Leftitem bb">
+                            <div class="top2Leftitemleft br itemtah">专业/工种</div>
+                            <div class="top2Leftitemright">
+                                <input type="text" name="major" required
+                                       lay-verify="required" placeholder=""
+                                       autocomplete="off"
+                                       class="layui-input" style="border: none;height: 44px"
+                                       th:value="${leaderinformation?.major}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="top2Right">
+                        <div class="top2Right_bott" style="overflow: hidden">
+                            <div class="top2Right_bott_left br">
+                                <div class="top2Leftitem3 top2Leftitem bb">
+                                    <div class="top2Leftitemleft br itemtah">出生年月</div>
+                                    <div class="top2Leftitemright">
+                                        <input type="text" class="layui-input" id="test2" name="dateofbirth"
+                                               style="border: none;height: 43px"
+                                               th:value="${#dates.format(leaderinformation?.dateofbirth, 'yyyy-MM-dd')}">
+                                    </div>
+                                </div>
+                                <div class="top2Leftitem3 top2Leftitem bb">
+                                    <div class="top2Leftitemleft br itemtah">政治面貌</div>
+                                    <div class="top2Leftitemright">
+                                        <select name="politics_status" lay-verify="required" class="xbselect itemtah timo-search-select" mo:dict="POLITICS_STATUS" mo-selected="${leaderinformation?.politics_status}" mo-empty="请选择"></select>
+                                       <!-- <input type="text" name="title" required
+                                               lay-verify="required"
+                                               autocomplete="off"
+                                               class="layui-input" style="border: none;height: 44px">-->
+                                    </div>
+                                </div>
+                                <div class="top2Leftitem3 top2Leftitem bb">
+                                    <div class="top2Leftitemleft br itemtah">技术职称</div>
+                                    <div class="top2Leftitemright">
+                                        <input type="text" name="technical_titles" required
+                                               lay-verify="required"
+                                               autocomplete="off"
+                                               class="layui-input" style="border: none;height: 44px"
+                                               th:value="${leaderinformation?.technical_titles}">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="top2Right_bott_right bb">
+                                <div class="imgBox">
+                                    <span th:text="${leaderinformation?.head_portrait}"></span>
+                                    <img class="layui-upload-img" id="touxiangimg" th:src="${leaderinformation?.head_portrait == null?'/wuxiao/add.png':leaderinformation?.head_portrait}">
+                                    <span class="layui-icon layui-icon-close closeIcon"></span>
+                                </div>
+                                <p class="top2Right_bott_righttext">免冠2寸红底相（请同时提供电子版，同工作室照片打包发送）</p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="top3">
+                    <div class="top3left br">
+                        <div class="top3left_left br itemtah bb">何年获何种省部级（含）以上劳模荣誉称号*</div>
+                        <div class="top3left_right itemtah bb"><input type="text" name="honorary_title" required
+                                                                      lay-verify="required"
+                                                                      autocomplete="off"
+                                                                      class="layui-input"
+                                                                      style="border: none;height: 44px"
+                                                                      th:value="${leaderinformation?.honorary_title}"></div>
+                    </div>
+                    <div class="top3right itemtah bb red">
+                        <span id="touxiang" style="cursor: pointer">上传图片</span>
+                    </div>
+                </div>
+                <div class="top4">
+                    <div class="top4Item1 br itemtah " style="width: 20%">联系电话</div>
+                    <div class="top4Item2 br" style="width: 15%"><input type="text" name="phone" required
+                                                     lay-verify="required"
+                                                     autocomplete="off"
+                                                     class="layui-input"
+                                                     style="border: none;height: 44px"
+                                                     th:value="${leaderinformation?.phone}"></div>
+                    <div class="top4Item3 br itemtah" style="width: 15%">E-mail</div>
+                    <div class="top4Item4 br" style="width: 14%"><input type="text" name="email" required
+                                                     lay-verify="required"
+                                                     autocomplete="off"
+                                                     class="layui-input"
+                                                     style="border: none;height: 44px"
+                                                     th:value="${leaderinformation?.email}"></div>
+                    <div class="top4Item5 br itemtah" style="width: 21%">推荐单位</div>
+                    <div class="top4Item6 " style="width: 15%"><input type="text" name="unit" required
+                                                   lay-verify="required"
+                                                   autocomplete="off"
+                                                   class="layui-input"
+                                                   style="border: none;height: 44px"
+                                                   th:value="${leaderinformation?.unit}"></div>
+                </div>
+                <div class="top5 itemtah bt bb">
+                    骨干成员情况（可附表）
+                </div>
+                <div class="top6">
+                    <div class="top6ItemBox  bb">
+                        <div class="top6ItemBox_item br itemtah">姓名</div>
+                        <div class="top6ItemBox_item br itemtah">性别</div>
+                        <div class="top6ItemBox_item br itemtah">出生年月</div>
+                        <div class="top6ItemBox_item br itemtah">学历</div>
+                        <div class="top6ItemBox_item br itemtah">技术职称</div>
+                        <div class="top6ItemBox_item br itemtah">所在部门</div>
+                        <div class="top6ItemBox_item itemtah br" style="width: 12.5%">主要分工</div>
+                        <div class="top6ItemBox_item itemtah " style="width: 12.5%">编辑</div>
+                    </div>
+                        <div class="top6ItemBox bb topinputs" th:each="item:${allByforegoerIdList}">
+                        <div class="top6ItemBox_item br itemtah" style="display: none"><input type="text" name="keyid" required
+                                                                        lay-verify="required"
+                                                                        autocomplete="off"
+                                                                        class="layui-input"
+                                                                        style="border: none;height: 44px"
+                                                                        th:value="${item.id}"></div>
+                        <div class="top6ItemBox_item br itemtah"><input type="text" name="keyname" required
+                                                                        lay-verify="required"
+                                                                        autocomplete="off"
+                                                                        class="layui-input"
+                                                                        style="border: none;height: 44px"
+                                                                        th:value="${item.keyname}"></div>
+                        <div class="top6ItemBox_item br itemtah"><input type="text" name="keysex" required
+                                                                        lay-verify="required"
+                                                                        autocomplete="off"
+                                                                        class="layui-input"
+                                                                        style="border: none;height: 44px"
+                                                                        th:value="${item.keysex}"></div>
+                        <div class="top6ItemBox_item br itemtah"><input type="text" name="keyyear" required
+                                                                        lay-verify="required"
+                                                                        autocomplete="off"
+                                                                        th:attr="id='year'+${itemStat.index}"
+                                                                        placeholder="请选择"
+                                                                        class="layui-input years"
+                                                                        style="border: none;height: 44px"
+                                                                        th:value="${#dates.format(item.keyyear, 'yyyy-MM-dd')}"></div>
+                        <div class="top6ItemBox_item br itemtah"><select class="timo-search-select" name="keyeducation"
+                                                                        autocomplete="off" mo-empty="请选择"
+                                                                        style="border: none;height: 44px"
+                                                                        mo:dict="STANDARD_CULTURE"
+                                                                        mo-selected="${item.keyeducation}"></select></div>
+                        <div class="top6ItemBox_item br itemtah"><input type="text" name="keytechnical" required
+                                                                        lay-verify="required"
+                                                                        autocomplete="off"
+                                                                        class="layui-input"
+                                                                        style="border: none;height: 44px"
+                                                                        th:value="${item.keytechnical}"></div>
+                        <div class="top6ItemBox_item br itemtah"><input type="text" name="keydepartment" required
+                                                                        lay-verify="required"
+                                                                        autocomplete="off"
+                                                                        class="layui-input"
+                                                                        style="border: none;height: 44px"
+                                                                        th:value="${item.keydepartment}"></div>
+                        <div class="top6ItemBox_item itemtah br" style="width: 12.5%"><input type="text" name="keydivision"
+                                                                                             required
+                                                                                             lay-verify="required"
+                                                                                             autocomplete="off"
+                                                                                             class="layui-input"
+                                                                                             style="border: none;height: 44px"
+                                                                                             th:value="${item.keydivision}">
+                        </div>
+                        <div class="top6ItemBox_item itemtah " style="width: 12.5%">
+                            <span class="top6ItemBox_item_delete" th:attr="data-value=${item.id}">删除</span>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="top7 bb">
+                    <img th:src="@{/add.png}" alt="" class="addimgBtn">
+                </div>
+                <div class="top8 ">
+                    <div class="top8_left br bb">
+                        业绩简介
+                        （请按下部申报材料参考提供格式，800字以内）
+                    </div>
+                    <div class="top8_right bb">
+                        <textarea name="performance" placeholder="请输入内容" class="layui-textarea"
+                                  style="height: 100%;border: none;"
+                                  th:text="${leaderinformation?.performance}"></textarea>
+                    </div>
+                </div>
+                <div class="top10">
+                    <div class="top10_top" style="height: auto">
+                        <div class="top10_top_left">附件：</div>
+                        <div class="top10_top_right">
+                            <button type="button" class="layui-btn" id="fujian"><i class="layui-icon"></i>上传附件</button>
+                        </div>
+                        <div id="file_4" style="height: 45px;">
+                            <a style="line-height: 45px;margin-left: 5px;" th:each="item:${allByleaderIdList}" th:href="${item.accessory_url}" target="_blank" th:attr="id=${item.id}">
+                                [[${item.accessory_name}]]
+                                <i onclick="deleteFilefile(this,event);" th:attr="data-value=${item.id}" class="fa fa-times-circle"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="top10_TextS">
+                        <p class="top10_title">一、基本情况</p>
+                        <p class="top10_text">工作室建立的背景及意义；简述本工作室重点研究、攻关的领域及方向；活动场地、配套设备情况；
+                            资金投入及使用情况；人员结构及成员基本信息、取得成果、成绩和荣誉等。</p>
+                        <p class="top10_title">二、近三年来活动开展情况</p>
+                        <p class="top10_text">（一）制度建立情况：管理制度、活动制度，近期及中长期规划等；</p>
+                        <p class="top10_text">（二）创新成果情况：取得专利、创新攻关、创新成果转化等情况；</p>
+                        <p class="top10_text">（三）科技人才培养情况：培训内容及场次，培训人数及技能提升情况，师带徒情况等；</p>
+                        <p class="top10_text">（四）取得效益情况：经济效益与社会效益；</p>
+                        <p class="top10_text">（五）开展技术交流协作情况：形式、场次、效果等；</p>
+                        <p class="top10_text">（六）提供3张工作室现场照片电子版。（若有省总领导现场指导照片，请一起提供）；</p>
+                    </div>
+                    <div class="botBtn">
+                        <button class="layui-btn layui-btn-primary submit" style="width: 120px;height: 40px;border-radius: 5px;background: #cccccc" onclick="return false;">立即提交</button>
+                        <button class="layui-btn layui-btn-primary close-popup" style="width: 120px;height: 40px;border-radius: 5px;background: #cccccc">关闭</button>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</form>
+</body>
+</header>
+<!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
+<script th:replace="/common/template :: script"></script>
+<script th:src="@{/js/plugins/jquery-3.3.1.min.js}"></script>
+<th:block th:fragment="leader">
+<script th:inline="javascript">
+    var filesss;//附件数据
+    var uploadListInsfile;//附件方法
+    var fileid = new Array();//要删除的附件ID
+    var keymemberId = new Array();//要删除的骨干成员ID
+    layui.use(['form', 'layedit', 'laydate', 'upload'], function () {
+        var form = layui.form
+            , layer = layui.layer
+            , layedit = layui.layedit
+            , laydate = layui.laydate
+            , upload = layui.upload
+            ,$ = layui.jquery;
+
+        var imgss;
+        //普通图片上传
+        var uploadInst = upload.render({
+            elem: '#touxiang'
+            ,before: function(obj){
+                for(var key in imgss){
+                    delete imgss[key]
+                }
+                imgss  = obj.pushFile(); //将每次选择的文件追加到文件队列
+                //预读本地文件示例，不支持ie8
+                obj.preview(function(index, file, result){
+                    $('#touxiangimg').attr('src', result); //图片链接（base64）
+                    $('.imgBox').css({display:'block'})
+                    $('.top2Right_bott_righttext').css({display:'none'})
+                });
+            }
+        });
+
+        $('.closeIcon').on('click',function () {
+            for(var key in imgss){
+                delete imgss[key]
+            }
+            $('#touxiangimg').attr('src', ''); //图片链接（base64）
+            $('.imgBox').css({display:'none'})
+            $('.top2Right_bott_righttext').css({display:'block'})
+            uploadInst.config.elem.next()[0].value = ''; //清空 input file 值，以免删除后出现同名文件不可选
+        })
+
+        //日期
+        laydate.render({
+            elem: '#test2'
+        });
+
+        $(".years").each(function(){
+            laydate.render({
+                elem: '#'+$(this).attr('id')
+            });
+        });
+
+
+        //上传附件
+        uploadListInsfile = upload.render({
+             elem: '#fujian'
+            ,accept: 'file'
+            ,multiple: true//开启多文件选择
+            ,auto: false
+            ,exts: 'doc|docx|PPT|Excel|PDF' //支持的图片格式
+            ,choose: function(obj){
+                filesss = obj.pushFile(); //将每次选择的文件追加到文件队列
+                //读取本地文件
+                obj.preview(function(index, file, result){
+                    var fileshtml = "<a style='line-height: 45px;margin-left: 5px;' index='"+index+"' src='" + result + "'>"+ file.name + "<i onclick='deleteFilefile(this,event);' class='fa fa-times-circle'></i></a>";
+                    $("#file_4").append(fileshtml);
+                });
+            }
+        });
+        var str ='                    <div class="top6ItemBox bb topinputs">\n' +
+            '                        <div class="top6ItemBox_item br itemtah"><input type="text" name="keyname" required\n' +
+            '                                                                        lay-verify="required" placeholder=""\n' +
+            '                                                                        autocomplete="off"\n' +
+            '                                                                        class="layui-input"\n' +
+            '                                                                        style="border: none;height: 44px"></div>\n' +
+            '                        <div class="top6ItemBox_item br itemtah"><input type="text" name="keysex" required\n' +
+            '                                                                        lay-verify="required" placeholder=""\n' +
+            '                                                                        autocomplete="off"\n' +
+            '                                                                        class="layui-input"\n' +
+            '                                                                        style="border: none;height: 44px"></div>\n' +
+            '                        <div class="top6ItemBox_item br itemtah"><input name="keyyear" required\n' +
+            '                                                                        lay-verify="required" placeholder=""\n' +
+            '                                                                        autocomplete="off"';
+
+            var strr = '                                                             class="layui-input years"\n' +
+            '                                                                        style="border: none;height: 44px"></div>\n' +
+            '                        <div class="top6ItemBox_item br itemtah"><select name="keyeducation"\n' +
+            '                                                                        autocomplete="off"\n' +
+            '                                                                        class="timo-search-select"\n' +
+            '                                                                        style="border: none;height: 44px">';
+
+            var strrr = '                                                                 </select></div>\n' +
+            '                        <div class="top6ItemBox_item br itemtah"><input type="text" name="keytechnical" required\n' +
+            '                                                                        lay-verify="required" placeholder=""\n' +
+            '                                                                        autocomplete="off"\n' +
+            '                                                                        class="layui-input"\n' +
+            '                                                                        style="border: none;height: 44px"></div>\n' +
+            '                        <div class="top6ItemBox_item br itemtah"><input type="text" name="keydepartment" required\n' +
+            '                                                                        lay-verify="required" placeholder=""\n' +
+            '                                                                        autocomplete="off"\n' +
+            '                                                                        class="layui-input"\n' +
+            '                                                                        style="border: none;height: 44px"></div>\n' +
+            '                        <div class="top6ItemBox_item itemtah br" style="width: 12.5%"><input type="text" name="keydivision"\n' +
+            '                                                                                          required\n' +
+            '                                                                                          lay-verify="required"\n' +
+            '                                                                                          placeholder=""\n' +
+            '                                                                                          autocomplete="off"\n' +
+            '                                                                                          class="layui-input"\n' +
+            '                                                                                          style="border: none;height: 44px">\n' +
+            '                        </div>\n' +
+            '                        <div class="top6ItemBox_item itemtah " style="width: 12.5%">\n' +
+            '                            <span class="top6ItemBox_item_delete">删除</span>\n' +
+            '                        </div>\n' +
+            '                    </div>'
+        var index = 0;
+        $('.addimgBtn').on('click',function () {
+            $('.top6').append(str + "id='option" + index + "'" + strr +  $("#selhidden").html() + strrr);
+            index++;
+            $(".years").each(function(){
+                laydate.render({
+                    elem: '#'+$(this).attr('id')
+                });
+            });
+        })
+        //删除当前行
+        $(document).on('click','.top6ItemBox_item_delete',function () {
+            $(this).closest('.top6ItemBox').remove();
+            var a = $(this).data("value");
+            keymemberId.push(a);
+        })
+        //获取表格数组
+        function getArrList() {
+            var arr = [];
+            $('.top6 .topinputs').each(function (index, element) {//拿到每一行
+                var obj = {};
+                $(this).children('.top6ItemBox_item ').each(function (index, element) {//拿到每一个
+                    if(index!=8){
+                        obj[$(this).find('input').attr('name')] = $(this).find('input').val();
+                        obj[$(this).find('select').attr('name')] = $(this).find('select').val();
+                    }
+                })
+                arr.push(obj)
+            })
+            return arr;
+        }
+
+        /* 提交表单数据 */
+        $(document).on("click", ".submit", function (e) {
+                e.preventDefault();
+            var form = $(this).parents("form");
+            var url = form.attr("action");
+            var serializeArray = form.serializeArray();
+            var formdata = new FormData();
+            $.each(serializeArray,function (i,field) {
+                formdata.append(field.name,field.value);
+            });
+            for (var i in imgss) {//头像
+                formdata.append("head",imgss[i]);
+            }
+            for (var i in filesss) {//附件
+                formdata.append("files",filesss[i]);
+            }
+            for (var i in fileid){
+                formdata.append("fileid",fileid[i]);
+            }
+            for (var i in keymemberId){
+                formdata.append("keymemberId",keymemberId[i]);
+            }
+            var kaymember = getArrList();
+            formdata.append("Keymember",JSON.stringify(kaymember).toString());
+            $.ajax({
+                url:url,
+                type:'post',
+                data:formdata,
+                dataType:'json',
+                processData: false,// 告诉jQuery不要去处理发送的数据
+                contentType : false,// 告诉jQuery不要去设置Content-Type请求头
+                success:function(result){
+                    if (result.data == null) {
+                        result.data = 'submit[refresh]';
+                    }
+                    $.fn.Messager(result);
+                }
+            })
+        })
+
+    });
+    //删除附件
+    function deleteFilefile(This,ev){
+        var data = $(This).data("value");
+        var T=jQuery(This).parent();
+        if (data != null) {
+            fileid.push(data);
+        }else {
+            var index=T.attr("index");
+            delete filesss[index];
+            uploadListInsfile.config.elem.next()[0].value = ''; //清空 input file 值，以免删除后出现同名文件不可选
+        }
+        var oEvent = ev || event;
+        oEvent.stopPropagation();
+        oEvent.preventDefault();
+        T.remove();
+    }
+</script>
+</th:block>
+</html>

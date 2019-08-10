@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/common/template :: header(~{::title},~{::link},~{::style})">
+</head>
+<body>
+    <div class="timo-detail-page">
+        <div class="timo-detail-title">基本信息</div>
+        
+        <form class="layui-form" th:action="@{/resultManager/result/frist/audit}">
+        	<input type="hidden" name="id" th:if="${result}" th:value="${result?.id}">
+	        <table class="layui-table timo-detail-table">
+	            <colgroup>
+	                <col width="100px"><col>
+	                <col width="100px"><col>
+	            </colgroup>
+	            <tbody>
+	                <tr>
+	                    <th>申报日期</th>
+	                    <td th:text="${#dates.format(result?.declareDate, 'yyyy-MM-dd')}" colspan="3"></td>
+	                </tr>
+	                <tr>
+	                    <th>所属行业</th>
+                    	<td th:text="${#dicts.keyValue('INDUSTRY_TYPE', result?.Industry)}" colspan="3"></td>
+	                </tr>
+	                <tr>
+	<!--                     <th>五小类型</th> -->
+	<!--                     <td th:text="${#dicts.keyValue('WX_TYPE', result?.wxType)}"></td> -->
+	                    <th>成果名称</th>
+	                    <td th:text="${result?.resultName}"></td>
+	                    <th>成果类型</th>
+	                    <td th:text="${#dicts.keyValue('RESULT_TYPE', result?.resultType)}"></td>
+	                </tr>
+	                </tr>
+	                <tr>
+	                    <th>完成单位</th>
+	                    <td th:text="${result?.unit}"></td>
+	                    <th>带头人</th>
+	                    <td th:text="${result?.foregoer?.name}"></td>
+	                </tr>
+	                <tr>
+	                    <th>实施时间</th>
+	                    <td th:text="${result?.implementDate}"></td>
+	                    <th>是否获得专利</th>
+	                    <td th:text="${result?.isPatent}"></td>
+	                </tr>
+	                <tr>
+	                    <th>专利号</th>
+	                    <td th:text="${result?.patentNum}"></td>
+	                    <th>专利授权公告日</th>
+	                    <td th:text="${result?.patentAccreditDate}"></td>
+	                </tr>
+	                <tr>
+	                    <th>成果简介</th>
+	                    <td th:text="${result?.resultIntro}"></td>
+	                    <th>应用前景</th>
+	                    <td th:text="${result?.prospects}"></td>
+	                </tr>
+	                <tr>
+	                    <th>效益计算</th>
+	                    <td th:text="${result.benefitClac}" colspan="3"></td>
+	                </tr>
+	                <tr>
+	                    <th>创造价值</th>
+	                    <td th:text="${result?.createPrice}"></td>
+	                </tr>
+	                <tr style="height: 100px;">
+                    <th>成果展示图片</th>
+                    <th colspan="3">
+                    	<div class="wuxiao_img">
+                           	<a th:each="item:${resultImg}" th:href="${item.path}" target='_blank'>
+                           		<img th:src="${item.path}" />
+                           	</a>
+                         </div>
+                    </th>
+                </tr>
+                <tr style="height: 100px;">
+                    <th>专利相关图片</th>
+                    <th colspan="3">
+                    	<div class="wuxiao_img">
+                           	<a th:each="item:${patentImg}" th:href="${item.path}" target='_blank'>
+                           		<img th:src="${item.path}" />
+                           	</a>
+                         </div>
+                    </th>
+                </tr>
+                <tr style="height: 100px;">
+                    <th>带头人最高荣誉图片</th>
+                    <th colspan="3">
+                    	<div class="wuxiao_img">
+                           	<a th:each="item:${honorImg}" th:href="${item.path}" target='_blank'>
+                           		<img th:src="${item.path}" />
+                           	</a>
+                         </div>
+                    </th>
+                </tr>
+	                <tr>
+	                    <th>上传视频</th>
+	                    <td th:text="${result?.uploadVideo}"></td>
+	                    <th>上传附件</th>
+	                    <td th:text="${result?.uploadFile}"></td>
+	                </tr>
+	            </tbody>
+	        </table>
+	        <div class="layui-form-item">
+				<label class="layui-form-label">是否通过审核</label>
+				<div class="layui-input-block" id="IsAuditStatus">
+			      <input type="radio" class="bbb" name="auditStatus" th:attr="data-cvalue=${result?.auditStatus}" value="5"  lay-filter="aaa" title="是"></input>
+			      <input type="radio"  class="bbb" name="auditStatus" th:attr="data-cvalue=${result?.auditStatus}" value="6" lay-filter="aaa" title="否"></input>
+			      <input type="radio"  class="bbb" name="auditStatus" th:attr="data-cvalue=${result?.auditStatus}" value="11" lay-filter="aaa" title="退回"></input>
+			    </div>
+			</div>
+<!-- 			<div class="layui-form-item"> -->
+<!-- 			    <label class="layui-form-label">是否上架</label> -->
+<!-- 			    <div class="layui-input-block"> -->
+<!-- 			        <input type="radio" name="isPutaway" value="1" title="是"> -->
+<!-- 			        <input type="radio" name="isPutaway" value="2" title="否" checked=""> -->
+<!-- 			    </div> -->
+<!-- 			</div> -->
+	        <div class="layui-form-item layui-form-text reason-div" style="display: none;">
+				<label class="layui-form-label">说明原因</label>
+				<div class="layui-input-block">
+					<textarea placeholder="请输入说明原因" class="layui-textarea" name="reason" th:text="${result?.reason}"></textarea>
+				</div>
+			</div>
+	        <div class="layui-form-item timo-finally">
+	            <button class="layui-btn ajax-submit"><i class="fa fa-check-circle"></i> 确定</button>
+	            <button class="layui-btn btn-secondary close-popup"><i class="fa fa-times-circle"></i> 关闭</button>
+	        </div>
+	    </form>
+    </div>
+    
+<script th:src="@{/js/plugins/jquery-3.3.1.min.js}"></script>
+<script th:replace="/common/template :: script"></script>
+<script type="text/javascript">
+	layui.use('form', function () {
+        var form = layui.form;
+        form.on('radio(aaa)', function (data) {
+            if ($('#IsAuditStatus input[name="auditStatus"]:checked ').val() == "5") {
+                $(".reason-div").hide();
+            }
+            else {
+                $(".reason-div").show();
+            }
+            form.render();
+        });
+     	$(".bbb").each(function(){
+     		if($(this).val()==$(this).data("cvalue")){
+     			if($(this).val()=="6"){
+     				$(".reason-div").show();
+     			}
+     			$(this).attr("checked","true");
+     			return;
+     		}
+     	})
+    	form.render();
+	})
+</script>
+</body>
+</html>

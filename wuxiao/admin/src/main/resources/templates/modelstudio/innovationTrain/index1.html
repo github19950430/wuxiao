@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:mo="https://gitee.com/aun/Timo">
+<head th:replace="/common/template :: header(~{::title},~{::link},~{::style})">
+    <style>
+        .content{
+            width: 100%;
+        }
+        .content_top1{
+            height: 60px;
+            border-bottom: 1px solid #ccc;
+            text-align: left;
+            line-height: 60px;
+            font-size: 18px;
+            padding-left: 10px;
+        }
+        .content_Box{
+            width: 80%;
+            padding: 0  30px;
+            margin: 0 auto;
+        }
+        .top{
+            width: 100%;
+            height: 40px;
+            position: relative;
+            margin-top: 30px;
+        }
+        .topBtn{
+            display: inline-block;
+            float: left;
+            width: 120px;
+            height: 36px;
+            border: 1px solid #ccc;
+            line-height: 36px;
+            text-align: center;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        .searchBox{
+            position: absolute;
+            left: 150px;
+            right: 0;height: 36px;
+        }
+        .search{
+            display: inline-block;
+            width: 85px;
+            height: 36px;
+            line-height: 36px;
+            text-align: center;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            float: left;
+            cursor: pointer;
+            background-color: #169bd5;
+            color: #fff;
+        }
+        .mysearch{
+            width: 500px;
+            float: left;
+        }
+        .contentMid{
+
+        }
+        .itemsBox{
+            padding: 40px 0;
+            /*display: flex;*/
+            /*justify-content: space-between;*/
+        }
+        .item{
+            width: 25%;
+            height: 300px;
+            float: left;
+            margin-left: 7%;
+            /*border: 1px solid #ccc;*/
+        }
+        .itemTop{
+            height: 220px;
+            position: relative;
+            width: 100%;
+        }
+        .itemMid{
+            width: 100%;
+            text-align: center;
+            line-height: 30px;
+            background-color: #ccc;
+            height: 30px;
+            user-select: none;
+        }
+        .itemBoot{
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            height: 50px;
+        }
+        .itemBootBtn{
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body class="timo-layout-page">
+<p class="content_top1">编辑培训课程</p>
+<div class="content_Box layui-row" >
+    <div class="top">
+        <div class="topBtn"  th:attr="data-url=@{'/modelstudio/innovationTrain/add?baseId='+${baseId}}">新增培训课程</div>
+        <div class="searchBox">
+            <input type="hidden" name="baseId"  id="baseId" th:value="${baseId}">
+            <input type="text" name="trainName" th:value="${trainName}"  id="trainName" required  lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input mysearch" >
+            <div class="search" >搜索</div>
+        </div>
+    </div>
+    <div class="contentMid" >
+        <div class="itemsBox" >
+            <div class="item" th:each="item:${list}" >
+                <div class="itemTop">
+                    <img th:src="${item.trainImg}" alt="" style="width:100%;height:220px">
+                </div>
+                <div class="itemMid" th:text="${item.trainName}">
+                </div>
+                <div class="itemBoot">
+                    <span class="itemBootBtn viewBtn" th:attr="data-url=@{'/modelstudio/innovationTrain/detail/'+${item.id}}">查看</span>
+                    <span class="itemBootBtn editBtn" th:attr="data-url=@{'/modelstudio/innovationTrain/edit/'+${item.id}+'?baseId='+${baseId}}" >编辑</span>
+                    <span class="itemBootBtn delBtn" >
+                        <a class="ajax-get" data-msg="您是否确认删除" th:href="@{/modelstudio/innovationTrain/status/delete(ids=${item.id})}">删除</a>
+                    </span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+</div>
+<script th:replace="/common/template :: script"></script>
+<script>
+    layui.use(['laydate','form'],function() {
+        var $ = layui.jquery;
+        var layer = layui.layer; //加载layer模块
+        $(".topBtn").on("click",function(){
+            window.layerIndex = layer.open({
+                type: 2,
+                title: "新增培训课程",
+                shadeClose: true,
+                maxmin: true,
+                area: ['100%', '100%'],
+                content: [$(this).data("url"), 'on']
+            });
+        });
+        $(".editBtn").on("click",function(){
+            window.layerIndex = layer.open({
+                type: 2,
+                title: "编辑培训课程",
+                shadeClose: true,
+                maxmin: true,
+                area: ['100%', '100%'],
+                content: [$(this).data("url"), 'on']
+            });
+        });
+        $(".viewBtn").on("click",function(){
+            window.layerIndex = layer.open({
+                type: 2,
+                title: "查看培训课程",
+                shadeClose: true,
+                maxmin: true,
+                area: ['100%', '100%'],
+                content: [$(this).data("url"), 'on']
+            });
+        });
+        $(".search").on("click",function(){
+            window.location.href=window.location.pathname+"?baseId="+$("#baseId").val()+"&trainName="+$("#trainName").val();
+        });
+    });
+</script>
+</body>
+</html>

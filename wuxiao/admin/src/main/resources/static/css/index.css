@@ -1,0 +1,207 @@
+.table{
+	width: 1200px;
+	margin: 0 auto;
+    margin-bottom: 50px;
+}
+.title{
+	font-weight: bold;
+	font-size: 20px;
+	height: 40px;
+	line-height: 40px;
+	width: 100%;
+}
+.same_tr td:nth-child(1){
+	width: 45%;
+}
+td{
+	float: left;
+}
+.same_tr td:nth-child(2){
+	width: 45%;
+}
+.same_tr td:nth-child(3){
+	width: 10%;
+}
+.same_title{
+	height: 40px;
+	width: 100%;
+	line-height: 40px;
+	border-bottom: 1px solid #000;
+	border-right: 1px solid #000;
+}
+.same_two{
+	width: 100%;
+	line-height: 40px;
+	border-right: 1px solid #000;
+}
+.same_two>div{
+	float: left;
+	border-bottom: 1px solid #000;
+}
+.same_two>div:nth-child(1){
+	width: 59.8%;
+	border-right: 1px solid #000;
+}
+.same_two>div:nth-child(2){
+	width: 40%;
+}
+.same_gao,.same_fen{
+	height: 120px;
+}
+.same_left{
+  float: left;
+  width: 40%;
+  border-right: 1px solid #000;
+  height: 120px;
+  line-height: 120px;
+}
+.same_right{
+	width: 59.6%;
+	float: left;
+}
+.same_right>div{
+	border-bottom: 1px solid #000;
+}
+.same_right>div:last-child{
+	border: none;
+}
+.same_two>div:nth-child(2)>div{
+	border-bottom: 1px solid #000;
+}
+.same_two>div:nth-child(2)>div:last-child{
+	border: none;
+}
+.chang{
+	height: 321px;
+}
+.chang>div:nth-child(1){
+	float: left;
+	width: 40%;
+	line-height: 29px;
+	padding: 0 10px;
+	padding-top: 67px;
+	border-right: 1px solid #000;
+	height: 255px;
+}
+.chang>div:nth-child(2){
+	float: left;
+	width: 43%;
+	height: 100%;
+
+}
+.chang>div:nth-child(2)>div{
+	height: 183px;
+	line-height: 20px;
+	/*padding: 61px 10px;*/
+}
+.chang>div:nth-child(2)>div:nth-child(1){
+	border-bottom: 1px solid #000;
+}
+.same_rightchang>div>div{
+	border-bottom: 1px solid #000;
+	height: 45px;
+	line-height: 45px;
+}
+.same_rightchang>div>div:last-child{
+	border: none;
+}
+.same_fenchang>div>div{
+	border-bottom: 1px solid #000;
+	height: 45px;
+	line-height: 45px;
+}
+.same_fenchang>div>div:last-child{
+	border: none;
+}
+.pingfen_box{
+	height: 725px;
+	border-bottom: 1px solid #000;
+	border-right: 1px solid #000;
+	width: 100%;
+	overflow: hidden;
+}
+.same{
+	float: left;
+	width: 180px;
+}
+.same_listtilte{
+	height: 40px;
+	line-height: 40px;
+	border-right: 1px solid #000;
+	border-bottom: 1px solid #000;
+}
+.silu_ping{
+	height: 120px;
+	border-right: 1px solid #000;
+	border-bottom: 1px solid #000;
+}
+input{
+	width: 98%;
+	height: 98%;
+	border: none;
+	font-size: 15px;
+	text-align: center;
+}
+.zongfen{
+	border-bottom: 1px solid #000;
+	height: 81px;
+	line-height: 81px;
+}
+.linglei{
+	width: 100%;
+	border-right: none;
+}
+.heji_box{
+	height: 40px;
+	line-height: 40px;
+}
+.heji_box td:nth-child(1){
+	width: 11%;
+}
+.heji_box td:nth-child(2){
+	width: 89%;
+}
+.pingshen_box{
+	height: 90px;
+}
+.pingshen_box td:nth-child(1){
+	width: 11%;
+	line-height: 90px;
+	border-right: 1px solid #000;
+}
+.pingshen_box td:nth-child(2){
+	width: 88.9%;
+	height: 90px;
+	
+}
+textarea{
+	width: 99%;
+	height: 93%;
+	resize: none;
+	border: none;
+	font-size: 16px;
+}
+.cun_box{
+	height: 80px;
+}
+.cun_box td{
+	width: 100%;
+}
+.btn{
+	width: 120px;
+    height: 40px;
+    border-radius: 5px;
+    background: #cccccc;
+    border: none;
+    margin: 0 auto;
+    display: block;
+    margin-top: 20px;
+}
+
+.login_valid_time{
+	height: 40px;
+	line-height: 40px;
+}
+.login_valid_time td{
+	width: 100%;
+}

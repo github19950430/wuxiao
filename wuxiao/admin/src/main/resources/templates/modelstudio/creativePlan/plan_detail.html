@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/common/template :: header(~{::title},~{::link},~{::style})">
+</head>
+<body>
+    <div class="timo-detail-page">
+        <div class="timo-detail-title">基本信息</div>
+        <table class="layui-table timo-detail-table">
+            <colgroup>
+                <col width="100px"><col>
+                <col width="100px"><col>
+            </colgroup>
+            <tbody>
+                <tr>
+                    <th>主键ID</th>
+                    <td th:text="${creativePlan.id}"></td>
+                    <th>申报日期</th>
+                    <td th:text="${creativePlan.dateofdeclaration}"></td>
+                </tr>
+                <tr>
+                    <th>所属行业</th>
+                    <td th:text="${creativePlan.industryInvolved}"></td>
+                    <th>项目类型</th>
+                    <td th:text="${creativePlan.projectType}"></td>
+                </tr>
+                <tr>
+                    <th>五小类型</th>
+                    <td th:text="${creativePlan.fiveSmallType}"></td>
+                    <th>项目名称</th>
+                    <td th:text="${creativePlan.projectName}"></td>
+                </tr>
+                <tr>
+                    <th>完成单位</th>
+                    <td th:text="${creativePlan.completeUnit}"></td>
+                    <th>项目带头人</th>
+                    <td th:text="${creativePlan.projectLeader}"></td>
+                </tr>
+                <tr>
+                    <th>项目实施时间</th>
+                    <td th:text="${creativePlan.projectTime}"></td>
+                    <th>是否获得专利</th>
+                    <td th:text="${creativePlan.isPatent}"></td>
+                </tr>
+                <tr>
+                    <th>是否所属工作室</th>
+                    <td th:text="${creativePlan.isStudio}"></td>
+                    <th>工作室ID</th>
+                    <td th:text="${creativePlan.studioId}"></td>
+                </tr>
+                <tr>
+                    <th>专利号</th>
+                    <td th:text="${creativePlan.patentNumber}"></td>
+                    <th>专利授权公告日</th>
+                    <td th:text="${creativePlan.dateofPatent}"></td>
+                </tr>
+                <tr>
+                    <th>项目成果简介</th>
+                    <td th:text="${creativePlan.achievementBrief}"></td>
+                    <th>应用前景</th>
+                    <td th:text="${creativePlan.applicationProspect}"></td>
+                </tr>
+                <tr>
+                    <th>预计创造价值</th>
+                    <td th:text="${creativePlan.creationOfValue}" colspan="3"></td>
+                </tr>
+                <tr>
+                    <th>创建者</th>
+                    <td th:text="${creativePlan.createBy?.realname}"></td>
+                    <th>更新者</th>
+                    <td th:text="${creativePlan.updateBy?.realname}"></td>
+                </tr>
+                <tr>
+                    <th>创建时间</th>
+                    <td th:text="${#dates.format(creativePlan.createDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
+                    <th>更新时间</th>
+                    <td th:text="${#dates.format(creativePlan.updateDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+<script th:replace="/common/template :: script"></script>
+</body>
+</html>

@@ -1,0 +1,1073 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<header th:fragment="detail">
+    <style>
+        .clearfix:after{
+            content:".";
+            display:block;
+            height:0;
+            visibility:hidden;
+            clear:both;
+        }
+        .clearfix { zoom:1;}
+        table
+
+        {
+
+            border-collapse :collapse ;
+
+        }
+        td
+
+        {
+
+            height:40px;
+
+            border :1px solid black;
+
+            font-size:12px;
+
+            text-align :center;
+
+        }
+        input{
+            border: none;
+        }
+        .infor{
+            width: 18%;
+        }
+        .inmo{
+            width: 70%;
+        }
+        .imic{
+            width: 12%;
+        }
+        tr td.infor>div,tr td.inmo>div{
+            height: 45px;
+            line-height: 45px;
+            border-bottom: 1px solid #000;
+        }
+        tr td>div:last-child{
+            border: none;
+        }
+        .list ul{
+            width: 100%;
+            height:45px;
+        }
+        .list ul li{
+            float: left;
+            height:45px;
+            border-right: 1px solid #000;
+        }
+        .list ul li:last-child{
+            border: none;
+        }
+        .list ul li input{
+            width:100%;
+            height: 100%;
+        }
+        .list ul li select{
+            border: none;
+            display: block;
+            width: 100%;
+            height: 100%;
+            margin: 0 auto;
+        }
+        .lay-infor ul{
+            width: 100%;
+            height:45px;
+        }
+        .lay-infor ul li{
+            float: left;
+            height:45px;
+            border-right: 1px solid #000;
+        }
+        .lay-infor ul li:last-child{
+            border: none;
+        }
+        .dpic ul li{
+            float: left;
+            height: 45px;
+            line-height: 45px;
+            border: 1px solid #000;
+        }
+        .dpic ul li:nth-child(1){
+            border:none;
+        }
+        .dpic ul li:nth-child(2){
+            border-right:none;
+            border-top: none;
+            border-bottom: none;
+        }
+        .dpic ul li:nth-child(3){
+            border-right:none;
+            border-top: none;
+            border-bottom: none;
+        }
+        .dpic ul li:last-child{
+            border-right:none;
+            border-top: none;
+            border-bottom: none;
+            padding-bottom: 1px;
+        }
+        .dpic ul li select{
+            display: block;
+            width: 100%;
+            height: 100%;
+            margin: 0 auto;
+        }
+        .lay-textarea textarea{
+            width: 100%;
+            height: 90px;
+            border: none;
+        }
+        .lay-textarea span{
+
+        }
+        .layui-laydate-content td{
+            border: none;
+        }
+        .funding-title{
+            width: 25%;
+            margin-top: 20px;
+        }
+        .funding-left{
+            float: left;
+        }
+        .funding-left span{
+            float: left;
+            line-height: 43px;
+            margin-right: 10px;
+        }
+        .funding-left input{
+            float: left;
+            width: 300px;
+            height: 43px;
+            line-height: 43px;
+        }
+        .funding-left i{
+            float: left;
+            line-height: 43px;
+            font-style: normal;
+            margin-left: 10px;
+        }
+        .funding-right{
+            float: left;
+            margin-left: 180px;
+        }
+        .funding-right span{
+            float: left;
+            line-height: 43px;
+            margin-right: 10px;
+        }
+        .funding-right input{
+            float: left;
+            width: 300px;
+            height: 43px;
+            line-height: 43px;
+        }
+        .funding-num{
+            margin-top: 20px;
+            margin-left: 150px;
+        }
+        .table-list{
+            float: left;
+        }
+        .table-left{
+            float: left;
+            width: 200px;
+        }
+        .table-pic ul li{
+            float: left;
+            width: 198px;
+            border-left: 1px solid #000;
+        }
+        .table-pic ul li:nth-child(1){
+            height: 90px;
+            line-height: 90px;
+        }
+        .table-pic ul li:nth-child(3){
+            border-top: 1px solid #000;
+            height: 45px;
+            line-height: 45px;
+        }
+        .table-pic{
+            float: left;
+            width: 200px;
+        }
+        .table-right{
+            float: left;
+            width: 400px;
+        }
+        .table-right ul li{
+            float: left;
+            width: 198px;
+            height: 45px;
+            line-height: 45px;
+            border-left: 1px solid #000;
+            border-bottom: 1px solid #000;
+        }
+        .table-right ul li:nth-child(5),.table-right ul li:nth-child(6){
+            border-bottom: none;
+        }
+        .money-left{
+            float: left;
+            width: 200px;
+            height: 90px;
+            line-height: 90px;
+        }
+        .money-right{
+            float: left;
+            width: 1000px;
+        }
+        .money-right ul li{
+            float: left;
+            width: 33.2%;
+            height: 45px;
+            line-height: 45px;
+            border-left: 1px solid #000;
+            border-bottom: 1px solid #000;
+        }
+        .money-right ul li:nth-child(4),.money-right ul li:nth-child(5),
+        .money-right ul li:nth-child(6){
+            border-bottom: none;
+        }
+        .table-date{
+            float: left;
+            padding-left: 40px;
+        }
+        .table-date span{
+            float: left;
+        }
+        .table-date input{
+            float: left;
+            width: 50px;
+            height: 18px;
+        }
+        .table-qianming{
+            float: left;
+            margin-left: 350px;
+            margin-top: 35px;
+        }
+        .table-datebox{
+            float: left;
+        }
+        .table-gz{
+            padding-bottom: 20px;
+        }
+        .tab-left{
+            float: left;
+        }
+        .tab-right{
+            float: left;
+        }
+        .lay-person ul li{
+            float: left;
+        }
+        .jineng-left{
+            float: left;
+            width: 86px;
+            height: 100px;
+            line-height:75px;
+        }
+        .jineng-right{
+            float: left;
+            width: 89.7%;
+        }
+        .content-bottom ul li{
+            float: left;
+            width: 82px;
+            height: 100px;
+            border-left: 1px solid #000;
+            border-bottom: 1px solid #000;
+        }
+        .lay-person{
+            width: 840px;
+        }
+        .lay-person ul li{
+            float: left;
+            height: 100px;
+            border-left: 1px solid #000;
+        }
+        .lay-person ul li:nth-child(1){
+            border-top: 1px solid #000;
+            border-left: none;
+        }
+        .sm_text {
+            float: left;
+            position: relative;
+        }
+        .sm_img {
+            float: left;
+            width: 899px;
+            height: 180px;
+        }
+        #gh {
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+        }
+        #sz {
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+        }
+        #SZZ {
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+        }
+        .tianjia img {
+            width: 100%;
+            height: 100%;
+        }
+        .tianjia {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 899px;
+            height: 180px;
+        }
+        .addbtn{
+            display: inline-block;
+            font-size: 26px;
+            color: #f00;
+            float: right;
+            cursor: pointer;
+            width: 40px;
+            line-height: 47px;
+            margin-right: 5px;
+        }
+    </style>
+    <style>
+        .clearfix:after {
+            content: ".";
+            display: block;
+            height: 0;
+            visibility: hidden;
+            clear: both;
+        }
+
+        .clearfix {
+            zoom: 1;
+        }
+
+        table {
+
+            border-collapse: collapse;
+
+        }
+
+        td {
+
+            height: 40px;
+
+            border: 1px solid black;
+
+            font-size: 12px;
+
+            text-align: center;
+
+        }
+
+        input {
+            border: none;
+        }
+
+        .lay-lb input {
+            margin: 0 10px;
+        }
+
+        .lay-date ul li {
+            float: left;
+            height: 45px;
+            line-height: 45px;
+            border: 1px solid #000;
+        }
+
+        .lay-date ul li:nth-child(1) {
+            border: none;
+        }
+
+        .lay-date ul li:nth-child(2) {
+            border-right: none;
+            border-top: none;
+            border-bottom: none;
+        }
+
+        .lay-date ul li:nth-child(3) {
+            border-right: none;
+            border-top: none;
+            border-bottom: none;
+        }
+
+        .lay-date ul li:last-child {
+            border-right: none;
+            border-top: none;
+            border-bottom: none;
+        }
+
+        .lay-textarea textarea {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .layui-laydate-content td {
+            border: none;
+        }
+
+        .lay-juxing ul li {
+            float: left;
+        }
+        .wuxiao_img div {
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            /* overflow-x:hidden; */
+        }
+
+        .wuxiao_img div a {
+            margin: 5px;
+            width: 13%;
+            height: 74%;
+            position: relative;
+            display: block;
+            float: left;
+            border: 3px solid #ddd;
+        }
+
+        .wuxiao_img div a img {
+            width: 100%;
+            height: 100%;
+            margin: 0 0 20px 0;
+        }
+
+        .wuxiao_img div a i {
+            margin: 0;
+            position: absolute;
+            z-index: 99;
+            height: 18px;
+            width: 18px;
+            text-align: center;
+            opacity: 1;
+            font-size: 18px;
+            top: -4px;
+            right: -10px;
+            line-height: 18px;
+        }
+
+        .wuxiao_file div {
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+        }
+
+        .wuxiao_file div a {
+            width: 60px;
+            height: 80px;
+            border: 2px solid #ddd;
+            padding: 6px 5px;
+            margin: 0 3px;
+        }
+
+        .wuxiao_file div a i {
+            font-size: 18px;
+        }
+
+        .xui-upload-frame {
+            position: fixed;
+        }
+        video {
+            width: 60px;
+            height: 80px;
+        }
+
+
+
+        .add_div {
+            width: 400px;
+            height: 500px;
+            border: solid #ccc 1px;
+            margin-top: 40px;
+            margin-left: 170px;
+            padding-left: 20px;
+        }
+
+        .file-list {
+            height: 125px;
+            display: none;
+            list-style-type: none;
+        }
+
+        .file-list img {
+            max-width: 70px;
+            vertical-align: middle;
+        }
+
+        .file-list .file-item {
+            margin-bottom: 10px;
+            float: left;
+            margin-left: 20px;
+        }
+
+
+        .file-list .file-item .file-del {
+            display: block;
+            margin-left: 20px;
+            margin-top: 5px;
+            cursor: pointer;
+        }
+        .pyrc li span{
+            line-height: 100px;
+        }
+        .fw{
+            font-weight: bold;
+        }
+    </style>
+    <body>
+    <div style="cursor: pointer;position: absolute;right: 15px;top: 0;width: 60px;height: 40px;display: flex;justify-content: space-around;align-items: center">
+        <img th:src="@{/images/dayin.png}" alt="" style="width: 20px">
+        <span style="font-size:13px;color: #707070;" onclick="abc('def')">打印</span>
+    </div>
+    <form th:action="@{/modelstudio/modelstudio/add}" class="def">
+        <table style="width: 1200px;margin: 0 auto;margin-bottom: 10px;">
+            <tr>
+                <td colspan="4" style="font-size: 20px;font-weight: bold;position: relative" th:if="${index == 0}">劳模创新工作室</td>
+                <td colspan="4" style="font-size: 20px;font-weight: bold;position: relative" th:if="${index == 1}">职工创新工作室</td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <div class="dpic">
+                        <ul class="clearfix" style="width: 100%">
+                            <li style="width: 25%" class="fw">
+                                单位类型
+                            </li>
+                            <li style="width: 25%" >
+                                <span th:text="${#dicts.keyValue('FLAT_TYPE', modelstudio.flat_type)}"></span>
+                            </li>
+                            <li style="width: 25%" class="fw">
+                                所属行业
+                            </li>
+                            <li style="width: 24.7%">
+                                <span th:text="${#dicts.keyValue('INDUSTRY_TYPE', modelstudio.industry_involved)}"></span>
+                            </li>
+                        </ul>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <div class="dpic">
+                        <ul class="clearfix" style="width: 100%">
+                            <li style="width: 25%" class="fw">
+                                工作室名称
+                            </li>
+                            <li style="width: 25%">
+                                <span th:text="${modelstudio.studioName}"></span>
+                            </li>
+                            <li style="width: 25%" class="fw">
+                                工作室创新时间
+                            </li>
+                            <li style="width: 24%">
+                                <span th:text="${#dates.format(modelstudio?.creation_time, 'yyyy-MM-dd')}"></span>
+                            </li>
+                        </ul>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <div class="dpic">
+                        <ul class="clearfix" style="width: 100%">
+                            <li style="width: 25%" class="fw">
+                                所在单位
+                            </li>
+                            <li style="width: 25%">
+                                <span th:text="${modelstudio.place_the_unit}"></span>
+                            </li>
+                            <li style="width: 25%" class="fw">
+                                工作室类型
+                            </li>
+                            <li style="width: 24%">
+                                <span th:text="${#dicts.keyValue('STUDIO_TYPE', modelstudio.studio_type)}"></span>
+                            </li>
+                        </ul>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <div class="dpic">
+                        <ul class="clearfix" style="width: 100%">
+                            <li style="width: 25%" class="fw">
+                                专业领域
+                            </li>
+                            <li style="width: 25%">
+                                <span th:text="${modelstudio.professional_field}"></span>
+                            </li>
+                            <li style="width: 25%" class="fw">
+                                领衔人
+                            </li>
+                            <li style="width: 24.7%">
+                                <span th:text="${leaderinformation.name}"></span>
+                            </li>
+                        </ul>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <div class="dpic">
+                        <ul class="clearfix" style="width: 100%">
+                            <li style="width: 25%" class="fw">
+                                领衔人最高荣誉
+                            </li>
+                            <li style="width: 25%" >
+                                <span th:text="${#dicts.keyValue('STUDIO_BLUE_RABBON', modelstudio.blue_ribbon)}"></span>
+                            </li>
+                            <li style="width: 25%" class="fw">
+                                领衔人联系电话
+                            </li>
+                            <li style="width: 24.7%">
+                                <span th:text="${modelstudio.phone}"></span>
+                            </li>
+                        </ul>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <div class="clearfix" style="width: 1200px">
+                        <div style="float: left;width: 25.095%;height: 45px;line-height: 45px;border-right: 1px solid #000;" class="fw">
+                            所属单位（市/产业工会）
+                        </div>
+                        <div style="float: left;width: 74.7%;height: 45px;padding-bottom: 1px;">
+                            <span th:text="${#dicts.keyValue('TRADE_UNIONS', modelstudio.unit)}" style="line-height: 45px;"></span>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <div class="dpic">
+                        <ul class="clearfix" style="width: 100%">
+                            <li style="width: 25%" class="fw">
+                                命名日期
+                            </li>
+                            <li style="width: 25%">
+                                <span th:text="${#dates.format(modelstudio?.named_date, 'yyyy-MM-dd')}"></span>
+                            </li>
+                            <li style="width: 25%" class="fw">
+                                成员总数（人）
+                            </li>
+                            <li style="width: 24.7%">
+                                <span th:text="${modelstudio.total_number}"></span>
+                                <span>人</span>
+                            </li>
+                        </ul>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <div class="lay-funding">
+                        <div class="funding-title fw" >
+                            经费投入：
+                        </div>
+                        <div class="funding-num clearfix">
+                            <div class="funding-left clearfix">
+                                <span class="fw" th:text="${three}"></span>
+                                <span style="width: 300px;border: 1px solid" th:text="${modelstudio.three_years_ago_price}"></span>
+                                <i class="fw">万元</i>
+                            </div>
+                            <div class="funding-right clearfix">
+                                <span class="fw">经费来源：</span>
+                                <span style="width: 300px;border: 1px solid" th:text="${modelstudio.three_years_ago_source}"></span>
+                            </div>
+                        </div>
+                        <div class="funding-num clearfix">
+                            <div class="funding-left clearfix">
+                                <span class="fw" th:text="${two}"></span>
+                                <span style="width: 300px;border: 1px solid" th:text="${modelstudio?.two_years_ago_price}"></span>
+                                <i class="fw">万元</i>
+                            </div>
+                            <div class="funding-right clearfix">
+                                <span class="fw">经费来源：</span>
+                                <span style="width: 300px;border: 1px solid" th:text="${modelstudio?.two_years_ago_source}"></span>
+                            </div>
+                        </div>
+                        <div class="funding-num clearfix" style="margin-bottom: 20px">
+                            <div class="funding-left clearfix">
+                                <span class="fw" th:text="${one}"></span>
+                                <span style="width: 300px;border: 1px solid" th:text="${modelstudio?.one_years_ago_price}"></span>
+                                <i class="fw">万元</i>
+                            </div>
+                            <div class="funding-right clearfix">
+                                <span class="fw">经费来源：</span>
+                                <span style="width: 300px;border: 1px solid" th:text="${modelstudio?.one_years_ago_source}"></span>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="table-listbox clearfix">
+                        <div class="table-list clearfix">
+                            <div class="table-left fw" style="height: 135px;line-height: 135px">
+                                技术创新
+                            </div>
+                            <div class="table-right">
+                                <ul class="clearfix">
+                                    <li class="fw">创新成果</li>
+                                    <li class="clearfix">
+                                        <span th:text="${modelstudio.innovative_product}" style="width: 70%;height: 100%;float: left"></span>
+                                        <span style="display: block;width: 30%;float: left;color: #999999">项</span>
+                                    </li>
+                                    <li class="fw">成果转化</li>
+                                    <li class="clearfix">
+                                        <span th:text="${modelstudio.achievement_transformation}" style="width: 70%;height: 100%;float: left"></span>
+                                        <span style="display: block;width: 30%;float: left;color: #999999">项</span>
+                                    </li>
+                                    <li class="fw">获奖等级</li>
+                                    <li class="clearfix">
+                                        <span style="display: block;width: 20%;float: left;color: #999999">国际</span>
+                                        <span th:text="${modelstudio.bear_international}" style="width: 60%;height: 99%;float: left"></span>
+                                        <span style="display: block;width: 20%;float: left;color: #999999">个</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="table-list clearfix">
+                            <div class="table-pic">
+                                <ul class="clearfix">
+                                    <li class="fw">技术创新</li>
+                                    <li></li>
+                                    <li class="clearfix">
+                                        <span style="display: block;width: 20%;float: left;color: #999999">国家</span>
+                                        <span th:text="${modelstudio.bear_state}" style="width: 60%;height: 100%;float: left"></span>
+                                        <span style="display: block;width: 20%;float: left;color: #999999">个</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="table-right">
+                                <ul class="clearfix">
+                                    <li class="fw">实用新型</li>
+                                    <li class="clearfix">
+                                        <span th:text="${modelstudio.utility_model}" style="width: 70%;height: 100%;float: left"></span>
+                                        <span style="display: block;width: 30%;float: left;color: #999999">个</span>
+                                    </li>
+                                    <li class="fw"> 发明</li>
+                                    <li class="clearfix">
+                                        <span th:text="${modelstudio.invent}" style="width: 70%;height: 100%;float: left"></span>
+                                        <span style="display: block;width: 30%;float: left;color: #999999">个</span>
+                                    </li>
+                                    <li class="fw">省部(个)</li>
+                                    <li class="clearfix">
+                                        <span style="display: block;width: 20%;float: left;color: #999999">地市</span>
+                                        <span th:text="${modelstudio.provincial}" style="width: 60%;height: 99%;float: left"></span>
+                                        <span style="display: block;width: 20%;float: left;color: #999999">个</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="lay-money clearfix" style="width: 100%">
+                        <div class="money-left fw">
+                            经济效益
+                        </div>
+                        <div class="money-right">
+                            <ul class="clearfix">
+                                <li class="fw" th:text="${two}"></li>
+                                <li class="fw" th:text="${one}"></li>
+                                <li class="fw">合计</li>
+                                <li>
+                                    <span th:text="${modelstudio.before_economy}" style="width: 100%;height: 100%"></span>
+                                    <span>万元</span>
+                                </li>
+                                <li>
+                                    <span th:text="${modelstudio.lastyear_economy}" style="width: 100%;height: 100%"></span>
+                                    <span>万元</span>
+                                </li>
+                                <li>
+                                    <span th:text="${modelstudio.tatal}" style="width: 100%;height: 100%"></span>
+                                    <span>万元</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="lay-tab clearfix" style="width: 100%">
+                        <div class="tab-left fw" style="width: 359px;height: 250px;line-height: 250px;border-right: 1px solid #000">
+                            培养人才*
+                        </div>
+                        <div class="tab-right" style="width: 840px">
+                            <div class="lay-jineng clearfix" style="width: 100%">
+                                <div class="jineng-left fw">
+                                    总<br>数
+                                </div>
+                                <div class="jineng-right">
+                                    <div class="content-top clearfix" style="width: 100%">
+                                        <div class="fw" style="width: 377px;float: left;border-bottom: 1px solid #000;
+                                    border-left: 1px solid #000;line-height:45px;height: 45px">技术等级</div>
+                                        <div class="fw" style="width: 374px;float: left;border-bottom: 1px solid #000;
+                                    border-left: 1px solid #000;line-height:45px;height: 45px">荣誉</div>
+                                    </div>
+                                    <div class="content-bottom">
+                                        <ul class="clearfix">
+                                            <li class="fw">双<br>重<br>职<br>称</li>
+                                            <li class="fw">高<br>级<br>技<br>师</li>
+                                            <li class="fw">技<br>师</li>
+                                            <li class="fw">高<br>级<br>工</li>
+                                            <li class="fw">其<br>他</li>
+                                            <li class="fw">全<br>国<br>劳<br>模</li>
+                                            <li class="fw">省<br>部<br>级<br>劳<br>模</li>
+                                            <li class="fw">地<br>市<br>级<br>劳<br>模</li>
+                                            <li class="fw" style="width: 88px">其<br>他</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="lay-person">
+                                <ul class="clearfix pyrc">
+                                    <li style="width: 86px;">
+                                        <span th:text="${modelstudio.cultivate_talents}" style="width: 100%;height: 100%;margin-top: 50px"></span>
+                                        <span>个</span>
+                                    </li>
+                                    <li style="width: 82px">
+                                        <span th:text="${modelstudio.double_title}" style="width: 100%;height: 100%"></span>
+                                        <span>个</span>
+                                    </li>
+                                    <li style="width: 82px">
+                                        <span th:text="${modelstudio.senior_technician}" style="width: 100%;height: 100%"></span>
+                                        <span>个</span>
+                                    </li>
+                                    <li style="width: 82px">
+                                        <span th:text="${modelstudio.technician}" style="width: 100%;height: 100%"></span>
+                                        <span>个</span>
+                                    </li>
+                                    <li style="width: 82px">
+                                        <span th:text="${modelstudio.senior_engineer}" style="width: 100%;height: 100%"></span>
+                                        <span>个</span>
+                                    </li>
+                                    <li style="width: 82px">
+                                        <span th:text="${modelstudio.technician_other}" style="width: 100%;height: 100%"></span>
+                                        <span>个</span>
+                                    </li>
+                                    <li style="width: 82px">
+                                        <span th:text="${modelstudio.national_model}" style="width: 100%;height: 100%"></span>
+                                        <span>个</span>
+                                    </li>
+                                    <li style="width: 82px">
+                                        <span th:text="${modelstudio.provincial_model}" style="width: 100%;height: 100%"></span>
+                                        <span>个</span>
+                                    </li>
+                                    <li style="width: 82px">
+                                        <span th:text="${modelstudio.prefecture_model}" style="width: 100%;height: 100%"></span>
+                                        <span>个</span>
+                                    </li>
+                                    <li style="width: 82px">
+                                        <span th:text="${modelstudio.honor_other}" style="width: 100%;height: 100%"></span>
+                                        <span>个</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <div class="clearfix" style="width: 1200px">
+                        <div class="fw" style="float: left;width: 25.06%;height: 180px;line-height: 180px;border-right: 1px solid #000;">
+                            所在单位工会意见：
+                        </div>
+                        <div style="float: left;width: 74.7%;" class="lay-textarea clearfix">
+                            <div class="sm_text">
+                                <div class="tianjia" >
+                                    <img th:src="${modelstudio.unit_opinion == null ? '/wuxiao/images/master/unit.png' : modelstudio.unit_opinion}" onclick="abcd(this)" id="ghimg"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <div class="clearfix" style="width: 1200px">
+                        <div class="fw" style="float: left;width: 25.06%;height: 180px;line-height: 180px;border-right: 1px solid #000;">
+                            市总工会、省产业工会（工委）意见：
+                        </div>
+                        <div style="float: left;width: 74.7%;" class="lay-textarea clearfix">
+                            <div class="sm_text">
+                                <div class="tianjia" >
+                                    <img th:src="${modelstudio.always_opinions == null ? '/wuxiao/images/master/city.png' : modelstudio.always_opinions}" onclick="abcd(this)" id="szimg"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <div class="clearfix" style="width: 1200px">
+                        <div class="fw" style="float: left;width: 25.06%;height: 180px;line-height: 180px;border-right: 1px solid #000;">
+                            山西省总工会审批意见：
+                        </div>
+                        <div style="float: left;width: 74.7%;" class="lay-textarea clearfix">
+                            <div class="sm_text">
+                                <div class="tianjia">
+                                    <img th:src="${modelstudio.general_opinion == null ? '/wuxiao/images/master/jinzhi.png' : modelstudio.general_opinion}" onclick="abcd(this)" id="SZZimg"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <div class="lay-date">
+                        <ul  class="clearfix" style="width: 100%">
+                            <li class="fw" style="float: left;width: 25%;height: 80px;line-height: 80px;">
+                                工作室宣传图片(可选)
+                            </li>
+                            <li style="width:20%;height: 80px;line-height: 80px;">
+                                <span class="fw">图片列表</span>
+                            </li>
+                            <li style="width:54%;height: 80px;line-height: 80px;" class="wuxiao_img">
+                                <div>
+                                    <a th:each="item:${allByImg}" th:attr="id=${item.id}">
+                                        <img th:src="${item.img_url}" onclick="abcd(this)" />
+                                    </a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="lay-date">
+                        <ul class="clearfix" style="width: 100%">
+                            <li class="fw" style="float: left;width: 25%;height: 80px;line-height: 80px;">
+                                上传视频(可选)
+                            </li>
+                            <li style="width:20%;height: 80px;line-height: 80px;">
+                               <span class="fw">视频列表</span>
+                            </li>
+                            <li style="width: 54%;height: 80px;line-height: 80px;" class="wuxiao_file">
+                                <div>
+                                    <a th:each="item:${allByVideo}" th:href="${item.video_url}" target="_blank" onclick="def(this)" th:attr="id=${item.id}">
+                                        [[${item.name}]]
+                                    </a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="lay-date">
+                        <ul class="clearfix" style="width: 100%">
+                            <li class="fw" style="float: left;width: 25%;height: 80px;line-height: 80px;">
+                                上传附件(可选)
+                            </li>
+                            <li style="width:20%;height: 80px;line-height: 80px;">
+                                <span class="fw">附件列表</span>
+                            </li>
+                            <li style="width: 54%;height: 80px;line-height: 80px;" class="wuxiao_file">
+                                <div>
+                                    <a th:each="item:${allByAccessory}" th:attr="data-value=${item.accessory_url}" onclick="ghi(this)" type="activxobject(word.application)">
+                                        [[${item.accessory_name}]]
+                                    </a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="lay-date">
+                        <ul class="clearfix" style="width: 100%">
+                            <li class="fw" style="float: left;width: 25%;height: 80px;line-height: 80px;">
+                                工作室荣誉图片(可选)
+                            </li>
+                            <li style="width:20%;height: 80px;line-height: 80px;">
+                                <span class="fw">图片列表</span>
+                            </li>
+                            <li style="width: 54%;height: 80px;line-height: 80px;" class="wuxiao_img">
+                                <div>
+                                    <a th:each="item:${allByhonor}" th:attr="id=${item.id}">
+                                        <img th:src="${item.img_url}" onclick="abcd(this)" />
+                                    </a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </td>
+            </tr>
+            <tr th:if="!${modelstudio?.accountfor == '' || modelstudio?.accountfor == null}">
+                <td>
+                    <div class="lay-date">
+                        <ul class="clearfix" style="width: 100%">
+                            <li style="float: left;width: 25%;height: 80px;line-height: 80px;">
+                                说明原因
+                                <span style="color: red;">*</span>
+                            </li>
+                            <li style="width:20%;height: 80px;line-height: 80px;">
+                                <span th:text="${modelstudio.accountfor}"></span>
+                            </li>
+                        </ul>
+                    </div>
+                </td>
+            </tr>
+            <!--<tr>
+                <td colspan="4">
+                    <div class="layui-form-item">
+                        <div class="layui-input-block" style="text-align: center;margin-top: 30px">
+                            <button class="layui-btn layui-btn-primary close-popup" style="width: 120px;height: 40px;border-radius: 5px;background: #cccccc">关闭</button>
+                        </div>
+                    </div>
+                </td>
+            </tr>-->
+        </table>
+    </form>
+    </body>
+    <script th:src="@{/js/plugins/jquery-3.3.1.min.js}"></script>
+    <script>
+        function abcd(This){
+            window.open(This.src);
+        }
+        function def(This) {
+            window.open(This.href);
+        }
+        function ghi(This) {
+            /*var doc = new ActiveXObject("Word.Application");
+            doc.visible = true;
+            doc.Documents.Open(This.data("value"));*/
+
+
+            console.log($(This).data("value"))
+            /*var WordApp = new ActiveXObject("Word.Application");
+            WordApp.Application.Visible = true;
+            var Doc = WordApp.Documents.Add("D:\\word\\go.doc",true);*/
+            //下面是以只读方式打开
+            /*var openDocObj = new ActiveXObject("SharePoint.OpenDocuments.1");
+            openDocObj.EditDocument($(This).data("value"));*/
+        }
+    </script>
+</header>
+</body>
+</html>

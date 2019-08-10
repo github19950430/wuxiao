@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:mo="https://gitee.com/aun/Timo">
+<head th:replace="/common/template :: header(~{::title},~{::link},~{::style})">
+</head>
+<body class="timo-layout-page">
+    <div class="layui-card">
+        <div class="layui-card-header timo-card-header">
+            <span><i class="fa fa-bars"></i> 成果申报管理</span>
+            <i class="layui-icon layui-icon-refresh refresh-btn"></i>
+        </div>
+        
+        
+        
+        <div class="layui-card-body">
+            <div class="layui-row timo-card-screen">
+                <div class="pull-left layui-form-pane timo-search-box">
+                    <!-- <div class="layui-inline">
+                        <label class="layui-form-label">成果状态</label>
+                        <div class="layui-input-block timo-search-status">
+                            <select class="timo-search-select" name="auditStatus" mo:dict="AUDIT_STATUS" mo-selected="${param.status}"></select>
+                        </div>
+                    </div> -->
+                   <input type="hidden" id="auditStatusList" name="auditStatusList" th:value="${result.auditStatusList}" >
+                    <input type="hidden" id="year" name="year" th:value="${year}" >
+                    <div class="layui-tab layui-tab-card" style="margin-bottom:20px">
+						  <ul class="layui-tab-title">
+						    <li class="layui-this"><a style="color:red" th:href="@{'/resultManager/result/frist/index/'+${result.dept.id}+'?year='+${year}}">全部</a></li>
+						    <li id="id1">
+						    	<a  th:href="@{'/resultManager/result/frist/index/'+${result.dept.id}+'?year='+${year}+'&auditStatusList=4'}">待审核</a>
+						    </li>
+						    <li class="" id="id2">
+						    	<a   th:href="@{'/resultManager/result/frist/index/'+${result.dept.id}+'?year='+${year}+'&auditStatusList=5,7,8,9'}">审核已通过</a>
+						    </li>
+						    <li id="id3">
+						        <a   th:href="@{'/resultManager/result/frist/index/'+${result.dept.id}+'?year='+${year}+'&auditStatusList=6'}">审核未通过</a>
+                            </li>
+						    <li id="id4">
+                                <a   th:href="@{'/resultManager/result/frist/index/'+${result.dept.id}+'?year='+${year}+'&auditStatusList=11'}">审核已退回</a>
+                            </li>
+						  </ul>
+						</div> 
+                    <div class="layui-inline">
+                        <label class="layui-form-label">所属行业</label>
+                        <div class="layui-input-block timo-search-status">
+                        	<select class="timo-search-select" name="industry" mo:dict="INDUSTRY_TYPE" mo-empty="请选择"  mo-selected="${param.industry}"></select>
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">成果名称</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="resultName" th:value="${param.resultName}" placeholder="请输入成果名称" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <button class="layui-btn timo-search-btn">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+                    
+                    <!-- <div class="pull-right screen-btn-group">
+	                    <div class="btn-group">
+	                        <button class="layui-btn more_param" data-title="批量提交专家" th:attr="data-url=@{/resultManager/result/first/moreReport}" >
+	                            <i class="fa fa-refresh"></i> 批量提交专家</button>
+	                    </div> 
+	                </div> -->
+                </div>
+                <div class="pull-right screen-btn-group" th:if="${result.auditStatusList eq '5,7,8,9'}"> 
+                    <div class="btn-group">
+                        <button class="layui-btn more_param" data-title="批量提交专家" th:attr="data-url=@{/resultManager/result/first/moreReport}" >
+                            <i class="fa fa-refresh"></i> 批量提交专家</button>
+                    </div>
+                </div>
+            </div>
+            <div class="timo-table-wrap">
+                <table class="layui-table timo-table">
+                    <thead>
+                    <tr>
+                        <th class="timo-table-checkbox">
+                            <label class="timo-checkbox"><input type="checkbox">
+                                <i class="layui-icon layui-icon-ok"></i></label>
+                        </th>
+                        <th>序号</th>
+                        <th>档案编号</th>
+                        <th>项目名称</th>
+                        <th>所属行业</th>
+                        <th>所属工会</th>
+                        <th>审核状态</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="item:${list}">
+                        <td><label class="timo-checkbox"><input type="checkbox" th:value="${item.id}" name="id">
+                            <i class="layui-icon layui-icon-ok"></i></label></td>
+                        <td th:text="${item.id}">主键ID</td>
+                        <td th:text="${item.archivesNo}">档案编号</td>
+                        <td th:text="${item.resultName}">项目名称</td>
+                        <td th:text="${#dicts.keyValue('INDUSTRY_TYPE', item.industry)}">所属行业</td>
+                        <td th:text="${item.dept.title}">所属工会</td>
+                        <td th:text="${#dicts.keyValue('AUDIT_STATUS', item.auditStatus)}">审核状态</td>
+                        <td>
+                            <a class="open-popup" data-title="详细信息" th:if="${item.auditStatus ge '4' or item.auditStatus eq '11' }" th:attr="data-url=@{'/resultManager/result/frist/detail/'+${item.id}+'?year='+${year}}" data-size="max" href="#">详情表</a>
+                            <a class="open-popup" data-title="审核详情" th:if="${item.auditStatus ge '4' and item.auditStatus le '6'}" th:attr="data-url=@{'/resultManager/result/frist/audit/'+${item.id}+'?year='+${year}}" data-size="max" href="#">审核</a>
+                            <a class="ajax-get" data-msg="您是否确认提交专家审核"  data-title="提交专家" th:if="${item.auditStatus eq '5'}" th:href="@{'/resultManager/result/first/report/'+${item.id}+'?year='+${year}}" data-size="700,500">提交专家</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div th:replace="/common/fragment :: page"></div>
+        </div>
+    </div>
+<script th:replace="/common/template :: script"></script>
+<script th:src="@{/js/plugins/jquery-3.3.1.min.js}"></script>
+<script type="text/javascript">
+      $(function(){
+    	 var auditStatusList= $("#auditStatusList").val();
+    	 console.log(auditStatusList);
+    	 if(auditStatusList=='4'){
+    		 console.log(1);
+    		 $(".layui-tab-title li").removeClass("layui-this");
+    		 $(".layui-tab-title li a").css({color:'black'});
+    		 $("#id1").addClass("layui-this");
+    		 $("#id1 a").css({color:'red'});
+    	 }else if(auditStatusList=='5,7,8,9') {
+    		 $(".layui-tab-title li").removeClass("layui-this");
+    		 $(".layui-tab-title li a").css({color:'black'});
+    		 $("#id2").addClass("layui-this");
+    		 $("#id2 a").css({color:'red'});
+    	 }else if(auditStatusList=='6') {
+    		 $(".layui-tab-title li").removeClass("layui-this");
+    		 $(".layui-tab-title li a").css({color:'black'});
+    		 $("#id3").addClass("layui-this");
+    		 $("#id3 a").css({color:'red'});
+    	 }else if(auditStatusList=='11') {
+    		 $(".layui-tab-title li").removeClass("layui-this");
+    		 $(".layui-tab-title li a").css({color:'black'});
+    		 $("#id4").addClass("layui-this");
+    		 $("#id4 a").css({color:'red'});
+    	 }
+      })
+</script>
+</body>
+</html>

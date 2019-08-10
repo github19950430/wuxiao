@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/common/template :: header(~{::title},~{::link},~{::style})">
+    <meta charset="utf-8">
+    <title>layui</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <!-- 注意：如果你直接复制所有代码到本地，上述css路径需要改成你本地的 -->
+</head>
+<header th:fragment="leaderin_detail">
+    <link rel="stylesheet" th:href="@{/lib/xinzzengdetail.css}"  media="all">
+    <style>
+        .title {
+            height: 50px;
+            line-height: 50px;
+            background-color: #f2f2f2;
+            font-size: 16px;
+        }
+
+        .layui-table td, .layui-table th {
+            position: relative;
+            padding: 0;
+            min-height: 20px;
+            line-height: 20px;
+            font-size: 14px;
+        }
+        .taclh{
+            text-align: center;
+            line-height: 45PX;
+            display: inline-block;
+            width: 100%;
+            height: 45px;
+        }
+        .fw{
+            font-weight: bold;
+        }
+    </style>
+    <body>
+    <div style="cursor: pointer;position: absolute;right: 15px;top: 0;width: 60px;height: 50px;display: flex;justify-content: space-around;align-items: center">
+        <img th:src="@{/images/dayin.png}" alt="" style="width: 20px">
+        <span style="font-size:13px;color: #707070;" onclick="abc('abc')">打印</span>
+    </div>
+    <form th:action="@{/modelstudio/leaderinformation/add}" style="width:900px;margin: 0 auto;" class="abc">
+        <table class="layui-table timo-detail-table" style="text-align: center;">
+            <colgroup>
+                <col width="100px">
+                <col>
+                <col width="100px">
+                <col>
+            </colgroup>
+            <caption class="title" style="position: relative;font-size: 20px">带头人情况
+
+            </caption>
+            <tbody>
+            <tr>
+                <td style="width: 100%">
+                    <div class="top2">
+                        <div class="top2Left br">
+                            <div class="top2Leftitem2 top2Leftitem bb">
+                                <div class="top2Leftitemleft br itemtah fw">姓名</div>
+                                <div class="top2Leftitemright ">
+                                    <div class="top2Leftitemright_item br">
+                                        <span class="taclh" th:text="${leaderinformation.name}"></span>
+                                    </div>
+                                    <div class="top2Leftitemright_item">
+                                        <div class="top2Leftitemright_item br itemtah fw">性别</div>
+                                        <div class="top2Leftitemright_item itemtah">
+                                            <span class="taclh" th:text="${#dicts.keyValue('USER_SEX', leaderinformation.sex)}"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="top2Leftitem2 top2Leftitem bb">
+                                <div class="top2Leftitemleft br itemtah fw">学历</div>
+                                <div class="top2Leftitemright">
+                                    <div class="top2Leftitemright_item br">
+                                        <span class="taclh" th:text="${#dicts.keyValue('STANDARD_CULTURE', leaderinformation.education)}"></span>
+                                    </div>
+                                    <div class="top2Leftitemright_item">
+                                        <div class="top2Leftitemright_item br itemtah fw">民族</div>
+                                        <div class="top2Leftitemright_item">
+                                            <span class="taclh" th:text="${#dicts.keyValue('NATION', leaderinformation.nation)}"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="top2Leftitem3 top2Leftitem bb">
+                                <div class="top2Leftitemleft br itemtah fw">专业/工种</div>
+                                <div class="top2Leftitemright">
+                                    <span class="taclh" th:text="${leaderinformation.major}"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="top2Right">
+                            <div class="top2Right_bott" style="overflow: hidden">
+                                <div class="top2Right_bott_left br">
+                                    <div class="top2Leftitem3 top2Leftitem bb">
+                                        <div class="top2Leftitemleft br itemtah fw">出生年月</div>
+                                        <div class="top2Leftitemright">
+                                            <span class="taclh" th:text="${#dates.format(leaderinformation?.dateofbirth, 'yyyy-MM-dd')}"></span>
+                                        </div>
+                                    </div>
+                                    <div class="top2Leftitem3 top2Leftitem bb">
+                                        <div class="top2Leftitemleft br itemtah fw">政治面貌</div>
+                                        <div class="top2Leftitemright">
+                                          <span class="taclh" th:text="${#dicts.keyValue('POLITICS_STATUS', leaderinformation.politics_status)}"></span>
+                                        </div>
+                                    </div>
+                                    <div class="top2Leftitem3 top2Leftitem bb">
+                                        <div class="top2Leftitemleft br itemtah fw">技术职称</div>
+                                        <div class="top2Leftitemright">
+                                            <span class="taclh" th:text="${leaderinformation.technical_titles}"></span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="top2Right_bott_right bb">
+                                    <div class="imgBox">
+                                        <img class="layui-upload-img" id="touxiangimg" th:src="${leaderinformation.head_portrait}">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="top3">
+                        <div class="top3left " style="width: 100%">
+                            <div class="top3left_left br itemtah bb fw">何年获何种省部级（含）以上劳模荣誉称号*</div>
+                            <div class="top3left_right itemtah bb">
+                                <span class="taclh" th:text="${leaderinformation.honorary_title}"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="top4">
+                        <div class="top4Item1 br itemtah fw">联系电话</div>
+                        <div class="top4Item2 br">
+                            <span class="taclh" th:text="${leaderinformation.phone}"></span>
+                        </div>
+                        <div class="top4Item3 br itemtah fw" style="width:14.6%">E-mail</div>
+                        <div class="top4Item4 br" style="width:18.6%">
+                            <span class="taclh" th:text="${leaderinformation.email}"></span>
+                        </div>
+                        <div class="top4Item5 br itemtah fw">推荐单位</div>
+                        <div class="top4Item6 ">
+                            <span class="taclh" th:text="${leaderinformation.unit}"></span>
+                        </div>
+                    </div>
+                    <div class="top5 itemtah bt bb">
+                        骨干成员情况（可附表）
+                    </div>
+                    <div class="top6">
+                        <div class="top6ItemBox  bb">
+                            <div class="top6ItemBox_item br itemtah fw">姓名</div>
+                            <div class="top6ItemBox_item br itemtah fw">性别</div>
+                            <div class="top6ItemBox_item br itemtah fw">出生年月</div>
+                            <div class="top6ItemBox_item br itemtah fw">学历</div>
+                            <div class="top6ItemBox_item br itemtah fw">技术职称</div>
+                            <div class="top6ItemBox_item br itemtah fw">所在部门</div>
+                            <div class="top6ItemBox_item itemtah fw" style="width: 14.8%">主要分工</div>
+                        </div>
+                        <div class="top6ItemBox bb topinputs" th:each="item:${allByforegoerIdList}">
+                            <div class="top6ItemBox_item br itemtah">
+                                <span class="taclh" th:text="${item.keyname}"></span>
+                            </div>
+                            <div class="top6ItemBox_item br itemtah">
+                                <span class="taclh" th:text="${item.keysex}"></span>
+                            </div>
+                            <div class="top6ItemBox_item br itemtah">
+                                <span class="taclh" th:text="${item.keyyear}"></span>
+                            </div>
+                            <div class="top6ItemBox_item br itemtah">
+                                <span class="taclh" th:text=" ${#dicts.keyValue('STANDARD_CULTURE', item.keyeducation)}"></span>
+                            </div>
+                            <div class="top6ItemBox_item br itemtah">
+                                <span class="taclh" th:text="${item.keytechnical}"></span>
+                            </div>
+                            <div class="top6ItemBox_item br itemtah">
+                                <span class="taclh" th:text="${item.keydepartment}"></span>
+                            </div>
+                            <div class="top6ItemBox_item itemtah " style="width: 14.8%">
+                                <span class="taclh" th:text="${item.keydivision}"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="top8 ">
+                        <div class="top8_left br bb">
+                            业绩简介
+                            （请按下部申报材料参考提供格式，800字以内）
+                        </div>
+                        <div class="top8_right bb">
+                        <textarea name="performance" placeholder="请输入内容" class="layui-textarea"
+                                  style="height: 100%;border: none;"
+                                  th:text="${leaderinformation?.performance}"></textarea>
+                        </div>
+                    </div>
+                    <div class="top10">
+                        <div class="top10_top">
+                            <div class="top10_top_left">附件：</div>
+                            <div id="file_3" style="height: 45px;line-height: 45px;">
+                                <a th:each="item:${allByleaderIdList}" th:href="${item.accessory_url}" target="_blank" th:attr="id=${item.id}">
+                                    [[${item.accessory_name}]]
+                                </a>
+                            </div>
+                            </br>
+                        </div>
+                        <div class="top10_TextS">
+                            <p class="top10_title">一、基本情况</p>
+                            <p class="top10_text">工作室建立的背景及意义；简述本工作室重点研究、攻关的领域及方向；活动场地、配套设备情况；
+                                资金投入及使用情况；人员结构及成员基本信息、取得成果、成绩和荣誉等。</p>
+                            <p class="top10_title">二、近三年来活动开展情况</p>
+                            <p class="top10_text">（一）制度建立情况：管理制度、活动制度，近期及中长期规划等；</p>
+                            <p class="top10_text">（二）创新成果情况：取得专利、创新攻关、创新成果转化等情况；</p>
+                            <p class="top10_text">（三）科技人才培养情况：培训内容及场次，培训人数及技能提升情况，师带徒情况等；</p>
+                            <p class="top10_text">（四）取得效益情况：经济效益与社会效益；</p>
+                            <p class="top10_text">（五）开展技术交流协作情况：形式、场次、效果等；</p>
+                            <p class="top10_text">（六）提供3张工作室现场照片电子版。（若有省总领导现场指导照片，请一起提供）；</p>
+                        </div>
+                        <!--<div class="botBtn">
+                            <button class="layui-btn layui-btn-primary close-popup" style="width: 120px;height: 40px;border-radius: 5px;background: #cccccc">关闭</button>
+                        </div>-->
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+
+        </table>
+    </form>
+    </body>
+</header>
+<!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
+<script th:replace="/common/template :: script"></script>
+<script th:inline="javascript">
+        layui.use(['form', 'layedit', 'laydate', 'upload'], function () {
+            var form = layui.form
+                , layer = layui.layer
+                , layedit = layui.layedit
+                , laydate = layui.laydate
+                , upload = layui.upload
+                ,$ = layui.jquery
+
+            //日期
+            laydate.render({
+                elem: '#test1'
+            });
+            laydate.render({
+                elem: '#test2'
+            });
+            laydate.render({
+                elem: '#date1'
+            });
+            laydate.render({
+                elem: '#date2'
+            });
+        });
+    </script>
+</html>

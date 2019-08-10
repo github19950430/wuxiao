@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/common/template :: header(~{::title},~{::link},~{::style})">
+    <link rel="stylesheet" th:href="@{/lib/zTree_v3/css/zTreeStyle/zTreeStyle.css}" type="text/css">
+    <style>
+        input{
+            border: none;
+        }
+        .layui-input{
+            border: none;
+        }
+        .layui-textarea{
+            border: none;
+        }
+        .clearfix:after{
+            content:".";
+            display:block;
+            height:0;
+            visibility:hidden;
+            clear:both;
+        }
+        .clearfix { zoom:1;}
+        table{
+            border-collapse :collapse ;
+        }
+        td {
+            height:40px;
+            border :1px solid black;
+            font-size:12px;
+            text-align :center;
+            width: 50%;
+        }
+        td>div>div:nth-child(1){
+            width: 30%;
+        }
+        td>div>div:nth-child(2){
+            width: 69%;
+        }
+        input{
+            border: none;
+        }
+        .lay-lb input{
+            margin: 0 10px;
+        }
+        .lay-date ul li{
+            float: left;
+            height: 45px;
+            line-height: 45px;
+            border: 1px solid #000;
+        }
+        .lay-date ul li:nth-child(1){
+            border:none;
+        }
+        .lay-date ul li:nth-child(2){
+            border-right:none;
+            border-top: none;
+            border-bottom: none;
+        }
+        .lay-date ul li:nth-child(3){
+            border-right:none;
+            border-top: none;
+            border-bottom: none;
+        }
+        .lay-date ul li:last-child{
+            border-right:none;
+            border-top: none;
+            border-bottom: none;
+        }
+        .lay-textarea textarea{
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        .layui-laydate-content td{
+            border: none;
+        }
+        .lay-juxing ul li{
+            float: left;
+        }
+        .wuxiao_img div{
+            width:100%;
+            height:100%;
+            overflow: auto;
+            /* overflow-x:hidden; */
+        }
+        .wuxiao_img div a{
+            margin: 5px;
+            width: 13%;
+            height: 74%;
+            position: relative;
+            display: block;
+            float: left;
+            border: 3px solid #ddd;
+        }
+
+        .wuxiao_img div a img{
+            width:100%;
+            height:100%;
+            margin: 0 0 20px 0;
+        }
+        .wuxiao_img div a i{
+            margin: 0;
+            position: absolute;
+            z-index: 99;
+            height: 18px;
+            width: 18px;
+            text-align: center;
+            opacity: 1;
+            font-size: 18px;
+            top: -4px;
+            right: -10px;
+            line-height: 18px;
+        }
+
+        .wuxiao_file div{
+            width:100%;
+            height:100%;
+            overflow: auto;
+        }
+        .wuxiao_file div a{
+            width:60px;
+            height:80px;
+            border:2px solid #ddd;
+            padding:6px 5px;
+            margin:0 3px;
+        }
+        .wuxiao_file div a i{
+            font-size: 18px;
+        }
+        .xui-upload-frame{
+            position:fixed;
+        }
+
+    </style>
+</head>
+<body>
+<form th:action="@{/modelstudio/innovationBase/add}">
+<input type="hidden" name="id" th:if="${innovationBase}" th:value="${innovationBase.id}">
+<input type="hidden" name="picPath"   id="uploadImg" th:value="${innovationBase?.picPath}">
+<input type="hidden" name="videoPath" id="uploadVideo" th:value="${innovationBase?.videoPath}">
+<input type="hidden" name="annexPath"  id="uploadFile" th:value="${innovationBase?.annexPath}">
+<input type="hidden" name="deptId" id="deptId"   th:value="${innovationBase?.deptId}">
+<table style="width: 1100px;margin: 0 auto">
+    <tr>
+        <td colspan="4" style="font-size: 20px;font-weight: bold;">基地详情</td>
+    </tr>
+    <tr>
+        <td >
+            <div style="width: 100%;height: 45px;line-height: 45px">
+                <div style="width: 30%;float: left;border-right: 1px solid #000">
+                    所属工会
+                </div>
+                <div style="width: 69% ;float: left">
+                    <input class="layui-input select-tree" th:attr="data-url=@{/system/dept/list}, data-value=${dept?.id}" th:value="${innovationBase?.deptName}" type="text" id="deptName" placeholder="请选择所在工会">
+                </div>
+            </div>
+        </td>
+        <td>
+            <div style="width: 100%;height: 45px;line-height: 45px">
+                <div style="width: 30%;float: left;border-right: 1px solid #000">
+                    所在单位
+                </div>
+                <div style="width: 69% ;float: left">
+                    <input class="layui-input" type="text" name="company" placeholder="请输入所在单位" th:value="${innovationBase?.company}">
+                </div>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div style="width: 100%;height: 45px;line-height: 45px">
+                <div style="float: left;border-right: 1px solid #000">
+                    基地名称
+                </div>
+                <div style="float: left">
+                    <input class="layui-input" type="text" name="baseName" placeholder="请输入基地名称" th:value="${innovationBase?.baseName}">
+                </div>
+            </div>
+        </td>
+        <td>
+            <div style="width: 100%;height: 45px;line-height: 45px">
+                <div style="float: left;border-right: 1px solid #000">
+                    基地创建时间
+                </div>
+                <div style="float: left">
+                    <input type="text" class="layui-input" id="baseDate" name="baseDate" placeholder="yyyy-MM-dd"
+                           th:value="${#dates.format(innovationBase?.baseDate, 'yyyy-MM-dd')}" style="border: none">
+                </div>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td style="">
+            <div style="width: 100%;height: 45px;line-height: 45px">
+                <div style="float: left;border-right: 1px solid #000">
+                    所属行业
+                </div>
+                <div style="float: left">
+                    <select class="timo-search-select" name="industry" mo:dict="INDUSTRY_TYPE" mo-selected="${innovationBase?.industry}"
+                            style="border: none;width: 100%;height: 100%;margin: 0 auto;"></select>
+                </div>
+            </div>
+        </td>
+        <td></td>
+    </tr>
+    <tr>
+        <td colspan="3">
+            <div style="width: 100%;height: 100px;line-height: 45px">
+                <div style="width:15%;float: left;border-right: 1px solid #000;heigth:101px;line-height: 101px;">
+                    基地简介
+                </div>
+                <div style="float: left;width: 84%" >
+                    <textarea placeholder="请输入基地简介" class="layui-textarea" name="baseDesc" th:text="${innovationBase?.baseDesc}"></textarea>
+                </div>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div style="width: 100%;height: 45px;line-height: 45px">
+                <div style="float: left;border-right: 1px solid #000;">
+                    联系人
+                </div>
+                <div style="float: left">
+                    <input class="layui-input" type="text" name="baseContcat" placeholder="请输入联系人" th:value="${innovationBase?.baseContcat}">
+                </div>
+            </div>
+        </td>
+        <td>
+            <div style="width: 100%;height: 45px;line-height: 45px">
+                <div style="float: left;border-right: 1px solid #000">
+                    联系电话
+                </div>
+                <div style="float: left">
+                    <input class="layui-input" type="text" name="basePhone" placeholder="请输入联系电话" th:value="${innovationBase?.basePhone}">
+                </div>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="4">
+            <div class="lay-date" >
+                <ul class="clearfix" style="width: 100%">
+                    <li style="float: left;width: 15%;height: 80px;line-height: 80px;">
+                        上传图片(可选)
+                    </li>
+                    <li style="width:20%;height: 80px;line-height: 80px;">
+                        <button type="button" class="layui-btn" style="width: 50%;height: 50%;" id="btnUploadImg">
+                            <i class="layui-icon"></i>上传图片
+                        </button>
+                    </li>
+                    <li style="width:59%;height: 80px;line-height: 80px;" class="wuxiao_img">
+                        <div id="file_1">
+                            <a th:each="item:${resultImg}" th:href="${item.path}" target='_blank' th:attr="id=${item.id}">
+                                <img th:src="${item.path}" />
+                                <i onclick='deleteFile(this,event);' class='fa fa-times-circle'></i>
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="4">
+            <div class="lay-date">
+                <ul class="clearfix" style="width: 100%">
+                    <li style="float: left;width: 15%;height: 80px;line-height: 80px;">
+                        上传视频(可选)
+                    </li>
+                    <li style="width:20%;height: 80px;line-height: 80px;">
+                        <button type="button" class="layui-btn "  style="width: 50%;height: 50%;" id="btnUploadVideo">
+                            <i class="layui-icon"></i>上传视频
+                        </button>
+                    </li>
+                    <li style="width: 59%;height: 80px;line-height: 80px;" class="wuxiao_file">
+                        <div id="file_2">
+                            <a th:each="item:${resultVideo}" th:href="${item.path}" target="_blank" th:attr="id=${item.id}">
+                                [[${item.name}]]
+                                <i onclick="deleteFile(this,event);" class="fa fa-times-circle"></i>
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="4">
+            <div class="lay-date">
+                <ul class="clearfix" style="width: 100%">
+                    <li style="float: left;width: 15%;height: 80px;line-height: 80px;">
+                        上传附件(可选)
+                    </li>
+                    <li style="width:20%;height: 80px;line-height: 80px;">
+                        <button type="button" class="layui-btn" name="uploadImg" style="width: 50%;height: 50%;" id="btnUploadFile">
+                            <i class="layui-icon"></i>上传附件
+                        </button>
+                    </li>
+                    <li style="width: 59%;height: 80px;line-height: 80px;" class="wuxiao_file">
+                        <div id="file_3">
+                            <a th:each="item:${resultFile}" th:href="${item.path}" target="_blank" th:attr="id=${item.id}">
+                                [[${item.name}]]
+                                <i onclick="deleteFile(this,event);" class="fa fa-times-circle"></i>
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="4" style="height: 60px">
+            <div class="layui-form-item timo-finally" style="margin-bottom: 0;">
+                <button class="layui-btn ajax-submit1"><i class="fa fa-check-circle"></i> 保存</button>
+                <button class="layui-btn btn-secondary close-popup"><i class="fa fa-times-circle"></i> 关闭</button>
+            </div>
+        </td>
+    </tr>
+</table>
+</form>
+<script th:src="@{/js/plugins/jquery-3.3.1.min.js}"></script>
+<script th:replace="/common/template :: script"></script>
+<script th:src="@{/js/plugins/web-uploader/js/Q.js}"></script>
+<script th:src="@{/js/plugins/web-uploader/js/spark-md5.js}"></script>
+<script th:src="@{/js/plugins/web-uploader/js/Q.md5File.js}"></script>
+<script th:src="@{/js/plugins/web-uploader/js/Q.Uploader.js}"></script>
+<script th:src="@{/js/plugins/web-uploader/js/Q.Uploader.slice.js}"></script>
+<script th:src="@{/js/plugins/web-uploader/js/Q.Uploader.jquery.js}"></script>
+<script th:src="@{/js/plugins/web-uploader/js/Q.Uploader.UI.Custom.js}"></script>
+<script type="text/javascript" th:src="@{/lib/zTree_v3/js/jquery.ztree.core.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/timoTree.js}"></script>
+<script type="text/javascript">
+    var local = window.localStorage;
+    $.fn.selectTree({
+        rootTree: '全部',
+        onSelected: function(treeNode){
+            local.setItem('deptTitle', treeNode.name);
+            $("#deptId").val(treeNode.id);
+        }
+    });
+    layui.use(['laydate','form'],function() {
+        var laydate = layui.laydate;
+        var form = layui.form;
+        useDate();
+        function useDate(){
+            laydate.render({
+                elem : '#baseDate'
+            });
+        }
+        $(document).on("click", ".ajax-submit1", function (e) {
+            e.preventDefault();
+            var fileImg   = new Array();
+            var fileVideo = new Array();
+            var fileFile  = new Array();
+
+            $("#file_1 a").each(function(){
+                fileImg.push(jQuery(this).attr("id"));
+            });
+
+            $("#file_2 a").each(function(){
+                fileVideo.push(jQuery(this).attr("id"));
+            });
+
+            $("#file_3 a").each(function(){
+                fileFile.push(jQuery(this).attr("id"));
+            });
+
+            $("#uploadImg").val(fileImg.join(","));
+            $("#uploadVideo").val(fileVideo.join(","));
+            $("#uploadFile").val(fileFile.join(","));
+
+            var form = $(this).parents("form");
+            var url = form.attr("action");
+            var serializeArray = form.serializeArray();
+            $.post(url, serializeArray, function (result) {
+                if (result.data == null) {
+                    result.data = 'submit[refresh]';
+                }
+                $.fn.Messager(result);
+            });
+        });
+
+    })
+</script>
+<script>
+
+    fileUploads($("#btnUploadImg"),".jpg,.png,.gif",true,function(data){
+        var ImgHtml="<a href='"+data.path+"' target='_blank' id='"+data.id+"'><img src='"+data.path+"' /><i onclick='deleteFile(this,event);' class='fa fa-times-circle'></i></a>";
+        $("#file_1").append(ImgHtml);
+    });
+
+    fileUploads($("#btnUploadVideo"),".rmvb,.move,.mp4,.avl,.flv,.3gp",true,function(data){
+        var VideoHtml="<a href='"+data.path+"' target='_blank' id='"+data.id+"'>"+data.name+" <i onclick='deleteFile(this,event);' class='fa fa-times-circle'></i></a>";
+        $("#file_2").append(VideoHtml);
+    });
+
+    fileUploads($("#btnUploadFile"),".doc,.docx,.ppt,.pdf,.xls,.xlsx",true,function(data){
+        var FileHtml="<a href='"+data.path+"' target='_blank' id='"+data.id+"'>"+data.name+" <i onclick='deleteFile(this,event);' class='fa fa-times-circle'></i></a>";
+        $("#file_3").append(FileHtml);
+    });
+
+    function fileUploads(obj,allows,multiple,call){
+        var QU=obj.XUploader({
+            url: "/wuxiao/sliceUpload/uploadFile",
+            allows:allows,
+            multiple:multiple,
+            on: {
+                complete: function (task) {
+                    if (task.state != XUploader.COMPLETE) return console.log(task.name + ": " + XUploader.getStatusText(task.state) + "!");
+                    var json = task.json;
+                    if (!json) return console.log(task.name + ": 服务器未返回正确的数据！<br />");
+                    if (this.index >= this.list.length - 1) {
+                        var obj=JSON.parse(task.response);
+                        call(obj.data);
+                    }
+                }
+            }
+        });
+        return QU;
+    }
+    function QError(status) {
+        if (status == "ext") {
+            layer.msg("上传的文件类型限制");
+        }
+    }
+    function deleteFile(This,ev){
+        var T=jQuery(This).parent();
+        var oEvent = ev || event;
+        oEvent.stopPropagation();
+        oEvent.preventDefault();
+        T.remove();
+    }
+</script>
+</body>
+</html>

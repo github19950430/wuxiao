@@ -1,0 +1,67 @@
+
+table {
+	border-collapse: collapse;
+}
+
+td {
+	height: 40px;
+	border: 1px solid black;
+	font-size: 12px;
+	text-align: center;
+}
+
+input {
+	border: none;
+	width: 100%;
+	height: 100%;
+	text-align:center;
+	text-align: -webkit-center;
+}
+/* 去除webkit中input的type="number"时出现的上下图标 */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+.tabletile{
+	font-size: 15px;
+	font-weight: bold;
+}
+.infor {
+	width: 75%;
+}
+.inmo {
+	width: 25%;
+}
+.inforcon {
+	width: 60%;
+}
+.inforwi {
+	width: 15%;
+}
+.inforcon1 {
+	width: 20%;
+}
+
+.inforcon3 {
+	width: 35%;
+}
+.inforcon31 {
+	width: 15%;
+}
+.inforcon32 {
+	width: 20%;
+}
+.inforwi1 {
+	width: 25%;
+}
+
+tr td {
+	height: 45px;
+	line-height: 45px;
+	
+}
+
+

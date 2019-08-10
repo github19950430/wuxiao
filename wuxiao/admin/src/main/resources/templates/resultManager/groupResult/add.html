@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/common/template :: header(~{::title},~{::link},~{::style})">
+<link th:href="@{/js/plugins/web-uploader/css/uploader.custom.css}" rel="stylesheet">
+<style>
+        .clearfix:after{
+            content:".";
+            display:block;
+            height:0;
+            visibility:hidden;
+            clear:both;
+        }
+        .clearfix { zoom:1;}
+        table
+
+        {
+
+            border-collapse :collapse ;
+
+        }
+        td
+
+        {
+
+            height:40px;
+
+            border :1px solid black;
+
+            font-size:12px;
+
+            text-align :center;
+
+        }
+        input{
+            border: none;
+        }
+        .lay-lb input{
+            margin: 0 10px;
+        }
+        .lay-date ul li{
+            float: left;
+            height: 45px;
+            line-height: 45px;
+            border: 1px solid #000;
+        }
+        .lay-date ul li:nth-child(1){
+            border:none;
+        }
+        .lay-date ul li:nth-child(2){
+            border-right:none;
+            border-top: none;
+            border-bottom: none;
+        }
+        .lay-date ul li:nth-child(3){
+            border-right:none;
+            border-top: none;
+            border-bottom: none;
+        }
+        .lay-date ul li:last-child{
+            border-right:none;
+            border-top: none;
+            border-bottom: none;
+        }
+        .lay-textarea textarea{
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        .layui-laydate-content td{
+            border: none;
+        }
+        .lay-juxing ul li{
+            float: left;
+        }
+        .addbtn{
+            display: inline-block;
+		    font-size: 26px;
+		    color: #f00;
+		    float: right;
+		    cursor: pointer;
+		    width: 40px;
+		    line-height: 47px;
+		    margin-right: 5px;
+        }
+         .wuxiao_img div{
+			width:100%;
+			height:100%;
+			overflow: auto;
+			/* overflow-x:hidden; */
+		}
+		.wuxiao_img div a{
+			margin: 5px;
+			width: 13%;
+			height: 74%;
+			position: relative;
+			display: block;
+			float: left;
+			border: 3px solid #ddd;	
+		}
+		
+		.wuxiao_img div a img{
+			width:100%;
+			height:100%;
+			margin: 0 0 20px 0;
+		}
+		.wuxiao_img div a i{
+			margin: 0;
+			position: absolute;			
+			z-index: 99;			
+			height: 18px;			
+			width: 18px;			
+			text-align: center;			
+			opacity: 1;			
+			font-size: 18px;			
+			top: -4px;			
+			right: -10px;			
+			line-height: 18px;
+		}
+		
+		.wuxiao_file div{
+			width:100%;
+			height:100%;
+			overflow: auto;
+		}
+		.wuxiao_file div a{
+			width:60px;
+			height:80px;
+			border:2px solid #ddd;
+			padding:6px 5px;
+			margin:0 3px;
+		}
+		.wuxiao_file div a i{
+			font-size: 18px;
+		}
+	   .xui-upload-frame{
+		 position:fixed;
+	   }
+    </style>
+</head>
+<body>
+
+<form th:action="@{/groupResultManager/result/add}">
+	<input type="hidden" name="id" th:if="${result}" th:value="${result.id}">
+	<input type="hidden" name="uploadResultImg"   id="uploadResultImg" th:value="${result.uploadResultImg}">
+	<input type="hidden" name="uploadPatentImg"   id="uploadPatentImg" th:value="${result.uploadPatentImg}">
+	<input type="hidden" name="uploadHonorImg"    id="uploadHonorImg" th:value="${result.uploadHonorImg}">
+	<input type="hidden" name="uploadVideo" id="uploadVideo" th:value="${result.uploadVideo}">
+	<input type="hidden" name="uploadFile"  id="uploadFile" th:value="${result.uploadFile}">
+    <table style="width: 1100px;margin: 0 auto">
+        <tr>
+            <td colspan="4" style="font-size: 20px;font-weight: bold;">新增“五小”竞赛项目</td>
+        </tr>
+        <tr>
+            <td>
+                <div style="width: 100%;height: 45px;line-height: 45px">
+                    <div style="width: 20%;float: left;border-right: 1px solid #000">
+                        申报日期
+                    </div>
+                    <div style="width: 79% ;float: left">
+                        <input type="text" class="layui-input" id="add" name="declareDate" placeholder="yyyy-MM-dd" 
+                        th:value="${#dates.format(result?.declareDate, 'yyyy-MM-dd')}" style="border: none">
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div style="width: 100%;height: 45px;line-height: 45px">
+                    <div style="width: 20%;float: left;border-right: 1px solid #000">
+                        所属行业
+                    </div>
+                    <div style="width: 79% ;float: left;line-height: 45px;height: 45px;">
+                        <select class="timo-search-select" name="Industry" mo:dict="INDUSTRY_TYPE" mo-selected="${result?.industry}" 
+                        style="border: none;width: 100%;height: 100%;margin: 0 auto;"></select>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div style="width: 100%;height: 45px;line-height: 45px" class="clearfix">
+                    <div style="width: 20%;float: left;border-right: 1px solid #000">
+                        项目类型
+                    </div>
+<!--                     <select class="timo-search-select" name="resultType" mo:dict="RESULT_TYPE" mo-selected="${result?.resultType}"></select> -->
+                    <div class="lay-lb" style="width: 79% ;float: left">
+	                    <select class="timo-search-select" name="resultType" mo:dict="RESULT_TYPE" mo-selected="${result?.resultType}" 
+	                    		style="border: none;width: 100%;height: 100%;">
+                    	</select>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        
+        <tr>
+            <td>
+                <div style="width: 100%;height: 45px;line-height: 45px">
+                    <div style="width: 20%;float: left;border-right: 1px solid #000">
+                        项目名称
+                    </div>
+                    <div style="width: 79% ;float: left">
+                        <input class="layui-input" type="text" name="resultName" placeholder="请输入成果名称" th:value="${result?.resultName}" style="border: none;">
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div style="width: 100%;height: 45px;line-height: 45px">
+                    <div style="width: 20%;float: left;border-right: 1px solid #000">
+                        完成单位
+                    </div>
+                    <div style="width: 79% ;float: left">
+                        <input class="layui-input" type="text" name="unit" placeholder="请输入完成单位" th:value="${result?.unit}" style="border: none;">
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="lay-date">
+                    <ul class="clearfix" style="width: 100%">
+                        <li style="width: 20%">
+                            项目带头人
+                        </li>
+                        <li style="width: 30%">
+                            <select class="timo-search-select" name="foregoer" mo:list="${map}" mo-selected="${result?.foregoer?.id}" style="border: none;width:70%;height: 100%"></select>
+                            <a th:href="@{/foregoerManager/foregoer/index}"><span style="" class="addbtn">+</span></a>
+                        </li>
+                        <li style="width: 20%">
+                            项目实施时间
+                        </li>
+                        <li style="width: 29%">
+                        	<input type="text" class="layui-input" id="add1" name="implementDate" placeholder="yyyy-MM-dd" th:value="${#dates.format(result?.implementDate, 'yyyy-MM-dd')}" style="border: none">
+                        </li>
+                    </ul>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="lay-date">
+                    <ul class="clearfix" style="width: 100%">
+                        <li style="width: 20%">
+                            是否获得专利
+                        </li>
+                        <li style="width: 79%">
+                            <input class="layui-input" type="text" name="isPatent" placeholder="请输入是否获得专利" th:value="${result?.isPatent}" style="border: none">
+                        </li>
+                    </ul>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="lay-date">
+                    <ul class="clearfix" style="width: 100%">
+                        <li style="width: 20%">
+                            专利号
+                        </li>
+                        <li style="width: 30%">
+                            <input class="layui-input" type="text" name="patentNum" placeholder="请输入专利号" th:value="${result?.patentNum}" style="border: none">
+                        </li>
+                        <li style="width: 20%">
+                            专利授权公告日
+                        </li>
+                        <li style="width: 29%">
+                        	<input type="text" class="layui-input" id="add2" name="patentAccreditDate" placeholder="yyyy-MM-dd" th:value="${#dates.format(result?.patentAccreditDate, 'yyyy-MM-dd')}" style="border: none">
+                        </li>
+                    </ul>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3">
+                <div class="clearfix" style="width: 1100px">
+                    <div style="float: left;width: 20%;height: 150px;line-height: 150px;border-right: 1px solid #000;">
+                        项目成果简介（要有数据体现1000字以内）
+                    </div>
+                    <div style="float: left;width: 79.7%;height: 150px;" class="lay-textarea">
+                        <textarea placeholder="请输入成果简介" class="layui-textarea" name="resultIntro" th:text="${result?.resultIntro}"></textarea>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3">
+                <div class="clearfix" style="width: 1100px">
+                    <div style="float: left;width: 20%;height: 150px;line-height: 150px;border-right: 1px solid #000;">
+                        应用前景
+                    </div>
+                    <div style="float: left;width: 79.7%;height: 150px;" class="lay-textarea">
+                        <textarea placeholder="请输入应用前景" class="layui-textarea" name="prospects" th:text="${result?.prospects}"></textarea>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3">
+                <div class="clearfix" style="width: 1100px">
+                    <div style="float: left;width: 20%;height: 150px;line-height: 150px;border-right: 1px solid #000;">
+                        效益计算
+                    </div>
+                    <div style="float: left;width: 79.7%;height: 150px;" class="lay-textarea">
+                        <textarea placeholder="请详细描述各方面效益来源以及具体的计算公式" class="layui-textarea" name="benefitClac" th:text="${result?.benefitClac}"></textarea>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="lay-date">
+                    <ul class="clearfix" style="width: 100%">
+                        <li style="width: 20%">
+                            创造价值
+                        </li>
+                        <li style="width: 20%">
+                            <input class="layui-input" type="text" name="createPrice" placeholder="请输入创造价值(数字)" th:value="${result?.createPrice}" style="border: none">
+                        </li>
+                        <li style="width: 59.8%">
+                            *注：创造价值只能填写数字，不能填写汉字(万元)
+                        </li>
+                    </ul>
+                </div>
+            </td>
+        </tr>
+         <tr>
+            <td>
+                <div class="lay-date">
+                    <ul class="clearfix" style="width: 100%">
+                        <li style="float: left;width: 20%;height: 80px;line-height: 80px;">
+                            	请上传成果展示图片（可选）
+                        </li>
+                        <li style="width:20%;height: 80px;line-height: 80px;">
+                            <button type="button" class="layui-btn" style="width: 50%;height: 50%;" id="btnUploadImg1">
+					            <i class="layui-icon"></i>上传图片
+					        </button>
+                        </li>
+                        <li style="width:59%;height: 80px;line-height: 80px;" class="wuxiao_img">
+                           	<div id="file_1_1">
+                           		<a th:each="item:${resultImg}" th:href="${item.path}" target='_blank' th:attr="id=${item.id}">
+                           			<img th:src="${item.path}" />
+                           			<i onclick='deleteFile(this,event);' class='fa fa-times-circle'></i>
+                           		</a>
+                           	</div>
+                        </li>
+                    </ul>
+                </div>
+            </td>
+        </tr>
+         <tr>
+            <td>
+                <div class="lay-date">
+                    <ul class="clearfix" style="width: 100%">
+                        <li style="float: left;width: 20%;height: 80px;line-height: 80px;">
+                            	请上传专利相关图片（可选）
+                        </li>
+                        <li style="width:20%;height: 80px;line-height: 80px;">
+                            <button type="button" class="layui-btn" style="width: 50%;height: 50%;" id="btnUploadImg2">
+					            <i class="layui-icon"></i>上传图片
+					        </button>
+                        </li>
+                        <li style="width:59%;height: 80px;line-height: 80px;" class="wuxiao_img">
+                           	<div id="file_1_2">
+                           		<a th:each="item:${patentImg}" th:href="${item.path}" target='_blank' th:attr="id=${item.id}">
+                           			<img th:src="${item.path}" />
+                           			<i onclick='deleteFile(this,event);' class='fa fa-times-circle'></i>
+                           		</a>
+                           	</div>
+                        </li>
+                    </ul>
+                </div>
+            </td>
+        </tr>
+         <tr>
+            <td>
+                <div class="lay-date">
+                    <ul class="clearfix" style="width: 100%">
+                        <li style="float: left;width: 20%;height: 80px;line-height: 80px;">
+                            	请上传带头人最高荣誉图片（可选）
+                        </li>
+                        <li style="width:20%;height: 80px;line-height: 80px;">
+                            <button type="button" class="layui-btn" style="width: 50%;height: 50%;" id="btnUploadImg3">
+					            <i class="layui-icon"></i>上传图片
+					        </button>
+                        </li>
+                        <li style="width:59%;height: 80px;line-height: 80px;" class="wuxiao_img">
+                           	<div id="file_1_3">
+                           		<a th:each="item:${honorImg}" th:href="${item.path}" target='_blank' th:attr="id=${item.id}">
+                           			<img th:src="${item.path}" />
+                           			<i onclick='deleteFile(this,event);' class='fa fa-times-circle'></i>
+                           		</a>
+                           	</div>
+                        </li>
+                    </ul>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="lay-date">
+                     <ul class="clearfix" style="width: 100%">
+                        <li style="float: left;width: 20%;height: 80px;line-height: 80px;">
+                            	请上传成果展示宣传视频（可选）
+                        </li>
+                        <li style="width:20%;height: 80px;line-height: 80px;">
+                            <button type="button" class="layui-btn"  style="width: 50%;height: 50%;" id="btnUploadVideo">
+					            <i class="layui-icon"></i>上传视频
+					        </button>
+                        </li>
+                        <li style="width: 59%;height: 80px;line-height: 80px;" class="wuxiao_file">
+                            	<div id="file_2">
+                            		<a th:each="item:${resultVideo}" th:href="${item.path}" target="_blank" th:attr="id=${item.id}">
+                            			[[${item.name}]] 
+                            			<i onclick="deleteFile(this,event);" class="fa fa-times-circle"></i>
+                            	    </a>
+                            	</div>		
+                        </li>
+                    </ul>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="lay-date">
+                     <ul class="clearfix" style="width: 100%">
+                        <li style="float: left;width: 20%;height: 80px;line-height: 80px;">
+                            	请上传成果相关详情附件（可选）
+                        </li>
+                        <li style="width:20%;height: 80px;line-height: 80px;">
+                            <button type="button" class="layui-btn" name="uploadImg" style="width: 50%;height: 50%;" id="btnUploadFile">
+					            <i class="layui-icon"></i>上传附件
+					        </button>
+                        </li>
+                        <li style="width: 59%;height: 80px;line-height: 80px;" class="wuxiao_file">
+                            	<div id="file_3">
+                            		<a th:each="item:${resultFile}" th:href="${item.path}" target="_blank" th:attr="id=${item.id}">
+                            			[[${item.name}]] 
+                            			<i onclick="deleteFile(this,event);" class="fa fa-times-circle"></i>
+                            	    </a>
+                            	</div>		
+                        </li>
+                    </ul>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="4">
+                <div class="layui-form-item">
+                    <div class="layui-input-block" style="text-align: center;margin-top: 30px">
+                        <button class="layui-btn ajax-submit1" style="width: 120px;height: 40px;border-radius: 5px;"><i class="fa fa-check-circle"></i> 保存</button>
+            			<button class="layui-btn btn-secondary close-popup" style="width: 120px;height: 40px;border-radius: 5px;"><i class="fa fa-times-circle"></i> 成果申报</button>
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </table>
+</form>
+
+
+<script th:src="@{/js/plugins/jquery-3.3.1.min.js}"></script>
+<script th:replace="/common/template :: script"></script>
+<script th:src="@{/js/plugins/web-uploader/js/Q.js}"></script>
+<script th:src="@{/js/plugins/web-uploader/js/spark-md5.js}"></script>
+<script th:src="@{/js/plugins/web-uploader/js/Q.md5File.js}"></script>
+<script th:src="@{/js/plugins/web-uploader/js/Q.Uploader.js}"></script>
+<script th:src="@{/js/plugins/web-uploader/js/Q.Uploader.slice.js}"></script>
+<script th:src="@{/js/plugins/web-uploader/js/Q.Uploader.jquery.js}"></script>
+<script th:src="@{/js/plugins/web-uploader/js/Q.Uploader.UI.Custom.js}"></script>
+<script th:src="@{/js/result.js}"></script>
+</body>
+</html>

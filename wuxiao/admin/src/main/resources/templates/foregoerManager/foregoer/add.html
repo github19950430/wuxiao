@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/common/template :: header(~{::title},~{::link},~{::style})">
+<link rel="stylesheet" th:href="@{/lib/zTree_v3/css/zTreeStyle/zTreeStyle.css}" type="text/css">
+ <link th:href="@{/js/plugins/web-uploader/css/uploader.custom.css}" rel="stylesheet">
+ 
+ <style>
+        .clearfix:after{
+            content:".";
+            display:block;
+            height:0;
+            visibility:hidden;
+            clear:both;
+        }
+        .clearfix { zoom:1;}
+        table
+
+        {
+
+            border-collapse :collapse ;
+
+        }
+        td
+
+        {
+
+            height:40px;
+
+            border :1px solid black;
+
+            font-size:12px;
+
+            text-align :center;
+
+        }
+        input{
+            border: none;
+        }
+        .infor{
+            width: 18%;
+        }
+        .inmo{
+            width: 70%;
+        }
+        .imic{
+            width: 16.5%;
+        }
+        tr td.infor>div,tr td.inmo>div{
+            height: 45px;
+            line-height: 45px;
+            border-bottom: 1px solid #000;
+        }
+        tr td>div:last-child{
+            border: none;
+        }
+        .list ul{
+            width: 100%;
+            height:45px;
+        }
+        .list ul li{
+            float: left;
+            height:45px;
+            border-right: 1px solid #000;
+        }
+        .list ul li:last-child{
+            border: none;
+        }
+        .list ul li input{
+            width:100%;
+            height: 100%;
+        }
+        .list ul li select{
+            border: none;
+            display: block;
+            width: 100%;
+            height: 100%;
+            margin: 0 auto;
+        }
+        .lay-infor ul{
+            width: 100%;
+            height:45px;
+        }
+        .lay-infor ul li{
+            float: left;
+            height:45px;
+            border-right: 1px solid #000;
+        }
+        .lay-infor ul li:last-child{
+            border: none;
+        }
+        .dpic ul li{
+            float: left;
+            height: 45px;
+            line-height: 45px;
+            border: 1px solid #000;
+        }
+        .dpic ul li:nth-child(1){
+            border:none;
+        }
+        .dpic ul li:nth-child(2){
+            border-right:none;
+            border-top: none;
+            border-bottom: none;
+        }
+        .dpic ul li:nth-child(3){
+            border-right:none;
+            border-top: none;
+            border-bottom: none;
+        }
+        .dpic ul li:last-child{
+            border-right:none;
+            border-top: none;
+            border-bottom: none;
+        }
+        .dpic ul li select{
+            display: block;
+            width: 100%;
+            height: 100%;
+            margin: 0 auto;
+        }
+        .lay-textarea textarea{
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        .layui-laydate-content td{
+            border: none;
+        }
+        .upload-show .upload-item {
+    position: relative;
+    float: left;
+    width:100%;
+    height:100%
+}
+.upload-show .upload-item img {
+width:100%;
+    height: 100%;
+    margin-top: 0px;
+    margin-right: 0px;
+    padding: 0px;
+    border: none;
+}
+    </style>
+</head>
+<body>
+
+<form th:action="@{/foregoerManager/foregoer/add}">
+	<input type="hidden" name="id" th:if="${foregoer}" th:value="${foregoer.id}">
+	<button type="button" id="daitouren_dayin">打印</button>
+    <table style="width: 1100px;margin: 0 auto" class="daitouren_add">
+        <tr>
+            <td colspan="4" style="font-size: 20px;font-weight: bold;">新增人员</td>
+        </tr>
+        <tr>
+            <td class="infor">
+                <div>
+                    姓名			
+                </div>
+                <div>
+                    身份证号
+                </div>
+                <div>
+                    工作单位
+                </div>
+                <div>
+                    参加工作时间
+                </div>
+            </td>
+            <td class="inmo">
+                <div class="list">
+                    <ul class="clearfix">
+                        <li style="width: 20%">
+                            <input class="layui-input" type="text" name="name" placeholder="请输入姓名" th:value="${foregoer?.name}" style="border: none">
+                        </li>
+                        <li style="width: 20%">
+                            性别
+                        </li>
+                        <li style="width: 20%">
+                            <select class="timo-search-select" name="sex" mo:dict="USER_SEX" mo-selected="${foregoer?.sex}" style="border: none"></select>
+                        </li>
+                        <li style="width: 20%">
+                             出生日月
+                        </li>
+                        <li style="width: 19%">
+                            <input type="text" class="layui-input" id="add" name="birthday" placeholder="yyyy-MM-dd" th:value="${#dates.format(foregoer?.birthday, 'yyyy-MM-dd')}" style="border: none">
+                        </li>
+                    </ul>
+                </div>
+               <div th:if="${user?.dept?.level !=2}"> 
+                    <input class="layui-input" type="text" name="identityNum" placeholder="请输入身份证号" th:value="${foregoer?.identityNum}" style="border: none">
+                </div> 
+                <div class="lay-infor" th:if="${user?.dept?.level eq 2}">
+                    <ul class="clearfix">
+                        <li style="width: 33%">
+                            <input class="layui-input" type="text" name="identityNum" placeholder="请输入身份证号" th:value="${foregoer?.identityNum}" style="border: none">
+                        </li>
+                        <li style="width: 33%">
+                             所属工会
+                        </li>
+                        <li style="width: 33%">
+                             <input class="layui-input select-tree" th:attr="data-url=@{/system/dept/list}, data-value=${user?.dept?.id}"
+                       type="text" name="dept"  placeholder="请选择所在组织"   >
+                        </li>
+                    </ul>
+                </div>
+                <div class="lay-infor">
+                    <ul class="clearfix">
+                        <li style="width: 33%">
+                            <input class="layui-input" type="text" name="workUnit" placeholder="请输入工作单位" th:value="${foregoer?.workUnit}" style="border: none">
+                        </li>
+                        <li style="width: 33%">
+                            行业
+                        </li>
+                        <li style="width: 33%">
+<!--                             <input type="text" style="width: 100%;height: 100%"> -->
+                            <select class="timo-search-select" name="industry" mo:dict="INDUSTRY_TYPE" mo-selected="${foregoer?.industry}" style="border: none;width: 100%;height: 99%"></select>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <input type="text" class="layui-input" id="add1" name="workStartTime" placeholder="yyyy-MM-dd" th:value="${#dates.format(foregoer?.workStartTime, 'yyyy-MM-dd')}" style="border: none">
+                </div>
+            </td>
+            <td class="imic">
+                <div class="layui-form-item" style="width: 100%;height: 100%;margin-bottom:0px;position:relative">
+<!--                     <div class="layui-upload-list" style="height: 138px;width:100%;margin: 0;border: none"> -->
+<!--                         <img class="layui-upload-img" id="demo1" style="height: 100%;width:100%;"> -->
+<!--                     </div> -->
+                   <!--  <div class="upload-show" style="height: 100%;width:100%;margin: 0;border: none;position:absolute;top:0;display:none"></div>
+                    <p style="position:absolute;top:30%" class="infoText">请上传尺寸为3.5*5.3cm 或 413*626px的2寸免冠照</p> -->
+                    <!-- <button  type="button" class="layui-btn upload-pic myuploadBtn" name="bareheadedImg" up-field="path" up-url="/wuxiao/upload/image" th:url="${foregoer?.bareheadedImg}"
+                    		style="height: 45px;line-height: 45px;padding: 0 23px;position:absolute;bottom:0;left:0">
+			            <i class="layui-icon"></i>请选择上传图片
+			        </button> -->
+			        <div class="layui-upload-list" style="height: 138px;width:100%;margin: 0;border: none"> 
+                         <img class="layui-upload-img"  id="masertHead" th:src="${foregoer?.bareheadedImg}" style="height: 100%;width:100%;">  
+                         <input type="hidden" name="bareheadedImg" id="headImg"/>
+                      </div>
+			        <span id="uploadHead" class="layui-btn upload-pic myuploadBtn" style="width:100%;height: 45px;line-height: 45px;padding: 0 20px;position:absolute;bottom:0;left:0"><i class="layui-icon"></i>请选择上传图片</span>
+                </div>
+                
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3">
+                <div class="dpic">
+                    <ul class="clearfix" style="width: 100%">
+                        <li style="width: 24%">
+                            政治面貌
+                        </li>
+                        <li style="width: 25%">
+<!--                             <input type="text" style="width: 100%;height: 100%"> -->
+                            <select class="timo-search-select" name="politicsStatus" mo:dict="POLITICS_STATUS" mo-selected="${foregoer?.politicsStatus}" 
+                            		style="border: none;width: 100%;height: 100%"></select>
+                        </li>
+                        <li style="width: 25%">
+                            技术等级
+                        </li>
+                        <li style="width: 24%">
+                            <select class="timo-search-select" name="skillLevel" mo:dict="SKILL_LEVEL" mo-selected="${foregoer?.skillLevel}"
+                            		style="border: none;width: 99%;height: 100%"></select>
+                        </li>
+                    </ul>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3">
+                <div class="dpic">
+                    <ul class="clearfix" style="width: 100%">
+                        <li style="width: 24%">
+                            职称
+                        </li>
+                        <li style="width: 25%">
+                            <input class="layui-input" type="text" name="professional" placeholder="请输入职称" th:value="${foregoer?.professional}" style="border: none">
+                        </li>
+                        <li style="width: 25%">
+                            文化程度
+                        </li>
+                        <li style="width: 24%">
+                            <select class="timo-search-select" name="standardCulture" mo:dict="STANDARD_CULTURE" mo-selected="${foregoer?.standardCulture}"
+                            		style="border: none;width: 99%;height: 100%"></select>
+                        </li>
+                    </ul>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3">
+                <div class="dpic">
+                    <ul class="clearfix" style="width: 100%">
+                        <li style="width: 24%">
+                            最高荣誉
+                        </li>
+                        <li style="width: 25%">
+							<input class="layui-input" type="text" name="honor" placeholder="请输入最高荣誉" th:value="${foregoer?.honor}" style="margin-left: 1%;border: none">
+                        </li>
+                        <li style="width: 25%">
+                            联系电话
+                        </li>
+                        <li style="width: 24%">
+                            <input class="layui-input" type="text" name="contactNum" placeholder="请输入联系电话" th:value="${foregoer?.contactNum}" style="margin-left: 1%;border: none">
+                        </li>
+                    </ul>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3">
+                <div class="clearfix" style="width: 1100px">
+                    <div style="float: left;width: 24%;height: 150px;line-height: 150px;border-right: 1px solid #000;">
+                        个人简介
+                    </div>
+                    <div style="float: left;width: 75%;height: 150px;" class="lay-textarea">
+                        <textarea placeholder="请输入个人简介" class="layui-textarea" name="personalIntro" th:text="${foregoer?.personalIntro}"></textarea>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3">
+                <div class="clearfix" style="width: 1100px">
+                    <div style="float: left;width: 24%;height: 150px;line-height: 150px;border-right: 1px solid #000;">
+                        主要事迹
+                    </div>
+                    <div style="float: left;width: 75%;height: 150px;" class="lay-textarea">
+                        <textarea placeholder="请输入主要事迹" class="layui-textarea" name="mainEvent" th:text="${foregoer?.mainEvent}"></textarea>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="4">
+                <div class="layui-form-item">
+                    <div class="layui-input-block" style="text-align: center;margin-top: 30px">
+                        <button class="layui-btn ajax-submit" style="width: 120px;height: 40px;border-radius: 5px;"><i class="fa fa-check-circle"></i> 保存</button>
+            			<button class="layui-btn btn-secondary close-popup" style="width: 120px;height: 40px;border-radius: 5px;"><i class="fa fa-times-circle"></i> 取消</button>
+                    </div>
+                </div>
+            </td>
+        </tr>
+
+    </table>
+</form>
+<script th:src="@{/js/plugins/jquery-3.3.1.min.js}"></script>
+<script th:replace="/common/template :: script"></script>
+<script type="text/javascript" th:src="@{/lib/zTree_v3/js/jquery.ztree.core.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/timoTree.js}"></script>
+<script type="text/javascript">
+    // 树形菜单
+    $.fn.selectTree();
+</script>
+<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+<script th:src="@{/js/jQuery.print.js}"></script>
+<script type="text/javascript">
+      $("#daitouren_dayin").on('click', function() {
+    	  $.print(".daitouren_add");
+      });
+</script>
+<script th:src="@{/js/plugins/web-uploader/js/Q.js}"></script>
+	<script th:src="@{/js/plugins/web-uploader/js/spark-md5.js}"></script>
+	<script th:src="@{/js/plugins/web-uploader/js/Q.md5File.js}"></script>
+	<script th:src="@{/js/plugins/web-uploader/js/Q.Uploader.js}"></script>
+	<script th:src="@{/js/plugins/web-uploader/js/Q.Uploader.slice.js}"></script>
+	<script th:src="@{/js/plugins/web-uploader/js/Q.Uploader.jquery.js}"></script>
+	<script th:src="@{/js/plugins/web-uploader/js/Q.Uploader.UI.Custom.js}"></script>
+
+
+
+<script type="text/javascript">
+fileUploads($("#uploadHead"),".jpg,.png,.gif",true,function(data){
+	$("#headImg").val(data.path);
+	$("#masertHead").attr("src",data.path);
+});
+
+function fileUploads(obj,allows,multiple,call){
+	var QU=obj.XUploader({
+        url: "/wuxiao/sliceUpload/uploadFile",
+        allows:allows,
+        multiple:multiple,
+        on: {
+            complete: function (task) {
+                if (task.state != XUploader.COMPLETE) return console.log(task.name + ": " + XUploader.getStatusText(task.state) + "!");
+                var json = task.json;
+                if (!json) return console.log(task.name + ": 服务器未返回正确的数据！<br />");
+                if (this.index >= this.list.length - 1) {
+                	var obj=JSON.parse(task.response);
+                	call(obj.data);
+                }
+            }
+        }
+    });
+	return QU;
+}
+function QError(status) {
+	if (status == "ext") {
+		layer.msg("上传的文件类型限制");
+	}
+}
+function deleteFile(This,ev){
+	var T=jQuery(This).parent();
+	var oEvent = ev || event;
+	oEvent.stopPropagation();
+	oEvent.preventDefault();
+	T.remove();
+}
+
+	layui.use(['laydate','upload'], function() {
+		var laydate = layui.laydate;
+		var upload = layui.upload;
+		
+		useDate();
+		echoImg();
+		uploadPic();
+		
+		function useDate(){
+	    	laydate.render({
+	    		elem : '#add',
+	    	});
+	    	laydate.render({
+	    		elem : '#add1',
+	    	});
+	    }
+		
+		//上传图片
+		function uploadPic(){
+			/** 上传图片操作 */
+		    upload.render({
+		        elem: '.upload-pic' //绑定元素
+		        ,url: $('.upload-pic').attr('up-url') //上传接口
+		        ,field: 'image' //文件域的字段名
+		        ,acceptMime: 'image/*' //选择文件类型
+		        ,exts: 'jpg|jpeg|png|gif' //支持的图片格式
+		        ,multiple: true //开启多文件选择
+		        ,choose: function (obj) {
+		            obj.preview(function (index, file, result) {
+		            	$('.upload-item').remove();
+		                var upload = $('.upload-pic');
+		                var name = upload.attr('name');
+		                var show = upload.parents('.layui-form-item').children('.upload-show');
+		                show.append("<div class='upload-item'><img src='"+ result +"'/>" +
+		                    "<input id='"+ index +"' type='hidden' name='"+name+"'/>" +
+		                    "<i class='upload-item-close layui-icon layui-icon-close'></i></div>");
+		                $('.upload-show').css({display:'block'})
+		                $('.myuploadBtn').css({display:'none'})//隐藏按钮
+		                $('.infoText').css({display:'none'})
+		                
+		            });
+		        }
+		        ,done: function(res, index, upload){
+		            var field = $('.upload-pic').attr('up-field') || 'id';
+		            // 解决节点渲染和异步上传不同步问题
+		            var interval = window.setInterval(function(){
+		                var hide = $("#"+index);
+		                if(hide.length > 0){
+		                    var item = hide.parent('.upload-item');
+		                    if (res.code === 200) {
+		                        hide.val(res.data[field]);
+		                        item.addClass('succeed');
+		                    }else {
+		                        hide.remove();
+		                        item.addClass('error');
+		                    }
+		                    clearInterval(interval);
+		                }
+		            }, 100);
+		        }
+		    });
+			
+		 // 删除上传图片展示项
+		    $(document).on("click", ".upload-item-close", function () {
+		        $(this).parent('.upload-item').remove();
+		        console.log('删除图片')
+		        $('.upload-show').css({display:'none'})
+		        $('.myuploadBtn').css({display:'block'})//隐藏按钮
+		        $('.infoText').css({display:'block'})
+		    });
+		}
+	 
+	  	//回显图片
+	    function echoImg(){
+	    	var upload = $('.upload-pic');
+	        var name = upload.attr('name');
+	    	var show=$(".upload-show");
+	    	var url=$(".upload-pic").attr("url");
+	    	if(url!=null&&url!="undefined"){
+	    		 show.append("<div class='upload-item'><img src='"+ url +"'/>" +
+	    				 	 "<input type='hidden' name='"+name+"' value='"+url+"'/>" +
+	                         "<i class='upload-item-close layui-icon layui-icon-close'></i></div>");
+	    		 $('.upload-show').css({display:'block'})
+                 $('.myuploadBtn').css({display:'none'})//隐藏按钮
+                 $('.infoText').css({display:'none'})
+	    	}
+	    }
+	})
+</script>
+</body>
+</html>

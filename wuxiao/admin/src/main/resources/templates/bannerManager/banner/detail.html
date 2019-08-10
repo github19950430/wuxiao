@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/common/template :: header(~{::title},~{::link},~{::style})">
+</head>
+<body>
+    <div class="timo-detail-page">
+        <div class="timo-detail-title">基本信息</div>
+        <table class="layui-table timo-detail-table">
+            <colgroup>
+                <col width="100px"><col>
+                <col width="100px"><col>
+            </colgroup>
+            <tbody>
+                <tr>
+                    <th>名称</th>
+                    <td th:text="${banner.name}"></td>
+                    <th>类型</th>
+                    <td th:text="${#dicts.keyValue('BANNER_TYPE', banner.type)}"></td>
+                </tr>
+                <tr>
+                    <th>跳转路径</th>
+                    <td th:text="${banner.url}"></td>
+                    <th>是否上架</th>
+                    <td th:text="${#dicts.keyValue('IS_PUTAWAY', banner.isPutaway)}"></td>
+                </tr>
+                <tr>
+                    <th>banner图</th>
+                    <td><img th:src="${banner.bannerImg}"></td>
+                    <th>排序</th>
+                    <td th:text="${banner.sort}"></td>
+                </tr>
+                <tr>
+                    <th>创建时间</th>
+                    <td th:text="${#dates.format(banner.createDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
+                    <th>备注</th>
+                    <td th:text="${banner.remark}"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+<script th:replace="/common/template :: script"></script>
+</body>
+</html>

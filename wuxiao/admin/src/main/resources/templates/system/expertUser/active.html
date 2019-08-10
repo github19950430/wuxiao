@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/common/template :: header(~{::title},~{::link},~{::style})">
+</head>
+<body>
+<div class="layui-form timo-compile">
+    <form th:action="@{/system/expertUser/saveActive}">
+        <input th:each="id:${idList}" type="hidden" name="ids" th:value="${id}"/>
+        <input type="hidden" name="expBeginDate" id="expBeginDate" />
+        <input type="hidden" name="expEndDate" id="expEndDate"/>
+        <div class="layui-form-item">
+            <label class="layui-form-label">有效时间</label>
+            <div class="layui-input-inline">
+                <input type="text" class="layui-input" id="cdate"  placeholder="yyyy-MM-dd"
+                       style="border: none">
+            </div>
+        </div>
+        <br/>
+        <br/>
+        <br/><br/><br/><br/><br/><br/><br/><br/><br/>
+        <div class="layui-form-item timo-finally">
+            <button class="layui-btn ajax-submit1"><i class="fa fa-check-circle"></i> 保存</button>
+            <button class="layui-btn btn-secondary close-popup"><i class="fa fa-times-circle"></i> 关闭</button>
+        </div>
+    </form>
+</div>
+<script th:replace="/common/template :: script"></script>
+<script type="text/javascript" th:src="@{/js/plugins/jquery-3.3.1.min.js}"></script>
+<script>
+    layui.use(['laydate','form'],function() {
+        var laydate = layui.laydate;
+        laydate.render({
+            elem: '#cdate',
+            range: true
+        });
+        /* 提交表单数据 */
+        $(document).on("click", ".ajax-submit1", function (e) {
+            if($("#cdate").val()){
+                var tdate=$("#cdate").val().split(" - ");
+                $("#expBeginDate").val(tdate[0]);
+                $("#expEndDate").val(tdate[1]);
+            }
+            e.preventDefault();
+            var form = $(this).parents("form");
+            var url = form.attr("action");
+            var serializeArray = form.serializeArray();
+            $.post(url, serializeArray, function (result) {
+                if (result.data == null) {
+                    result.data = 'submit[refresh]';
+                }
+                $.fn.Messager(result);
+            });
+        });
+    })
+
+</script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/common/template :: header(~{::title},~{::link},~{::style})">
+</head>
+<body>
+    <div class="layui-form timo-compile">
+    <form th:action="@{/bannerManager/banner/add}">
+        <input type="hidden" name="id" th:if="${banner}" th:value="${banner.id}">
+        <div class="layui-form-item">
+            <label class="layui-form-label">类型</label>
+		    <div class="layui-input-inline">
+		    	<select class="timo-search-select" name="type" mo:dict="BANNER_TYPE" mo-selected="${banner?.type}"></select>
+		    </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">名称</label>
+            <div class="layui-input-inline">
+                <input class="layui-input" type="text" name="name" placeholder="请输入名称" th:value="${banner?.name}">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">跳转路径</label>
+            <div class="layui-input-inline">
+                <input class="layui-input" type="text" name="url" placeholder="请输入跳转路径" th:value="${banner?.url}">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">排序</label>
+            <div class="layui-input-inline">
+                <input class="layui-input" type="text" name="sort" placeholder="请输入排序" th:value="${banner?.sort}">
+            </div>
+        </div>
+        <div class="layui-form-item">
+		    <label class="layui-form-label">banner图</label>
+		    <div class="layui-input-inline">
+		        <button type="button" class="layui-btn upload-image" name="bannerImg" up-field="path" up-url="/upload/image" th:url="${banner?.bannerImg}">
+		            <i class="layui-icon"></i>上传图片
+		        </button>
+		    </div>
+		    <div class="upload-show"></div>
+		</div>
+        <div class="layui-form-item">
+		    <label class="layui-form-label">是否上架</label>
+		    <div class="layui-input-block">
+		        <input type="radio" name="isPutaway" value="1" title="是">
+		        <input type="radio" name="isPutaway" value="2" title="否" checked="">
+		    </div>
+		</div>
+        <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">备注</label>
+            <div class="layui-input-block">
+                <textarea placeholder="请输入内容" class="layui-textarea" name="remark">[[${banner?.remark}]]</textarea>
+            </div>
+        </div>
+        <div class="layui-form-item timo-finally">
+            <button class="layui-btn ajax-submit"><i class="fa fa-check-circle"></i> 保存</button>
+            <button class="layui-btn btn-secondary close-popup"><i class="fa fa-times-circle"></i> 关闭</button>
+        </div>
+    </form>
+</div>
+<script th:replace="/common/template :: script"></script>
+</body>
+</html>

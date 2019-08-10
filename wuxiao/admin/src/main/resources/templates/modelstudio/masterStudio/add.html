@@ -1,0 +1,1076 @@
+<!DOCTYPE html>
+<html>
+<head th:replace="/common/template :: header(~{::title},~{::link},~{::style})">
+<link th:href="@{/js/plugins/web-uploader/css/uploader.custom.css}" rel="stylesheet">
+<style>
+* {
+	box-sizing: border-box;
+}
+
+.bb {
+	border-bottom: 1px solid #000;
+}
+
+.br {
+	border-right: 1px solid #000;
+}
+
+.bl {
+	border-left: 1px solid #000;
+}
+
+.bt {
+	border-top: 1px solid #000;
+}
+
+.layui-table td {
+	border-color: #000
+}
+
+.layui-table {
+	color: #000;
+}
+
+.itemtah {
+	text-align: center;
+	line-height: 45px;
+}
+
+.red {
+	color: #cc0000;
+}
+
+.top1 {
+	width: 100%;
+	height: 40px;
+	/*background: #ccc;*/
+	overflow: hidden;
+}
+
+.top1_item1 {
+	width: 20%;
+	float: left;
+	height: 40px;
+}
+
+.top1_item2 {
+	width: 30%;
+	float: left;
+	height: 40px;
+	border-left: 1px solid #e6e6e6;
+	border-right: 1px solid #e6e6e6;
+	box-sizing: border-box;
+	padding: 1px;
+}
+
+.top1_item3 {
+	width: 20%;
+	float: left;
+	height: 40px;
+}
+
+.top1_item4 {
+	width: 30%;
+	float: left;
+	height: 40px;
+	border-left: 1px solid #e6e6e6;
+	box-sizing: border-box;
+	padding: 1px;
+}
+
+.top1_item {
+	text-align: center;
+	line-height: 40px;
+}
+
+.top2 {
+	width: 100%;
+	overflow: hidden;
+}
+
+.top2Left {
+	width: 50%;
+	float: left;
+}
+
+.top2Right {
+	width: 50%;
+	float: left;
+}
+
+.top2Leftitem {
+	height: 45px;
+}
+
+.top2Leftitemleft {
+	width: 40%;
+	height: 44px;
+	float: left;
+	background-color: #fff;
+}
+
+.top2Leftitemright {
+	width: 60%;
+	height: 45px;
+	float: left;
+}
+
+.p1 {
+	padding: 1px;
+}
+
+table:hover {
+	background-color: #fff;
+}
+
+form:hover {
+	background-color: #fff;
+}
+
+.top2Leftitemright_item {
+	width: 50%;
+	height: 43px;
+	background-color: #fff;
+	float: left;
+}
+
+.xbselect {
+	width: 100%;
+	height: 43px;
+	border: none;
+}
+
+.top2Right_bott_left {
+	width: 70%;
+	float: left;
+}
+
+.top2Right_bott_right {
+	width: 30%;
+	float: left;
+	text-align: center;
+	height: 135px;
+	background-color: #fff;
+	/*padding-top: 40px;*/
+	position: relative;
+	/*padding: 0 10px;*/
+}
+
+.top2Right_bott_righttext {
+	margin-top: 10px;
+}
+
+.imgBox {
+	width: 100%;
+	height: 100%;
+	position: relative;
+}
+
+.closeIcon {
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 16px;
+	height: 16px;
+}
+
+#touxiangimg {
+	position: absolute;
+	max-width: none;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	/*top: 10px;*/
+	/*left: 50%;*/
+	/*margin-left: -50px;*/
+	/*width: 100px;*/
+	/*height: 100%;*/
+}
+
+.top3 {
+	width: 100%;
+	overflow: hidden;
+}
+
+.top3left {
+	width: 85%;
+	float: left;
+	height: 45px;
+}
+
+.top3right {
+	height: 45px;
+	width: 15%;
+	float: left;
+	background-color: #fff;
+}
+
+.top3left_left {
+	width: 58.87%;
+	height: 45px;
+	float: left;
+	background-color: #fff;
+}
+
+.top3left_right {
+	width: 41%;
+	float: left;
+	height: 45px;
+}
+
+.top4 {
+	width: 100%;
+	overflow: hidden;
+}
+
+.top4Item1 {
+	width: 16.6%;
+	height: 45px;
+	float: left;
+	background-color: #fff;
+}
+
+.top4Item2 {
+	width: 16.6%;
+	height: 45px;
+	float: left;
+}
+
+.top4Item3 {
+	width: 16.6%;
+	height: 45px;
+	float: left;
+	background-color: #fff;
+}
+
+.top4Item4 {
+	width: 16.6%;
+	height: 45px;
+	float: left;
+}
+
+.top4Item5 {
+	width: 16.6%;
+	height: 45px;
+	float: left;
+	background-color: #fff;
+}
+
+.top4Item6 {
+	width: 16.6%;
+	height: 45px;
+	float: left;
+}
+
+.top5 {
+	background-color: #fff;
+}
+
+.top6 {
+	width: 100%;
+}
+
+.top6ItemBox {
+	width: 100%;
+	background-color: #fff;
+	overflow: hidden;
+}
+
+.top6ItemBox_item {
+	width: 12.5%;
+	height: 44px;
+	float: left;
+	background-color: #fff;
+}
+
+.top6ItemBox_item span {
+	cursor: pointer;
+}
+
+.top7 {
+	width: 100%;
+	height: 60px;
+	text-align: center;
+	line-height: 60px;
+	background-color: #fff;
+}
+
+.top7 img {
+	width: 30px;
+	cursor: pointer;
+}
+
+.top8 {
+	width: 100%;
+	overflow: hidden;
+}
+
+.top8_left {
+	width: 20%;
+	float: left;
+	height: 200px;
+	text-align: center;
+	padding-top: 90px;
+	background-color: #fff;
+}
+
+.top8_right {
+	width: 80%;
+	float: left;
+	height: 200px;
+	padding: 1px;
+	background-color: #fff;
+	position: relative
+}
+
+.top9 {
+	width: 100%;
+	height: 90px;
+	padding-top: 20px;
+	background-color: #fff;
+}
+
+.uoloadBox {
+	width: 45%;
+	height: 50px;
+	float: left;
+	background-color: #fff;
+}
+
+.uoloadBox_left {
+	width: 50%;
+	height: 50px;
+	float: left;
+	text-align: center;
+	line-height: 50px;
+}
+
+.uoloadBox_right {
+	width: 50%;
+	height: 50px;
+	float: left;
+}
+
+.uploadBtn {
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	line-height: 50px;
+	background-color: #b4b4b4;
+}
+
+.top10 {
+	width: 100%;
+	padding-top: 40px;
+	background-color: #fff;
+}
+
+.top10_top {
+	width: 100%;
+	background-color: #fff;
+	height: 45px;
+}
+
+.top10_top_left {
+	width: 20%;
+	float: left;
+	height: 45px;
+	text-align: center;
+	line-height: 45px;
+	background-color: #fff;
+	color: #3366ff;
+}
+
+.top10_top_right {
+	height: 45px;
+}
+
+.top10_top_right a {
+	line-height: 45px;
+}
+
+.fileName {
+	display: none;
+}
+
+.top10_TextS {
+	width: 100%;
+	padding: 20px 50px;
+}
+
+.top10_title {
+	font-size: 17px;
+	font-weight: bold;
+	color: #000;
+	text-align: left;
+	line-height: 50px;
+}
+
+.top10_text {
+	line-height: 40px;
+	font-size: 16px;
+	text-indent: 2em;
+	text-align: left;
+}
+
+.botBtn {
+	width: 100%;
+	height: 150px;
+	text-align: center;
+	padding-top: 30px;
+}
+
+.review {
+	padding: 8px 30px;
+	font-size: 16px;
+	line-height: 40px;
+	background-color: #cccccc;
+	color: #000;
+	border-radius: 10px;
+	cursor: pointer;
+	user-select: none;
+}
+
+.back {
+	padding: 8px 30px;
+	font-size: 16px;
+	line-height: 40px;
+	background-color: #cccccc;
+	color: #000;
+	border-radius: 10px;
+	margin-left: 20px;
+	cursor: pointer;
+	user-select: none;
+}
+
+.touxiang {
+	cursor: pointer;
+	text-align: center;
+	width: 100%;
+	display: inline-block;
+	height: 100%;
+	color: #cc0000;
+}
+.title {
+    height: 50px;
+    line-height: 50px;
+    background-color: #f2f2f2;
+    font-size: 16px;
+}
+
+.layui-table td, .layui-table th {
+    position: relative;
+    padding: 0;
+    min-height: 20px;
+    line-height: 20px;
+    font-size: 14px;
+}
+.top6ItemBox_item input{
+	border: none;
+	height: 44px;
+}
+
+
+
+.wuxiao_img div{
+	width:100%;
+	height:100%;
+	overflow: auto;
+	/* overflow-x:hidden; */
+}
+.wuxiao_img div a{
+	margin: 5px;
+	width: 13%;
+	height: 74%;
+	position: relative;
+	display: block;
+	float: left;
+	border: 3px solid #ddd;	
+}
+
+.wuxiao_img div a img{
+	width:100%;
+	height:100%;
+	margin: 0 0 20px 0;
+}
+
+.wuxiao_img div a .fa-times-circle{
+	margin: 0;
+	position: absolute;			
+	z-index: 99;			
+	height: 18px;			
+	width: 18px;			
+	text-align: center;			
+	opacity: 1;			
+	font-size: 18px;			
+	top: -4px;			
+	right: -10px;			
+	line-height: 18px;
+}
+
+.wuxiao_img div a .fa-play-circle-o{
+	margin: 0;
+	position: absolute;
+	z-index: 99;
+	height: 18px;
+	width: 18px;
+	text-align: center;
+	opacity: 1;
+	font-size: 26px;
+	top: 27px;
+	right: 32px;
+	line-height: 18px;
+	color: #fff;
+}
+
+.wuxiao_file div{
+	width:100%;
+	height:100%;
+	overflow:auto;
+	line-height:97px;
+	text-align: center;
+}
+.wuxiao_file div a{
+	width:60px;
+	height:80px;
+	border:2px solid #ddd;
+	padding:6px 5px;
+	margin:0 3px;
+}
+.wuxiao_file div a i{
+	font-size: 18px;
+}
+.xui-upload-frame{
+ position:fixed;
+}
+.memberBackage{
+	background:#cdcdcd5e;
+}
+</style>
+</head>
+<body>
+	<form th:action="@{/modelstudio/masterStudio/add}" >
+		<input type="hidden" name="id" th:if="${ms}" th:value="${ms.id}">
+		<input type="hidden" name="headImg"     id="headImg"     th:value="${ms.headImg}">
+		<input type="hidden" name="uploadImg"   id="uploadImg"   th:value="${ms.uploadImg}">
+		<input type="hidden" name="uploadVideo" id="uploadVideo" th:value="${ms.uploadVideo}">
+		<input type="hidden" name="uploadFile"  id="uploadFile"  th:value="${ms.uploadFile}">
+		<input type="hidden" name="unitIdea"    id="unitIdea"    th:value="${ms.unitIdea}">
+		<input type="hidden" name="cityIdea"    id="cityIdea"    th:value="${ms.cityIdea}">
+		<input type="hidden" name="provinceIdea"id="provinceIdea"th:value="${ms.provinceIdea}">
+		<input type="hidden" name="keyMember"   id="keyMember" >
+		<table class="layui-table timo-detail-table"
+			style="width: 1100px;margin: 0 auto">
+			<colgroup>
+				<col width="100px">
+				<col>
+				<col width="100px">
+				<col>
+			</colgroup>
+			<caption class="title" style="position: relative">带头人情况
+				<div style="cursor: pointer;position: absolute;right: 15px;top: 0;width: 60px;height: 50px;display: flex;justify-content: space-around;align-items: center">
+					<img th:src="@{/images/dayin.png}" alt="" style="width: 20px">
+					<span style="font-size:13px;color: #707070;">打印</span>
+				</div>
+			</caption>
+			<tbody>
+				<tr>
+					<td width="100%">
+						<div class="top2">
+							<div class="top2Left br">
+								<div class="top2Leftitem1 top2Leftitem bb">
+									<div class="top2Leftitemleft br itemtah">工作室名称</div>
+									<div class="top2Leftitemright p1">
+										<input type="text" name="title" th:value="${ms.title}" class="layui-input" style="border: none; height: 42px">
+									</div>
+								</div>
+								<div class="top2Leftitem2 top2Leftitem bb">
+									<div class="top2Leftitemleft br itemtah">姓名</div>
+									<div class="top2Leftitemright ">
+										<div class="top2Leftitemright_item br">
+											<input type="text" name="name" th:value="${ms.name}" class="layui-input" style="border: none; height: 42px">
+										</div>
+										<div class="top2Leftitemright_item">
+											<div class="top2Leftitemright_item br itemtah">性别</div>
+											<div class="top2Leftitemright_item itemtah">
+												<select class="timo-search-select xbselect itemtah" name="sex" mo:dict="USER_SEX" mo-selected="${ms?.sex}" style="border: none"></select>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="top2Leftitem2 top2Leftitem bb">
+									<div class="top2Leftitemleft br itemtah ">学历</div>
+									<div class="top2Leftitemright">
+										<div class="top2Leftitemright_item br">
+											 <select class="timo-search-select"  name="education" mo:dict="STANDARD_CULTURE" mo-selected="${ms?.education}" style="border: none;width: 99%;height: 100%"></select>
+										</div>
+										<div class="top2Leftitemright_item">
+											<div class="top2Leftitemright_item br itemtah">名族</div>
+											<div class="top2Leftitemright_item">
+												<select name="nation" lay-verify="required" class="xbselect itemtah timo-search-select" mo:dict="NATION" mo-selected="${ms.nation}" mo-empty="请选择"></select>
+												<!-- <input type="text" name="nation" th:value="${ms.nation}" class="layui-input" style="border: none; height: 44px"> -->
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="top2Leftitem3 top2Leftitem bb">
+									<div class="top2Leftitemleft br itemtah">专业/工种</div>
+									<div class="top2Leftitemright">
+										<input type="text" name="major"  th:value="${ms.major}" class="layui-input" style="border: none; height: 44px">
+									</div>
+								</div>
+							</div>
+							<div class="top2Right">
+								<div class="top2Leftitem1 top2Leftitem bb">
+									<div class="top2Leftitemleft br itemtah" style="width: 28%">创建时间</div>
+									<div class="top2Leftitemright p1">
+										<input type="text" class="layui-input" name="createTime" th:value="${#dates.format(ms?.createTime, 'yyyy-MM-dd')}" id="date1" style="border: none; height: 42px">
+									</div>
+								</div>
+								<div class="top2Right_bott" style="overflow: hidden">
+									<div class="top2Right_bott_left br">
+										<div class="top2Leftitem3 top2Leftitem bb">
+											<div class="top2Leftitemleft br itemtah">出生年月</div>
+											<div class="top2Leftitemright">
+												<input type="text" name="birthday" class="layui-input"  th:value="${#dates.format(ms?.birthday, 'yyyy-MM-dd')}" id="date2" style="border: none; height: 43px">
+											</div>
+										</div>
+										<div class="top2Leftitem3 top2Leftitem bb">
+											<div class="top2Leftitemleft br itemtah">政治面貌</div>
+											<div class="top2Leftitemright">
+												<select name="politicsStatus" lay-verify="required" class="xbselect itemtah timo-search-select" mo:dict="POLITICS_STATUS" mo-selected="${ms.politicsStatus}" mo-empty="请选择"></select>
+												<!-- <input type="text" name="politicsStatus" th:value="${ms.politicsStatus}" class="layui-input" style="border: none; height: 43px"> -->
+											</div>
+										</div>
+										<div class="top2Leftitem3 top2Leftitem bb">
+											<div class="top2Leftitemleft br itemtah">何时起从事本行业</div>
+											<div class="top2Leftitemright">
+												<input type="text" name="firstIndustry" th:value="${ms.firstIndustry}" class="layui-input" style="border: none; height: 43px">
+											</div>
+										</div>
+									</div>
+									<div class="top2Right_bott_right bb">
+										<div class="imgBox">
+											<img th:if="${ms.headImg} ne null" class="layui-upload-img" id="masertHead" th:src="${ms.headImg}" style="width: 100%;height: 100%; dislpay:block;max-width:inherit;">
+											<img th:if="${ms.headImg} eq null" class="layui-upload-img" id="masertHead" src="" style="width: 100%;height: 100%; dislpay:block;max-width:inherit;">
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="top3">
+							<div class="top3left br">
+								<div class="top3left_left br itemtah bb">何年获何种省部级（含）以上劳模荣誉称号*</div>
+								<div class="top3left_right itemtah bb" >
+									<input type="text" name="honoraryTitle" th:value="${ms.honoraryTitle}" class="layui-input" style="border: none; height: 43px">
+								</div>
+							</div>
+							<div class="top3right itemtah bb red">
+								<span id="uploadHead" style="cursor: pointer">上传二寸电子免冠照</span>
+							</div>
+						</div>
+						<div class="top4">
+							<div class="top4Item1 br itemtah ">联系电话</div>
+							<div class="top4Item2 br">
+								<input type="text" name="phone"  th:value="${ms.phone}" class="layui-input" style="border: none; height: 43px">
+							</div>
+							<div class="top4Item3 br itemtah" style="width: 16.8%">E-mail</div>
+							<div class="top4Item4 br">
+								<input type="text" name="email"  th:value="${ms.email}" class="layui-input" style="border: none; height: 43px">
+							</div>
+							<div class="top4Item5 br itemtah">推荐单位</div>
+							<div class="top4Item6 ">
+								<input type="text" name="recommendUnit"  th:value="${ms.recommendUnit}" class="layui-input" style="border: none; height: 44px">
+							</div>
+						</div>
+						<div class="top5 itemtah bt bb">骨干成员情况（可附表）</div>
+						<div class="top6 master">
+							<div class="top6ItemBox  bb">
+								<div class="top6ItemBox_item br itemtah cloum0">姓名</div>
+								<div class="top6ItemBox_item br itemtah cloum1">性别</div>
+								<div class="top6ItemBox_item br itemtah cloum2">出生年月</div>
+								<div class="top6ItemBox_item br itemtah cloum3">学历</div>
+								<div class="top6ItemBox_item br itemtah cloum4">技术职称</div>
+								<div class="top6ItemBox_item br itemtah cloum5">所在部门</div>
+								<div class="top6ItemBox_item itemtah br cloum6" style="width: 12.5%">主要分工</div>
+								<div class="top6ItemBox_item itemtah " style="width: 12.5%">编辑</div>
+							</div>
+							<div th:each="item:${mm}" class="top6ItemBox bb masterMember">
+								<div class="top6ItemBox_item br itemtah">
+									<input type="text" id="memberN" class="layui-input" th:value="${item.name}">
+								</div>
+								<div class="top6ItemBox_item br itemtah">
+									<select id='memberS' lay-verify='required' class='xbselect itemtah' >
+										<option value='男' th:selected="${item.sex eq '男'}">男</option>
+										<option value='女' th:selected="${item.sex eq '女'}">女</option>
+									</select>
+								</div>
+								<div class="top6ItemBox_item br itemtah">
+									<input type="text" id="memberB" th:value="${item.birthday}" class="layui-input">
+								</div>
+								<div class="top6ItemBox_item br itemtah">
+									<input type="text" id="memberE" th:value="${item.education}" class="layui-input">
+								</div>
+								<div class="top6ItemBox_item br itemtah">
+									<input type="text" id="memberT"  th:value="${item.technicalTitles}" class="layui-input">
+								</div>
+								<div class="top6ItemBox_item br itemtah">
+									<input type="text" id="memberD"  th:value="${item.department}" class="layui-input">
+								</div>
+								<div class="top6ItemBox_item itemtah br" style="width: 12.5%">
+									<input type="text" id="memberW"  th:value="${item.divisionOfLabor}" class="layui-input">
+								</div>
+								<input type="hidden" id="memberId" th:value="${item.id}" >
+								<div class="top6ItemBox_item itemtah " style="width: 12.5%">
+									<span class="top6ItemBox_item_delete" th:attr="id=${item.id}" onClick='delMember(this)'>删除</span>
+								</div>
+							</div>
+							
+						</div>
+						<div class="top7 bb">
+							<img th:src="@{/images/master/add.png}" alt="" class="addimgBtn">
+						</div>
+						<div class="top8 ">
+							<div class="top8_left br bb">带头人主要成就、获奖情况</div>
+							<div class="top8_right bb">
+								<textarea name="leaderAwards" th:text="${ms.leaderAwards}" placeholder="请输入内容" class="layui-textarea" style="height: 100%; border: none;"></textarea>
+							</div>
+						</div>
+						<div class="top8 ">
+							<div class="top8_left br bb">工作室成员获奖情况</div>
+							<div class="top8_right bb">
+								<textarea name="studioAwards" th:text="${ms.studioAwards}" placeholder="请输入内容" class="layui-textarea" style="height: 100%; border: none;"></textarea>
+							</div>
+						</div>
+						<div class="top8 ">
+							<div class="top8_left br bb">业绩简介 （请按下部申报材料参考提供格式，800字以内，主要作品附电子版照片说明)</div>
+							<div class="top8_right bb">
+								<textarea name="performanceInfo" th:text="${ms.performanceInfo}" placeholder="请输入内容" class="layui-textarea" style="height: 100%; border: none;"></textarea>
+							</div>
+						</div>
+						<div class="top8 ">
+							<div class="top8_left br bb">所在单位工会意见：</div>
+		                     <div class="top8_right bb" style="padding:0">
+		                     	<img th:if="${ms.unitIdea} ne null" th:src="${ms.unitIdea}" id="ideaImg1" style="width: 100%;height: 100%; dislpay:block;max-width:inherit;">
+		                     	<img th:if="${ms.unitIdea} eq null" th:src="@{/images/master/unit.png}" id="ideaImg1" style="width: 100%;height: 100%; dislpay:block;max-width:inherit;">
+		                     </div>
+						</div>
+						<div class="top8">
+							<div class="top8_left br bb">市总工会、 省产业工会（工委） 意见</div>
+							<div class="top8_right bb" style="padding:0">
+		                        <img th:if="${ms.cityIdea} ne null" th:src="${ms.cityIdea}" id="ideaImg2" style="width: 100%;height: 100%; dislpay:block;max-width:inherit;">
+		                        <img th:if="${ms.cityIdea} eq null" th:src="@{/images/master/city.png}" id="ideaImg2" style="width: 100%;height: 100%; dislpay:block;max-width:inherit;">
+		                     </div>
+						</div>
+						<div class="top8 ">
+							<div class="top8_left br bb">山西省总工会审批意见：</div>
+							<div class="top8_right bb" style="padding:0">
+		                       <img th:if="${ms.provinceIdea} ne null" th:src="${ms.provinceIdea}" id="ideaImg3" style="width: 100%;height: 100%; dislpay:block;max-width:inherit;">
+                    		   <img th:if="${ms.provinceIdea} eq null" th:src="@{/images/master/shen.png}" id="ideaImg3" style="width: 100%;height: 100%; dislpay:block;max-width:inherit;">
+                    		</div>
+						</div>
+						<div class="top8">
+							<div class="top8_left br bb" style="height:100px;padding:0;line-height:100px">工作室宣传图片(可选)：</div>
+							<div class="top8_left br bb" style="height:100px;padding:0;line-height:100px">
+								<button type="button" class="layui-btn" style="width: 50%;height: 50%;" id="btnUploadImg"> <i class="layui-icon"></i>上传图片</button>
+							</div>
+							<div class="top8_right bb wuxiao_img" style="width:60%;height:100px" >
+								<div id="file_0">
+                            		<a th:each="item:${resultImg}" th:href="${item.path}" target='_blank' th:attr="id=${item.id}">
+	                          			<img th:src="${item.path}" />
+	                          			<i onclick='deleteFile(this,event);' class='fa fa-times-circle'></i>
+	                          		</a>
+                            	</div>
+							</div>
+						</div>
+						<div class="top8">
+							<div class="top8_left br bb" style="height:100px;padding:0;line-height:100px">上传视频(可选)：</div>
+							<div class="top8_left br bb" style="height:100px;padding:0;line-height:100px">
+								<button type="button" class="layui-btn" style="width: 50%;height: 50%;" id="btnUploadVideo"> <i class="layui-icon"></i>上传视频</button>
+							</div>
+							<div class="top8_right bb wuxiao_img" style="width:60%;height:100px" >
+								<div id="file_1">
+                            		<a th:each="item:${resultVideo}" th:href="${item.path}" target="_blank" th:attr="id=${item.id}">
+                            			<img th:src="${item.thumbPath}" />
+                            			<i class='fa fa-play-circle-o'></i>
+	                          			<i onclick='deleteFile(this,event);' class='fa fa-times-circle'></i>
+                            	    </a>
+                            	</div>
+							</div>
+						</div>
+						<div class="top8">
+							<div class="top8_left br bb" style="height:100px;padding:0;line-height:100px">上传附件(可选)：</div>
+							<div class="top8_left br bb" style="height:100px;padding:0;line-height:100px">
+								<button type="button" class="layui-btn" style="width: 50%;height: 50%;" id="btnUploadFile"> <i class="layui-icon"></i>上传附件</button>
+							</div>
+							<div class="top8_right bb wuxiao_file" style="width:60%;height:100px">
+								<div id="file_2">
+                            		<a th:each="item:${resultFile}" th:href="${item.path}" target="_blank" th:attr="id=${item.id}">
+                            			[[${item.name}]] 
+                            			<i onclick="deleteFile(this,event);" class="fa fa-times-circle"></i>
+                            	    </a>
+                            	</div>		
+							</div>
+						</div>
+						<div class="top10">
+							<!-- <div class="top10_top">
+								<div class="top10_top_left">附件：</div>
+								<div class="top10_top_right">
+									<a href="./img/add.png" download="文件名" class="fileName">文件名asdas
+										阿萨德阿萨德阿萨德阿萨德阿萨德阿萨德阿萨德阿萨德阿萨德大声道阿萨德阿萨德阿萨德阿萨德阿萨德阿萨德阿萨德</a>
+									<button type="button" class="layui-btn" id="fujian">
+										<i class="layui-icon"></i>上传附件
+									</button>
+								</div>
+							</div> -->
+							<div class="top10_TextS">
+								<p class="top10_title">一、基本情况</p>
+								<p class="top10_text">工作室建立的背景及意义；简述本工作室重点研究、攻关的领域及方向；活动场地、配套设备情况；
+									资金投入及使用情况；人员结构及成员基本信息、取得成果、成绩和荣誉等。</p>
+								<p class="top10_title">二、近三年来活动开展情况</p>
+								<p class="top10_text">（一）制度建立情况：管理制度、活动制度，近期及中长期规划等；</p>
+								<p class="top10_text">（二）创新成果情况：取得专利、创新攻关、创新成果转化等情况；</p>
+								<p class="top10_text">（三）科技人才培养情况：培训内容及场次，培训人数及技能提升情况，师带徒情况等；</p>
+								<p class="top10_text">（四）取得效益情况：经济效益与社会效益；</p>
+								<p class="top10_text">（五）开展技术交流协作情况：形式、场次、效果等；</p>
+								<p class="top10_text">（六）提供3张工作室现场照片电子版。（若有省总领导现场指导照片，请一起提供）；</p>
+							</div>
+							<div class="botBtn">
+								<button class="layui-btn ajax-submit1" style="width: 120px;height: 40px;border-radius: 5px;"><i class="fa fa-check-circle"></i> 保存</button>
+								<button class="layui-btn btn-secondary close-popup" style="width: 120px;height: 40px;border-radius: 5px;"><i class="fa fa-times-circle"></i> 返回</button>
+							</div>
+						</div>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</form>
+	<script th:src="@{/js/plugins/jquery-1.11.1.min.js}"></script>
+	<script th:replace="/common/template :: script"></script>
+	<script th:src="@{/js/plugins/web-uploader/js/Q.js}"></script>
+	<script th:src="@{/js/plugins/web-uploader/js/spark-md5.js}"></script>
+	<script th:src="@{/js/plugins/web-uploader/js/Q.md5File.js}"></script>
+	<script th:src="@{/js/plugins/web-uploader/js/Q.Uploader.js}"></script>
+	<script th:src="@{/js/plugins/web-uploader/js/Q.Uploader.slice.js}"></script>
+	<script th:src="@{/js/plugins/web-uploader/js/Q.Uploader.jquery.js}"></script>
+	<script th:src="@{/js/plugins/web-uploader/js/Q.Uploader.UI.Custom.js}"></script>
+	<script>		
+	//成员
+	var members=[];
+	var memHtml="<div class='top6ItemBox bb masterMember'>";
+		memHtml+="<div class='top6ItemBox_item br itemtah'>";
+		memHtml+="<input type='text' id='memberN' class='layui-input'>";
+		memHtml+="</div>";
+		memHtml+="<div class='top6ItemBox_item br itemtah'>";
+		memHtml+="<select id='memberS' lay-verify='required' class='xbselect itemtah'><option value='男'>男</option><option value='女'>女</option></select>";
+		memHtml+="</div>";
+		memHtml+="<div class='top6ItemBox_item br itemtah'>";
+		memHtml+="<input type='text' id='memberB' class='layui-input'>";
+		memHtml+="</div>";
+		memHtml+="<div class='top6ItemBox_item br itemtah'>";
+		memHtml+="<input type='text' id='memberE'  class='layui-input'>";
+		memHtml+="</div>";
+		memHtml+="<div class='top6ItemBox_item br itemtah'>";
+		memHtml+="<input type='text' id='memberT'  class='layui-input'>";
+		memHtml+="</div>";
+		memHtml+="<div class='top6ItemBox_item br itemtah'>";
+		memHtml+="<input type='text' id='memberD'   class='layui-input'>";
+		memHtml+="</div>";
+		memHtml+="<div class='top6ItemBox_item br itemtah' style='width: 12.5%'>";
+		memHtml+="<input type='text' id='memberW'  class='layui-input'>";
+		memHtml+="</div>";
+		memHtml+="<div class='top6ItemBox_item br itemtah' style='width: 12.5%'>";
+		memHtml+="<span class='top6ItemBox_item_delete' id='' onClick='delMember(this)'>删除</span>";
+		memHtml+="</div>";
+		memHtml+="</div>";
+	
+	//增加成员;
+	$('.addimgBtn').on('click', function() {
+		$('.top6').append(memHtml);
+	});
+	
+	//删除成员
+	function delMember(This){
+		var id=$(This).attr("id");
+		var dom=$(This).parent().parent();
+		if(id!=""){
+			$.ajax({
+			    url:"/modelstudio/masterStudio/delMember",   
+			    dataType:"json",  
+			    data:{id:id},
+			    type:"POST",
+			    success:function(req){
+			        if(req.code!="200"){
+						layer.msg("删除失败");
+					}else{
+						dom.remove();
+					}
+			    },
+			    error:function(){
+			       layer.msg("删除失败");
+			    }
+			});
+		}else{
+			dom.remove();
+		}	
+	}
+
+	layui.use(['laydate','form'],function() {
+		var laydate = layui.laydate;
+		var form = layui.form;
+		useDate();
+		function useDate(){
+	    	laydate.render({
+	    		elem : '#date1',
+	    	});
+	    	laydate.render({
+	    		elem : '#date2',
+	    	});
+	    }
+		
+		$(document).on("click", ".ajax-submit1", function (e) {
+	        e.preventDefault();
+	        var fileImg   = new Array();
+	        var fileVideo = new Array();
+	        var fileFile  = new Array();
+	        var flag=true;
+	        $(".masterMember").each(function(i){
+	        	var meDom=$(this);
+	        	var obj = {};
+	    		var memberN=meDom.find("#memberN");
+	    		var memberS=meDom.find("#memberS");
+	    		var memberB=meDom.find("#memberB");
+	    		var memberT=meDom.find("#memberT");
+	    		var memberD=meDom.find("#memberD");
+	    		var memberW=meDom.find("#memberW");
+	    		var memberE=meDom.find("#memberE");
+	    		var memberId=meDom.find("#memberId");
+	    		obj.name=memberN.val();
+	    		obj.sex=memberS.val();
+	    		obj.birthday=memberB.val();
+	    		obj.education=memberE.val();
+	    		obj.technicalTitles=memberT.val();
+	    		obj.deptName=memberD.val();
+	    		obj.work=memberW.val();
+	    		obj.id=memberId.val();
+	    		var index=0;
+	    		var c=i;
+	    		c++;
+	    		for(var p in obj){
+	    			var par=obj[p];
+	    			if(par==""){
+	    				layer.msg("骨干成员第"+c+"行"+$(".cloum"+index).text()+"为空");
+	    				flag=false;
+	    				return false;
+	    			}
+	    			index++;
+	    		}
+	    		if(!flag){
+	 	        	return;
+	 	        }
+	    		members.push(obj);
+	        });
+	        
+	        if(!flag){
+	        	return;
+	        }
+	        $("#keyMember").val(JSON.stringify(members));
+	        
+	        
+	        $("#file_0 a").each(function(){
+	        	fileImg.push(jQuery(this).attr("id"));
+	    	});
+	        
+	        
+	        $("#file_1 a").each(function(){
+	        	fileVideo.push(jQuery(this).attr("id"));
+	    	});
+	        
+	        $("#file_2 a").each(function(){
+	        	fileFile.push(jQuery(this).attr("id"));
+	    	});
+	        
+	        $("#uploadImg").val(fileImg.join(","));
+	        $("#uploadVideo").val(fileVideo.join(","));
+	        $("#uploadFile").val(fileFile.join(","));
+	        
+	       
+	        var form = $(this).parents("form");
+	        var url = form.attr("action");
+	        var serializeArray = form.serializeArray();
+	        $.post(url, serializeArray, function (result) {
+	            if (result.data == null) {
+	                result.data = 'submit[refresh]';
+	            }
+	            $.fn.Messager(result);
+	        });
+		});
+	});
+	fileUploads($("#uploadHead"),".jpg,.png,.gif",true,function(data){
+		$("#headImg").val(data.path);
+		$("#masertHead").attr("src",data.path);
+	});
+	fileUploads($("#ideaImg1"),".jpg,.png,.gif",true,function(data){
+		$("#unitIdea").val(data.path);
+		$("#ideaImg1").attr("src",data.path);
+	});
+	fileUploads($("#ideaImg2"),".jpg,.png,.gif",true,function(data){
+		$("#cityIdea").val(data.path);
+		$("#ideaImg2").attr("src",data.path);
+	});
+	fileUploads($("#ideaImg3"),".jpg,.png,.gif",true,function(data){
+		$("#provinceIdea").val(data.path);
+		$("#ideaImg3").attr("src",data.path);
+	});
+	
+	fileUploads($("#btnUploadImg"),".jpg,.png,.gif",true,function(data){
+		var ImgHtml="<a href='"+data.path+"' target='_blank' id='"+data.id+"'><img src='"+data.path+"' /><i onclick='deleteFile(this,event);' class='fa fa-times-circle'></i></a>";
+		$("#file_0").append(ImgHtml);
+	});
+	
+	fileUploads($("#btnUploadVideo"),".rmvb,.move,.mp4,.avl,.flv,.3gp",true,function(data){
+		var ImgHtml="<a href='"+data.path+"' target='_blank' id='"+data.id+"'><img src='"+data.thumbPath+"' /><i class='fa fa-play-circle-o'></i><i onclick='deleteFile(this,event);' class='fa fa-times-circle'></i></a>";
+		$("#file_1").append(ImgHtml);
+	});
+	
+	fileUploads($("#btnUploadFile"),".doc,.docx,.ppt,.pdf,.xls,.xlsx",true,function(data){
+		var FileHtml="<a href='"+data.path+"' target='_blank' id='"+data.id+"'>"+data.name+" <i onclick='deleteFile(this,event);' class='fa fa-times-circle'></i></a>";
+		$("#file_2").append(FileHtml);
+	});
+	
+	function fileUploads(obj,allows,multiple,call){
+		var QU=obj.XUploader({
+	        url: "/wuxiao/sliceUpload/uploadFile",
+	        allows:allows,
+	        multiple:multiple,
+	        on: {
+	            complete: function (task) {
+	                if (task.state != XUploader.COMPLETE) return console.log(task.name + ": " + XUploader.getStatusText(task.state) + "!");
+	                var json = task.json;
+	                if (!json) return console.log(task.name + ": 服务器未返回正确的数据！<br />");
+	                if (this.index >= this.list.length - 1) {
+	                	var obj=JSON.parse(task.response);
+	                	call(obj.data);
+	                }
+	            }
+	        }
+	    });
+		return QU;
+	}
+	function QError(status) {
+		if (status == "ext") {
+			layer.msg("上传的文件类型限制");
+		}
+	}
+	function deleteFile(This,ev){
+		var T=jQuery(This).parent();
+		var oEvent = ev || event;
+		oEvent.stopPropagation();
+		oEvent.preventDefault();
+		T.remove();
+	}
+	
+	</script>
+</body>
+</html>

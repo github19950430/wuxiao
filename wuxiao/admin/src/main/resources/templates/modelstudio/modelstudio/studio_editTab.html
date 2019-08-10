@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/common/template :: header(~{::title},~{::link},~{::style})">
+<script>
+    layui.use('element', function(){
+        var element = layui.element; //Tab的切换功能，切换事件监听等，需要依赖element模块
+    });
+</script>
+<body>
+<div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+    <ul class="layui-tab-title" th:if="${index == 0}">
+        <li class="layui-this">劳模创新工作室编辑</li>
+        <li>带头人编辑</li>
+        <!--<li>工作室简介编辑</li>
+        <li>创新计划编辑</li>-->
+    </ul>
+    <ul class="layui-tab-title" th:if="${index == 1}">
+        <li class="layui-this">职工创新工作室编辑</li>
+        <li>带头人编辑</li>
+        <!--<li>工作室简介编辑</li>
+        <li>创新计划编辑</li>-->
+    </ul>
+    <div class="layui-tab-content" style="height: 100px;">
+        <div class="layui-tab-item layui-show">
+           <div th:include="/modelstudio/modelstudio/studio_add :: add"></div>
+        </div>
+        <div class="layui-tab-item">
+           <div th:include="/modelstudio/leaderinformation/leaderin_add :: leaderadd"></div>
+        </div>
+        <!--<div class="layui-tab-item">
+
+        </div>
+        <div class="layui-tab-item">
+        4
+        </div>-->
+    </div>
+</div>
+<script th:replace="/modelstudio/modelstudio/studio_add :: script"></script>
+<script th:replace="/modelstudio/leaderinformation/leaderin_add :: leader"></script>
+<!--<script th:replace="/common/template :: script"></script>-->
+</body>
+</html>

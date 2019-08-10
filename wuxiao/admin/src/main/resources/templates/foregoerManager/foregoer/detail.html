@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/common/template :: header(~{::title},~{::link},~{::style})">
+</head>
+<style>
+        .clearfix:after{
+            content:".";
+            display:block;
+            height:0;
+            visibility:hidden;
+            clear:both;
+        }
+        .clearfix { zoom:1;}
+        table
+
+        {
+
+            border-collapse :collapse ;
+
+        }
+        td
+
+        {
+
+            height:40px;
+
+            border :1px solid black;
+
+            font-size:12px;
+
+            text-align :center;
+
+        }
+        input{
+            border: none;
+        }
+        .infor{
+            width: 18%;
+        }
+        .inmo{
+            width: 70%;
+        }
+        .imic{
+            width: 16.5%;
+        }
+        tr td.infor>div,tr td.inmo>div{
+            height: 45px;
+            line-height: 45px;
+            border-bottom: 1px solid #000;
+        }
+        tr td>div:last-child{
+            border: none;
+        }
+        .list ul{
+            width: 100%;
+            height:45px;
+        }
+        .list ul li{
+            float: left;
+            height:45px;
+            border-right: 1px solid #000;
+        }
+        .list ul li:last-child{
+            border: none;
+        }
+        .list ul li input{
+            width:100%;
+            height: 100%;
+        }
+        .list ul li select{
+            border: none;
+            display: block;
+            width: 100%;
+            height: 100%;
+            margin: 0 auto;
+        }
+        .lay-infor ul{
+            width: 100%;
+            height:45px;
+        }
+        .lay-infor ul li{
+            float: left;
+            height:45px;
+            border-right: 1px solid #000;
+        }
+        .lay-infor ul li:last-child{
+            border: none;
+        }
+        .dpic ul li{
+            float: left;
+            height: 45px;
+            line-height: 45px;
+            border: 1px solid #000;
+        }
+        .dpic ul li:nth-child(1){
+            border:none;
+        }
+        .dpic ul li:nth-child(2){
+            border-right:none;
+            border-top: none;
+            border-bottom: none;
+        }
+        .dpic ul li:nth-child(3){
+            border-right:none;
+            border-top: none;
+            border-bottom: none;
+        }
+        .dpic ul li:last-child{
+            border-right:none;
+            border-top: none;
+            border-bottom: none;
+        }
+        .dpic ul li select{
+            display: block;
+            width: 100%;
+            height: 100%;
+            margin: 0 auto;
+        }
+        .lay-textarea textarea{
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        .layui-laydate-content td{
+            border: none;
+        }
+        .upload-show .upload-item {
+    position: relative;
+    float: left;
+    width:100%;
+    height:100%
+}
+.upload-show .upload-item img {
+width:100%;
+    height: 100%;
+    margin-top: 0px;
+    margin-right: 0px;
+    padding: 0px;
+    border: none;
+}
+    </style>
+<body>
+<button id="daying">打印</button>
+    <div class="timo-detail-page">
+        <div class="timo-detail-title">基本信息
+         
+        </div>
+        <table class="layui-table timo-detail-table daitouren">
+            <colgroup>
+                <col width="130px"><col>
+                <col width="100px"><col>
+            </colgroup>
+            <tbody>
+                <tr>
+                    <th>姓名</th>
+                    <td>[[${foregoer.name}]]</td>
+                    <th>性别</th>
+                    <td>[[${#dicts.keyValue('USER_SEX', foregoer.sex)}]]</td>
+                    <td rowspan="4" style="width:102px"><img th:src="${foregoer.bareheadedImg}" ></td>
+                </tr>		
+                <tr>
+               		<th>出生年月</th>
+                    <td th:text="${#dates.format(foregoer.birthday, 'yyyy-MM-dd')}" colspan="1"></td>
+                    <th>身份证号</th>
+                    <td th:text="${foregoer.identityNum}" ></td>
+                    
+                </tr>
+                <tr>
+                	<th>工作单位</th>
+                    <td th:text="${foregoer.workUnit}"></td>
+                    <th>行业</th>
+                    <td th:text="${#dicts.keyValue('INDUSTRY_TYPE', foregoer.industry)}" ></td>
+                </tr>
+                <tr>
+                    <th>参加工作时间</th>
+                    <td th:text="${#dates.format(foregoer.workStartTime, 'yyyy-MM-dd')}" colspan="3"></td>
+                </tr>
+                <tr>
+                	<th>政治面貌</th>
+                    <td th:text="${#dicts.keyValue('POLITICS_STATUS', foregoer.politicsStatus)}"></td>
+                    <th>技术等级</th>
+                    <td th:text="${#dicts.keyValue('SKILL_LEVEL', foregoer.skillLevel)}" colspan="5"></td>
+                    
+                </tr>
+                <tr>
+                	<th>职称</th>
+                    <td th:text="${foregoer.professional}"></td>
+                    <th>文化程度</th>
+                    <td th:text="${#dicts.keyValue('STANDARD_CULTURE', foregoer.standardCulture)}" colspan="4"></td>
+                </tr>
+                <tr>
+                	<th>最高荣誉</th>
+                    <td th:text="${foregoer.honor}"></td>
+                	<th>联系电话</th>
+                    <td th:text="${foregoer.contactNum}" colspan="2"></td>
+                </tr>
+                <tr>
+                    <th>个人简介</th>
+                    <td th:text="${foregoer.personalIntro}" colspan="6"></td>
+                    
+                </tr>
+                <tr>
+                    <th>主要事迹</th>
+                    <td th:text="${foregoer.mainEvent}" colspan="6"></td>
+                </tr>
+            </tbody>
+        </table>
+       <!--  <table style="width: 1100px;margin: 0 auto" class="daitouren_add">
+        <tr>
+            <td colspan="4" style="font-size: 20px;font-weight: bold;">基本信息</td>
+        </tr>
+        <tr>
+            <td class="infor">
+                <div>
+                    姓名			
+                </div>
+                <div>
+                    身份证号
+                </div>
+                <div>
+                    工作单位
+                </div>
+                <div>
+                    参加工作时间
+                </div>
+            </td>
+            <td class="inmo">
+                <div class="list">
+                    <ul class="clearfix">
+                        <li style="width: 20%">
+                            [[${foregoer.name}]]
+                        </li>
+                        <li style="width: 20%">
+                            性别
+                        </li>
+                        <li style="width: 20%">
+                            [[${#dicts.keyValue('USER_SEX', foregoer.sex)}]]
+                        </li>
+                        <li style="width: 20%">
+                             出生日月
+                        </li>
+                        <li style="width: 19%">
+                            [[${#dates.format(foregoer?.birthday, 'yyyy-MM-dd')}]]
+                        </li>
+                    </ul>
+                </div>
+               <div th:if="${user?.dept?.level !=2}"> 
+                    [[${foregoer?.identityNum}]]
+                </div> 
+                <div class="lay-infor" th:if="${user?.dept?.level eq 2}">
+                    <ul class="clearfix">
+                        <li style="width: 33%">
+                            [[${foregoer?.identityNum}]]
+                        </li>
+                        <li style="width: 33%">
+                             所属工会
+                        </li>
+                        <li style="width: 33%">
+                             [[${user?.dept?.title}]]
+                        </li>
+                    </ul>
+                </div>
+                <div class="lay-infor">
+                    <ul class="clearfix">
+                        <li style="width: 33%">
+                            [[${foregoer?.workUnit}]]
+                        </li>
+                        <li style="width: 33%">
+                            行业
+                        </li>
+                        <li style="width: 33%">
+                            <input type="text" style="width: 100%;height: 100%">
+                            [[${#dicts.keyValue('INDUSTRY_TYPE', foregoer?.industry)}]]
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    [[${#dates.format(foregoer?.workStartTime, 'yyyy-MM-dd')}]]
+                </div>
+            </td>
+            <td class="imic">
+                <div class="layui-form-item" style="width: 100%;height: 100%;margin-bottom:0px;position:relative">
+                    <div class="layui-upload-list" style="height: 138px;width:100%;margin: 0;border: none">
+                        <img class="layui-upload-img" id="demo1" style="height: 100%;width:100%;">
+                    </div>
+                    <div class="upload-show" style="height: 100%;width:100%;margin: 0;border: none;position:absolute;top:0;display:none"></div>
+                    <p style="position:absolute;top:30%" class="infoText">请上传尺寸为3.5*5.3cm 或 413*626px的2寸免冠照</p>
+                    <button  type="button" class="layui-btn upload-pic myuploadBtn" name="bareheadedImg" up-field="path" up-url="/wuxiao/upload/image" th:url="${foregoer?.bareheadedImg}"
+                    		style="height: 45px;line-height: 45px;padding: 0 23px;position:absolute;bottom:0;left:0">
+			            <i class="layui-icon"></i>请选择上传图片
+			        </button>
+			        <div class="layui-upload-list" style="height: 138px;width:100%;margin: 0;border: none"> 
+                         <img class="layui-upload-img"  id="masertHead" th:src="${foregoer?.bareheadedImg}" style="height: 100%;width:100%;">  
+                         <input type="hidden" name="bareheadedImg" id="headImg"/>
+                      </div>
+			        <span id="uploadHead" class="layui-btn upload-pic myuploadBtn" style="width:100%;height: 45px;line-height: 45px;position:absolute;bottom:0;left:0;font-size:12px"><i class="layui-icon"></i>请选择上传图片</span>
+                </div>
+                
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3">
+                <div class="dpic">
+                    <ul class="clearfix" style="width: 100%">
+                        <li style="width: 24%">
+                            政治面貌
+                        </li>
+                        <li style="width: 25%">
+                            <input type="text" style="width: 100%;height: 100%">
+                            <select class="timo-search-select" name="politicsStatus" mo:dict="POLITICS_STATUS" mo-selected="${foregoer?.politicsStatus}" 
+                            		style="border: none;width: 100%;height: 100%"></select>
+                            		[[${#dicts.keyValue('POLITICS_STATUS', foregoer?.politicsStatus)}]]
+                        </li>
+                        <li style="width: 25%">
+                            技术等级
+                        </li>
+                        <li style="width: 24%">
+                            <select class="timo-search-select" name="skillLevel" mo:dict="SKILL_LEVEL" mo-selected="${foregoer?.skillLevel}"
+                            		style="border: none;width: 99%;height: 100%"></select>
+                            		
+                            		[[${#dicts.keyValue('SKILL_LEVEL', foregoer?.skillLevel)}]]
+                        </li>
+                    </ul>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3">
+                <div class="dpic">
+                    <ul class="clearfix" style="width: 100%">
+                        <li style="width: 24%">
+                            职称
+                        </li>
+                        <li style="width: 25%">
+                            [[${foregoer?.professional}]]
+                        
+                        </li>
+                        <li style="width: 25%">
+                            文化程度
+                        </li>
+                        <li style="width: 24%">
+                            <select class="timo-search-select" name="standardCulture" mo:dict="STANDARD_CULTURE" mo-selected="${foregoer?.standardCulture}"
+                            		style="border: none;width: 99%;height: 100%"></select>
+                            [[${#dicts.keyValue('STANDARD_CULTURE', foregoer?.standardCulture)}]]		
+                        </li>
+                    </ul>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3">
+                <div class="dpic">
+                    <ul class="clearfix" style="width: 100%">
+                        <li style="width: 24%">
+                            最高荣誉
+                        </li>
+                        <li style="width: 25%">
+							[[${foregoer?.honor}]]
+                        </li>
+                        <li style="width: 25%">
+                            联系电话
+                        </li>
+                        <li style="width: 24%">
+                             [[${foregoer?.contactNum}]]
+                        </li>
+                    </ul>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3">
+                <div class="clearfix" style="width: 100%">
+                    <div style="float: left;width: 24%;height: 150px;line-height: 150px;border-right: 1px solid #000;">
+                        个人简介
+                    </div>
+                    <div style="float: left;width: 75.7%;height: 150px;box-sizing: border-box;padding:1px"  >
+                    	<div class="layui-textarea"  style="height:100%;border:none"> [[${foregoer?.personalIntro}]] </div>
+                       
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3">
+                <div class="clearfix" style="width: 100%">
+                    <div style="float: left;width: 24%;height: 150px;line-height: 150px;border-right: 1px solid #000;">
+                        主要事迹
+                    </div>
+                    <div style="float: left;width: 75%;height: 150px;;box-sizing: border-box;padding:1px" >
+                    <div class="layui-textarea"  style="height:100%;border:none">[[${foregoer?.mainEvent}]]</div>
+                        
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="4">
+                <div class="layui-form-item">
+                    <div class="layui-input-block" style="text-align: center;margin-top: 30px">
+            			<button class="layui-btn btn-secondary close-popup" style="width: 120px;height: 40px;border-radius: 5px;"><i class="fa fa-times-circle"></i> 返回</button>
+                    </div>
+                </div>
+            </td>
+        </tr>
+
+    </table> -->
+    </div>
+<script th:replace="/common/template :: script"></script>
+<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+<script th:src="@{/js/jQuery.print.js}"></script>
+
+<script type="text/javascript">
+      $("#daying").on('click', function() {
+    	  $.print(".daitouren");
+      });
+</script>
+</body>
+</html>
